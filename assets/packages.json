@@ -280,5 +280,1145 @@
       "Explore Kaziranga at a comfortable pace; sightseeing subject to local conditions.",
       "Depart from the final stop after checkout; transfers to be confirmed."
     ]
+  },
+  {
+    "id": "MH-013",
+    "name": "Short Uttarakhand Escape",
+    "category": "India",
+    "duration": "6 Days / 5 Nights",
+    "route": [
+      "Bhimtal",
+      "Corbett"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Bhimtal; transfer and check-in (subject to confirmation).",
+      "Explore Bhimtal at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Bhimtal at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Corbett at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Corbett at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-014",
+    "name": "Ooty Mysore Coorg Discovery",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Ooty",
+      "Mysore",
+      "Coorg"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Ooty; transfer and check-in (subject to confirmation).",
+      "Explore Ooty at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Ooty at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Mysore at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Mysore at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Coorg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Coorg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-015",
+    "name": "Complete Chardham Pilgrimage",
+    "category": "Pilgrimage",
+    "duration": "14 Days / 13 Nights",
+    "route": [
+      "Haridwar",
+      "Yamunotri",
+      "Gangotri",
+      "Kedarnath",
+      "Badrinath"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Haridwar; transfer and check-in (subject to confirmation).",
+      "Explore Haridwar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Haridwar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Yamunotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Yamunotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Yamunotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gangotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gangotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kedarnath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kedarnath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kedarnath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Badrinath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Badrinath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-016",
+    "name": "Chardham Sacred Journey",
+    "category": "Pilgrimage",
+    "duration": "11 Days / 10 Nights",
+    "route": [
+      "Yamunotri",
+      "Gangotri",
+      "Kedarnath",
+      "Badrinath"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Yamunotri; transfer and check-in (subject to confirmation).",
+      "Explore Yamunotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Yamunotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gangotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gangotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kedarnath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kedarnath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kedarnath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Badrinath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Badrinath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-017",
+    "name": "Do Dham Kedarnath Badrinath",
+    "category": "Pilgrimage",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Guptkashi",
+      "Kedarnath",
+      "Badrinath",
+      "Rudraprayag"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Guptkashi; transfer and check-in (subject to confirmation).",
+      "Explore Guptkashi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kedarnath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Badrinath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Badrinath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Rudraprayag at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-018",
+    "name": "Himachal Grand Circuit",
+    "category": "India",
+    "duration": "10 Days / 9 Nights",
+    "route": [
+      "Amritsar",
+      "Dalhousie",
+      "Dharamshala",
+      "Manali",
+      "Shimla"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Amritsar; transfer and check-in (subject to confirmation).",
+      "Explore Amritsar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dalhousie at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dalhousie at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dharamshala at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dharamshala at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Manali at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Manali at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Shimla at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-019",
+    "name": "Rajasthan Royal Circuit",
+    "category": "India",
+    "duration": "9 Days / 8 Nights",
+    "route": [
+      "Jodhpur",
+      "Jaisalmer",
+      "Bikaner",
+      "Jaipur"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Jodhpur; transfer and check-in (subject to confirmation).",
+      "Explore Jodhpur at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Jaisalmer at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Jaisalmer at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Bikaner at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Bikaner at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Jaipur at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Jaipur at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-020",
+    "name": "Kerala Backwaters and Hills",
+    "category": "India",
+    "duration": "10 Days / 9 Nights",
+    "route": [
+      "Kochi",
+      "Munnar",
+      "Thekkady",
+      "Kumarakom",
+      "Thiruvananthapuram"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Kochi; transfer and check-in (subject to confirmation).",
+      "Explore Kochi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Munnar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Munnar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thekkady at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thekkady at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kumarakom at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kumarakom at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thiruvananthapuram at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-021",
+    "name": "Kerala Highlights",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Kochi",
+      "Munnar",
+      "Thekkady",
+      "Kumarakom"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Kochi; transfer and check-in (subject to confirmation).",
+      "Explore Kochi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Munnar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Munnar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thekkady at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thekkady at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kumarakom at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-022",
+    "name": "Kerala Tamil Nadu Heritage",
+    "category": "India",
+    "duration": "14 Days / 13 Nights",
+    "route": [
+      "Kochi",
+      "Munnar",
+      "Thekkady",
+      "Kanyakumari",
+      "Rameswaram",
+      "Madurai"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Kochi; transfer and check-in (subject to confirmation).",
+      "Explore Kochi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kochi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Munnar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Munnar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thekkady at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thekkady at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kanyakumari at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kanyakumari at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Rameswaram at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Rameswaram at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Madurai at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Madurai at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-023",
+    "name": "Kashmir Valley Highlights",
+    "category": "India",
+    "duration": "9 Days / 8 Nights",
+    "route": [
+      "Srinagar",
+      "Pahalgam",
+      "Gulmarg",
+      "Sonamarg"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Srinagar; transfer and check-in (subject to confirmation).",
+      "Explore Srinagar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pahalgam at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pahalgam at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gulmarg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gulmarg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Sonamarg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Sonamarg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-024",
+    "name": "Kashmir Premium Getaway",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Srinagar",
+      "Pahalgam",
+      "Gulmarg",
+      "Sonamarg"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Srinagar; transfer and check-in (subject to confirmation).",
+      "Explore Srinagar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pahalgam at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pahalgam at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gulmarg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gulmarg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Sonamarg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-025",
+    "name": "Manali and Kufri Holiday",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Manali",
+      "Kufri",
+      "Shimla"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Manali; transfer and check-in (subject to confirmation).",
+      "Explore Manali at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Manali at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kufri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kufri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Shimla at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Shimla at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-026",
+    "name": "Ayodhya Varanasi Spiritual Trail",
+    "category": "Pilgrimage",
+    "duration": "9 Days / 8 Nights",
+    "route": [
+      "Lucknow",
+      "Ayodhya",
+      "Prayagraj",
+      "Varanasi"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Lucknow; transfer and check-in (subject to confirmation).",
+      "Explore Lucknow at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Ayodhya at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Ayodhya at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Prayagraj at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Prayagraj at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Varanasi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Varanasi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-027",
+    "name": "Kerala Ashtamudi Retreat",
+    "category": "India",
+    "duration": "9 Days / 8 Nights",
+    "route": [
+      "Ashtamudi",
+      "Thekkady",
+      "Munnar"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Ashtamudi; transfer and check-in (subject to confirmation).",
+      "Explore Ashtamudi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Ashtamudi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thekkady at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thekkady at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thekkady at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Munnar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Munnar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-028",
+    "name": "Andaman Three Island Escape",
+    "category": "India",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Port Blair",
+      "Havelock Island",
+      "Neil Island"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Port Blair; transfer and check-in (subject to confirmation).",
+      "Explore Port Blair at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Havelock Island at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Havelock Island at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Neil Island at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Neil Island at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-029",
+    "name": "Himachal Scenic Circuit",
+    "category": "India",
+    "duration": "11 Days / 10 Nights",
+    "route": [
+      "Amritsar",
+      "Dalhousie",
+      "Khajjiar",
+      "Dharamshala",
+      "Manali"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Amritsar; transfer and check-in (subject to confirmation).",
+      "Explore Amritsar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dalhousie at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dalhousie at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Khajjiar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Khajjiar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dharamshala at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dharamshala at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Manali at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Manali at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-030",
+    "name": "Amritsar Dalhousie Dharamshala",
+    "category": "India",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Amritsar",
+      "Dalhousie",
+      "Khajjiar",
+      "Dharamshala"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Amritsar; transfer and check-in (subject to confirmation).",
+      "Explore Amritsar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dalhousie at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Khajjiar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Khajjiar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dharamshala at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-031",
+    "name": "Sikkim Darjeeling Grand Tour",
+    "category": "India",
+    "duration": "12 Days / 11 Nights",
+    "route": [
+      "Darjeeling",
+      "Pelling",
+      "Gangtok",
+      "Lachung",
+      "Ravangla"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Darjeeling; transfer and check-in (subject to confirmation).",
+      "Explore Darjeeling at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Darjeeling at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pelling at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pelling at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gangtok at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gangtok at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Lachung at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Lachung at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Ravangla at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Ravangla at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-032",
+    "name": "Spiti Valley Mountain Journey",
+    "category": "India",
+    "duration": "10 Days / 9 Nights",
+    "route": [
+      "Narkanda",
+      "Sangla",
+      "Tabo",
+      "Kaza",
+      "Kalpa",
+      "Shimla"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Narkanda; transfer and check-in (subject to confirmation).",
+      "Explore Narkanda at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Sangla at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Tabo at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Tabo at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kaza at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kalpa at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kalpa at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Shimla at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-033",
+    "name": "Assam Meghalaya Arunachal Explorer",
+    "category": "India",
+    "duration": "12 Days / 11 Nights",
+    "route": [
+      "Guwahati",
+      "Dirang",
+      "Tawang",
+      "Kaziranga",
+      "Shillong"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Guwahati; transfer and check-in (subject to confirmation).",
+      "Explore Guwahati at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Guwahati at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dirang at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dirang at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Tawang at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Tawang at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kaziranga at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kaziranga at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Shillong at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Shillong at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-034",
+    "name": "Assam Arunachal Highlights",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Guwahati",
+      "Dirang",
+      "Tawang"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Guwahati; transfer and check-in (subject to confirmation).",
+      "Explore Guwahati at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Guwahati at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dirang at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dirang at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Tawang at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Tawang at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-035",
+    "name": "Bhutan Grand Discovery",
+    "category": "International",
+    "duration": "11 Days / 10 Nights",
+    "route": [
+      "Phuentsholing",
+      "Thimphu",
+      "Punakha",
+      "Phobjikha",
+      "Bumthang",
+      "Paro"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Phuentsholing; transfer and check-in (subject to confirmation).",
+      "Explore Phuentsholing at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thimphu at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thimphu at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Punakha at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Phobjikha at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Phobjikha at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Bumthang at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Bumthang at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Paro at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-036",
+    "name": "Bhutan Classic Journey",
+    "category": "International",
+    "duration": "9 Days / 8 Nights",
+    "route": [
+      "Phuentsholing",
+      "Thimphu",
+      "Punakha",
+      "Paro"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Phuentsholing; transfer and check-in (subject to confirmation).",
+      "Explore Phuentsholing at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thimphu at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thimphu at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Punakha at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Punakha at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Paro at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Paro at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-037",
+    "name": "Leh Nubra Pangong Journey",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Leh",
+      "Nubra Valley",
+      "Pangong Lake"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Leh; transfer and check-in (subject to confirmation).",
+      "Explore Leh at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Leh at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Nubra Valley at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Nubra Valley at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pangong Lake at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pangong Lake at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-038",
+    "name": "Gujarat Heritage Circuit",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Ahmedabad",
+      "Modhera",
+      "Patan",
+      "Bhuj"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Ahmedabad; transfer and check-in (subject to confirmation).",
+      "Explore Ahmedabad at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Modhera at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Modhera at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Patan at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Patan at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Bhuj at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-039",
+    "name": "Rann of Kutch Experience",
+    "category": "India",
+    "duration": "5 Days / 4 Nights",
+    "route": [
+      "Bhuj",
+      "White Rann",
+      "Kala Dungar"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Bhuj; transfer and check-in (subject to confirmation).",
+      "Explore Bhuj at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore White Rann at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kala Dungar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-040",
+    "name": "Madhya Pradesh Heritage and Wildlife",
+    "category": "India",
+    "duration": "9 Days / 8 Nights",
+    "route": [
+      "Indore",
+      "Ujjain",
+      "Mandu",
+      "Bhopal"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Indore; transfer and check-in (subject to confirmation).",
+      "Explore Indore at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Ujjain at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Ujjain at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Mandu at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Mandu at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Bhopal at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Bhopal at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-041",
+    "name": "Odisha Temple and Coast",
+    "category": "India",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Bhubaneswar",
+      "Puri",
+      "Konark",
+      "Chilika"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Bhubaneswar; transfer and check-in (subject to confirmation).",
+      "Explore Bhubaneswar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Puri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Konark at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Konark at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Chilika at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-042",
+    "name": "Goa Coastal Holiday",
+    "category": "India",
+    "duration": "5 Days / 4 Nights",
+    "route": [
+      "North Goa",
+      "South Goa"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in North Goa; transfer and check-in (subject to confirmation).",
+      "Explore North Goa at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore South Goa at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore South Goa at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-043",
+    "name": "Meghalaya Nature Trail",
+    "category": "India",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Guwahati",
+      "Shillong",
+      "Cherrapunji",
+      "Dawki"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Guwahati; transfer and check-in (subject to confirmation).",
+      "Explore Guwahati at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Shillong at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Cherrapunji at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Cherrapunji at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dawki at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-044",
+    "name": "Nepal Himalayan Heritage",
+    "category": "International",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Kathmandu",
+      "Pokhara",
+      "Chitwan"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Kathmandu; transfer and check-in (subject to confirmation).",
+      "Explore Kathmandu at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kathmandu at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pokhara at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pokhara at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Chitwan at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Chitwan at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-045",
+    "name": "Varanasi Prayagraj Ayodhya",
+    "category": "Pilgrimage",
+    "duration": "6 Days / 5 Nights",
+    "route": [
+      "Varanasi",
+      "Prayagraj",
+      "Ayodhya"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Varanasi; transfer and check-in (subject to confirmation).",
+      "Explore Varanasi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Prayagraj at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Prayagraj at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Ayodhya at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-046",
+    "name": "Somnath Dwarka Pilgrimage",
+    "category": "Pilgrimage",
+    "duration": "6 Days / 5 Nights",
+    "route": [
+      "Ahmedabad",
+      "Dwarka",
+      "Somnath"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Ahmedabad; transfer and check-in (subject to confirmation).",
+      "Explore Ahmedabad at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dwarka at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dwarka at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Somnath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-047",
+    "name": "Ujjain Omkareshwar Pilgrimage",
+    "category": "Pilgrimage",
+    "duration": "5 Days / 4 Nights",
+    "route": [
+      "Indore",
+      "Ujjain",
+      "Omkareshwar"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Indore; transfer and check-in (subject to confirmation).",
+      "Explore Indore at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Ujjain at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Omkareshwar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-048",
+    "name": "Tamil Nadu Temple Circuit",
+    "category": "Pilgrimage",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Madurai",
+      "Rameswaram",
+      "Kanyakumari",
+      "Thanjavur"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Madurai; transfer and check-in (subject to confirmation).",
+      "Explore Madurai at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Rameswaram at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Rameswaram at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kanyakumari at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kanyakumari at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Thanjavur at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-049",
+    "name": "Golden Triangle Family Holiday",
+    "category": "India",
+    "duration": "6 Days / 5 Nights",
+    "route": [
+      "Delhi",
+      "Agra",
+      "Jaipur"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Delhi; transfer and check-in (subject to confirmation).",
+      "Explore Delhi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Agra at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Agra at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Jaipur at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-050",
+    "name": "Kaziranga Shillong Getaway",
+    "category": "India",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Guwahati",
+      "Kaziranga",
+      "Shillong"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Guwahati; transfer and check-in (subject to confirmation).",
+      "Explore Guwahati at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kaziranga at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kaziranga at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Shillong at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Shillong at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-051",
+    "name": "Saurashtra Gujarat Discovery",
+    "category": "India",
+    "duration": "9 Days / 8 Nights",
+    "route": [
+      "Rajkot",
+      "Dwarka",
+      "Somnath",
+      "Gir",
+      "Junagadh"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Rajkot; transfer and check-in (subject to confirmation).",
+      "Explore Rajkot at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dwarka at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Dwarka at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Somnath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gir at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gir at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Junagadh at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-052",
+    "name": "Karnataka Heritage and Hills",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Bengaluru",
+      "Mysore",
+      "Coorg",
+      "Hassan"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Bengaluru; transfer and check-in (subject to confirmation).",
+      "Explore Bengaluru at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Mysore at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Mysore at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Coorg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Coorg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Hassan at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-053",
+    "name": "Uttarakhand Hills and Lakes",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Nainital",
+      "Bhimtal",
+      "Corbett",
+      "Ranikhet"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Nainital; transfer and check-in (subject to confirmation).",
+      "Explore Nainital at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Bhimtal at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Bhimtal at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Corbett at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Corbett at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Ranikhet at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-054",
+    "name": "Darjeeling Gangtok Family Tour",
+    "category": "India",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Darjeeling",
+      "Gangtok",
+      "Tsongmo Lake"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Darjeeling; transfer and check-in (subject to confirmation).",
+      "Explore Darjeeling at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gangtok at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gangtok at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Tsongmo Lake at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Tsongmo Lake at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-055",
+    "name": "Ladakh Scenic Road Trip",
+    "category": "India",
+    "duration": "10 Days / 9 Nights",
+    "route": [
+      "Leh",
+      "Sham Valley",
+      "Nubra Valley",
+      "Pangong Lake"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Leh; transfer and check-in (subject to confirmation).",
+      "Explore Leh at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Leh at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Sham Valley at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Sham Valley at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Nubra Valley at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Nubra Valley at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pangong Lake at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pangong Lake at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-056",
+    "name": "Rajasthan Desert and Forts",
+    "category": "India",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Jaipur",
+      "Jodhpur",
+      "Jaisalmer"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Jaipur; transfer and check-in (subject to confirmation).",
+      "Explore Jaipur at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Jodhpur at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Jodhpur at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Jaisalmer at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Jaisalmer at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-057",
+    "name": "Kerala Family Short Break",
+    "category": "India",
+    "duration": "6 Days / 5 Nights",
+    "route": [
+      "Kochi",
+      "Munnar",
+      "Alleppey"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Kochi; transfer and check-in (subject to confirmation).",
+      "Explore Kochi at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Munnar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Munnar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Alleppey at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-058",
+    "name": "Kashmir Winter Holiday",
+    "category": "India",
+    "duration": "6 Days / 5 Nights",
+    "route": [
+      "Srinagar",
+      "Gulmarg",
+      "Pahalgam"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Srinagar; transfer and check-in (subject to confirmation).",
+      "Explore Srinagar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gulmarg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gulmarg at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Pahalgam at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
+  },
+  {
+    "id": "MH-059",
+    "name": "Chardham Family Assistance Tour",
+    "category": "Pilgrimage",
+    "duration": "12 Days / 11 Nights",
+    "route": [
+      "Haridwar",
+      "Yamunotri",
+      "Gangotri",
+      "Kedarnath",
+      "Badrinath"
+    ],
+    "summary": "Customisable holiday itinerary — request a confirmed quotation",
+    "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive in Haridwar; transfer and check-in (subject to confirmation).",
+      "Explore Haridwar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Haridwar at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Yamunotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Yamunotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gangotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Gangotri at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kedarnath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Kedarnath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Badrinath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Explore Badrinath at a comfortable pace; activities and transfers to be confirmed with local suppliers.",
+      "Checkout and departure transfer, subject to final travel arrangements."
+    ]
   }
 ]
