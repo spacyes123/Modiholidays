@@ -1,132 +1,188 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modi Holidays | Thoughtfully Planned Family & Group Holidays</title>
-<meta name="description" content="Plan personalised family holidays, group tours and customised travel across India and abroad with Modi Holidays. Enquire on WhatsApp.">
-<meta name="theme-color" content="#173f35">
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/styles.css">
-<link rel="canonical" href="https://modiholidays.in/">
+:root {
+  --green: #173f35;
+  --green-2: #24584a;
+  --green-3: #e8efea;
+  --gold: #c6a45a;
+  --gold-light: #e8d7a8;
+  --ivory: #f8f5ed;
+  --paper: #fffdf8;
+  --ink: #222923;
+  --muted: #69736c;
+  --line: #e5e2d8;
+  --shadow: 0 16px 42px rgba(23,63,53,.09);
+  --radius: 18px;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.65; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+.skip-link { position:absolute; left:-9999px; top:auto; }
+.skip-link:focus { left:1rem; top:1rem; z-index:1000; padding:1rem; background:white; }
+.topbar { background: var(--green); color:#f8f5ed; font-size:.82rem; }
+.topbar-inner { display:flex; justify-content:space-between; gap:1rem; padding:.55rem 0; }
+.topbar a { color:var(--gold-light); }
+.site-header { position:sticky; top:0; z-index:50; background:rgba(255,253,248,.96); backdrop-filter: blur(14px); border-bottom:1px solid rgba(229,226,216,.85); }
+.header-inner { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; min-height:82px; }
+.brand img { width:300px; height:auto; }
+.nav { display:flex; align-items:center; gap:1.2rem; font-size:.91rem; color:#3c4941; }
+.nav a { padding:.55rem 0; transition:color .2s; }
+.nav a:hover, .nav a[aria-current="page"] { color:var(--green); }
+.nav .nav-cta { padding:.72rem 1rem; background:var(--green); color:white; border-radius:999px; }
+.menu-toggle { display:none; border:1px solid var(--line); background:white; border-radius:10px; padding:.55rem .75rem; color:var(--green); }
+.hero { position:relative; overflow:hidden; color:white; background:var(--green); }
+.hero::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(11,38,31,.89) 0%,rgba(11,38,31,.68) 48%,rgba(11,38,31,.12) 100%); z-index:1; }
+.hero-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.hero-content { position:relative; z-index:2; max-width:720px; padding:clamp(5rem,10vw,9rem) 0 clamp(5rem,8vw,7rem); }
+.eyebrow { display:inline-flex; align-items:center; gap:.65rem; color:var(--gold-light); text-transform:uppercase; letter-spacing:.16em; font-size:.75rem; font-weight:700; }
+.eyebrow::before { content:""; width:28px; height:1px; background:var(--gold); }
+h1,h2,h3 { line-height:1.16; margin:0 0 1rem; }
+h1,h2 { font-family:var(--serif); font-weight:500; letter-spacing:-.025em; }
+h1 { font-size:clamp(2.7rem,6.2vw,5.25rem); max-width:850px; }
+h2 { font-size:clamp(2rem,4vw,3.15rem); color:var(--green); }
+h3 { font-size:1.18rem; color:var(--green); }
+p { margin:.3rem 0 1rem; }
+.hero p { max-width:610px; color:rgba(255,255,255,.86); font-size:clamp(1rem,1.7vw,1.16rem); }
+.actions { display:flex; flex-wrap:wrap; gap:.8rem; margin-top:1.7rem; }
+.btn { display:inline-flex; justify-content:center; align-items:center; gap:.5rem; padding:.9rem 1.25rem; border:1px solid transparent; border-radius:999px; font-weight:700; font-size:.93rem; cursor:pointer; transition:transform .18s,background .18s; }
+.btn:hover { transform:translateY(-2px); }
+.btn-primary { background:var(--gold); color:#1c3027; }
+.btn-primary:hover { background:#d8b96f; }
+.btn-light { background:#fffdf8; color:var(--green); }
+.btn-outline { border-color:rgba(255,255,255,.65); color:white; background:transparent; }
+.btn-outline-dark { border-color:#cbd4cd; color:var(--green); background:transparent; }
+.section { padding:clamp(3.5rem,7vw,6rem) 0; }
+.section-soft { background:var(--ivory); }
+.section-dark { background:var(--green); color:white; }
+.section-dark h2 { color:white; }
+.section-heading { display:flex; justify-content:space-between; align-items:end; gap:2rem; margin-bottom:2rem; }
+.section-heading > div { max-width:680px; }
+.section-heading p { color:var(--muted); max-width:600px; }
+.section-dark .section-heading p { color:rgba(255,255,255,.72); }
+.kicker { color:#9a7738; font-size:.77rem; text-transform:uppercase; letter-spacing:.15em; font-weight:800; margin-bottom:.8rem; }
+.grid { display:grid; gap:1.25rem; }
+.grid-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.grid-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.card { background:white; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 18px rgba(23,63,53,.025); transition:transform .2s,box-shadow .2s; }
+.card:hover { transform:translateY(-4px); box-shadow:var(--shadow); }
+.card-image { width:100%; aspect-ratio: 4 / 3; object-fit:cover; background:var(--green-3); }
+.card-body { padding:1.25rem; }
+.card-meta { color:#8c6d34; text-transform:uppercase; letter-spacing:.1em; font-size:.72rem; font-weight:800; }
+.card h3 { margin:.55rem 0 .6rem; }
+.card p { color:var(--muted); font-size:.93rem; }
+.card-link { display:inline-flex; gap:.4rem; color:var(--green); font-weight:800; font-size:.9rem; margin-top:.35rem; }
+.card-link span { color:#a9853d; }
+.feature-band { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+.feature-image { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:var(--radius); box-shadow:var(--shadow); }
+.check-list { list-style:none; padding:0; margin:1.2rem 0; display:grid; gap:.75rem; }
+.check-list li { display:flex; gap:.7rem; align-items:flex-start; }
+.check-list li::before { content:"✓"; display:grid; place-items:center; flex:0 0 24px; height:24px; border-radius:50%; background:#e6eee8; color:var(--green); font-size:.8rem; font-weight:900; margin-top:.12rem; }
+.trust-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:2rem; }
+.trust-item { padding:1.2rem; border:1px solid rgba(255,255,255,.18); border-radius:14px; }
+.trust-item strong { display:block; color:var(--gold-light); font-family:var(--serif); font-size:1.45rem; font-weight:500; margin-bottom:.3rem; }
+.trust-item span { color:rgba(255,255,255,.75); font-size:.88rem; }
+.page-hero { padding:clamp(3.5rem,7vw,6rem) 0; background:var(--ivory); border-bottom:1px solid var(--line); }
+.page-hero .container { max-width:1160px; }
+.page-hero h1 { font-size:clamp(2.5rem,5vw,4rem); color:var(--green); max-width:850px; }
+.page-hero p { max-width:720px; color:var(--muted); font-size:1.08rem; }
+.breadcrumb { font-size:.82rem; color:var(--muted); margin-bottom:1.25rem; }
+.breadcrumb a { color:var(--green); }
+.package-price { color:var(--green); font-weight:800; font-size:.95rem; }
+.note { border-left:3px solid var(--gold); background:#f7f3e8; padding:1rem 1.15rem; border-radius:0 12px 12px 0; color:#4b544e; font-size:.92rem; }
+.form-card { background:white; padding:clamp(1.25rem,3vw,2rem); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); }
+.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.field { display:grid; gap:.42rem; }
+.field-full { grid-column:1 / -1; }
+label { font-size:.88rem; font-weight:700; color:#35463c; }
+input,select,textarea { width:100%; border:1px solid #d8ded7; background:#fffefa; border-radius:10px; padding:.85rem .9rem; color:var(--ink); }
+input:focus,select:focus,textarea:focus { outline:3px solid rgba(198,164,90,.25); border-color:var(--gold); }
+textarea { resize:vertical; min-height:120px; }
+.form-help { font-size:.83rem; color:var(--muted); }
+.contact-layout { display:grid; grid-template-columns:.85fr 1.15fr; gap:2rem; align-items:start; }
+.contact-panel { background:var(--green); color:white; border-radius:var(--radius); padding:2rem; }
+.contact-panel h2 { color:white; font-size:2rem; }
+.contact-panel a { color:var(--gold-light); overflow-wrap:anywhere; }
+.contact-line { padding:1rem 0; border-bottom:1px solid rgba(255,255,255,.16); }
+.contact-line:last-child { border-bottom:0; }
+.steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; counter-reset:step; }
+.step { padding:1.3rem; border:1px solid var(--line); border-radius:14px; background:white; counter-increment:step; }
+.step::before { content:"0" counter(step); display:block; color:#9b7838; font-family:var(--serif); font-size:1.5rem; margin-bottom:.75rem; }
+.step p { color:var(--muted); font-size:.9rem; }
+.faq-list { display:grid; gap:.75rem; max-width:850px; }
+details { padding:1rem 1.1rem; background:white; border:1px solid var(--line); border-radius:12px; }
+summary { cursor:pointer; color:var(--green); font-weight:800; }
+details p { color:var(--muted); margin:.75rem 0 0; }
+.cta-strip { display:flex; justify-content:space-between; align-items:center; gap:2rem; padding:2rem; border-radius:var(--radius); background:#eee7d6; }
+.cta-strip h2 { font-size:clamp(1.6rem,3vw,2.3rem); margin-bottom:.4rem; }
+.cta-strip p { color:#59645c; margin:0; }
+.prose { max-width:850px; }
+.prose h2 { font-size:1.8rem; margin-top:2.3rem; }
+.prose h3 { margin-top:1.5rem; }
+.prose p,.prose li { color:#59645c; }
+.prose a { color:var(--green); text-decoration:underline; text-underline-offset:3px; }
+.site-footer { background:#102f28; color:#f8f5ed; padding:3.5rem 0 1.5rem; }
+.footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:2rem; }
+.footer-brand { width:260px; background:var(--ivory); border-radius:8px; margin-bottom:1rem; }
+.site-footer p,.site-footer li { color:rgba(255,255,255,.68); font-size:.9rem; }
+.site-footer h3 { color:var(--gold-light); font-size:.9rem; text-transform:uppercase; letter-spacing:.1em; }
+.site-footer ul { list-style:none; padding:0; margin:0; display:grid; gap:.55rem; }
+.site-footer a:hover { color:var(--gold-light); }
+.footer-bottom { border-top:1px solid rgba(255,255,255,.16); margin-top:2.5rem; padding-top:1.2rem; display:flex; justify-content:space-between; gap:1rem; color:rgba(255,255,255,.55); font-size:.82rem; }
+.whatsapp-float { position:fixed; z-index:40; right:18px; bottom:18px; display:flex; align-items:center; gap:.5rem; padding:.8rem 1rem; border-radius:999px; color:white; background:#1e7652; box-shadow:0 10px 28px rgba(0,0,0,.2); font-weight:800; font-size:.9rem; }
+.whatsapp-float svg { width:20px; height:20px; fill:currentColor; }
+.muted { color:var(--muted); }
+.small { font-size:.85rem; }
+.center { text-align:center; }
+.mt-2 { margin-top:2rem; }
+.mb-0 { margin-bottom:0; }
+.empty-state { padding:2rem; background:var(--ivory); border-radius:14px; }
+@media (max-width: 980px) {
+  .nav { gap:.8rem; font-size:.85rem; }
+  .brand img { width:245px; }
+  .grid-4 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .footer-grid { grid-template-columns:repeat(2,1fr); }
+  .steps { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width: 760px) {
+  .container { width:min(100% - 30px, 600px); }
+  .topbar-inner { justify-content:center; text-align:center; }
+  .topbar-inner span:first-child { display:none; }
+  .header-inner { min-height:72px; }
+  .brand img { width:230px; }
+  .menu-toggle { display:inline-flex; align-items:center; gap:.5rem; }
+  .nav { display:none; position:absolute; left:0; right:0; top:100%; padding:1rem 1.25rem 1.25rem; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 14px 24px rgba(0,0,0,.08); flex-direction:column; align-items:stretch; gap:.2rem; }
+  .nav.is-open { display:flex; }
+  .nav a { padding:.75rem .5rem; }
+  .nav .nav-cta { text-align:center; margin-top:.4rem; }
+  .hero::before { background:linear-gradient(90deg,rgba(11,38,31,.88),rgba(11,38,31,.48)); }
+  .hero-content { padding:5rem 0; }
+  .section-heading { display:block; }
+  .section-heading .card-link { margin-top:.5rem; }
+  .grid-3,.grid-4 { grid-template-columns:1fr; }
+  .feature-band,.contact-layout { grid-template-columns:1fr; gap:2rem; }
+  .feature-image { order:-1; }
+  .trust-grid { grid-template-columns:1fr; }
+  .form-grid { grid-template-columns:1fr; }
+  .field-full { grid-column:auto; }
+  .steps { grid-template-columns:1fr; }
+  .cta-strip { display:block; padding:1.5rem; }
+  .cta-strip .btn { margin-top:1rem; width:100%; }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:1.6rem 1rem; }
+  .footer-grid > div:first-child { grid-column:1 / -1; }
+  .footer-brand { width:230px; }
+  .footer-bottom { display:block; }
+  .footer-bottom span { display:block; margin-top:.4rem; }
+  .whatsapp-float { right:12px; bottom:12px; padding:.8rem; }
+  .whatsapp-float .wa-label { display:none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  *,*::before,*::after { transition:none !important; animation:none !important; }
+}
 
-</head>
-<body>
-
-<a class="skip-link" href="#main">Skip to content</a>
-<div class="topbar"><div class="container topbar-inner"><span>Thoughtfully planned holidays, from Mumbai to destinations across India</span><span>Planning a trip? <a href="plan-my-holiday.html">Tell us your plans</a></span></div></div>
-<header class="site-header"><div class="container header-inner">
-  <a class="brand" href="index.html" aria-label="Modi Holidays home"><img src="assets/logo.svg" alt="Modi Holidays — Your Journey. Our Experience." width="420" height="104"></a>
-  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">☰ <span>Menu</span></button>
-  <nav class="nav" id="primary-nav" aria-label="Primary navigation">
-    <a href="index.html">Home</a><a href="domestic-holidays.html">India</a><a href="packages.html">Packages</a><a href="international-holidays.html">International</a><a href="group-tours.html">Group</a><a href="plan-my-holiday.html">Custom</a><a href="#modi-ai" data-chat-toggle>ChatGPT</a>
-  </nav>
-</div></header>
-
-<main id="main">
-
-<section class="hero">
-  <img class="hero-image" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=2000&q=85" alt="" fetchpriority="high">
-  <div class="container"><div class="hero-content"><span class="eyebrow">Travel, thoughtfully planned</span><h1>Make room for the journeys you'll remember.</h1><p>From family escapes and memorable getaways to curated group holidays and spiritual journeys, we help you shape a trip around your pace, budget and preferences.</p><div class="actions"><a class="btn btn-primary" href="plan-my-holiday.html">Plan my holiday</a><button class="btn btn-outline" type="button" data-chat-toggle>Try ChatGPT planner</button></div></div></div>
-</section>
-<section class="section"><div class="container">
-  <div class="section-heading"><div><div class="kicker">Find your kind of holiday</div><h2>Journeys for every kind of traveller.</h2><p>Tell us what matters to you. We'll help shape a trip around your goals, from easy beach breaks to high-altitude adventures.</p></div><a class="card-link" href="packages.html">Browse all packages <span>→</span></a></div>
-  <div class="grid grid-3">
-    <article class="card"><img class="card-image" src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=900&q=80" alt="Domestic holidays" loading="lazy"><div class="card-body"><div class="card-meta">India</div><h3>Domestic holidays</h3><p>Discover hill stations, heritage escapes, beach breaks, and family-friendly stays across India.</p><a class="card-link" href="domestic-holidays.html">Explore ideas <span>→</span></a></div></article>
-    <article class="card"><img class="card-image" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="International holidays" loading="lazy"><div class="card-body"><div class="card-meta">Overseas</div><h3>International holidays</h3><p>From short-haul city breaks to tropical escapes, we plan trips that feel effortless.</p><a class="card-link" href="international-holidays.html">See destinations <span>→</span></a></div></article>
-    <article class="card"><img class="card-image" src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=85" alt="Group tours" loading="lazy"><div class="card-body"><div class="card-meta">Group</div><h3>Group tours</h3><p>Thoughtfully organised itineraries for families, friends, and special-interest travel communities.</p><a class="card-link" href="group-tours.html">Plan a group trip <span>→</span></a></div></article>
-  </div>
-</div></section>
-<section class="section section-soft"><div class="container feature-band">
-  <div>
-    <div class="kicker">A more personal way to travel</div>
-    <h2>Good trips begin with listening.</h2>
-    <p class="muted">No two families travel alike. We start with your priorities, then work through the best fit: pace, destinations, budget, special experiences, and how much flexibility you want.</p>
-    <ul class="check-list">
-      <li>We tailor recommendations around your budget, travel dates and travel style.</li>
-      <li>We simplify the planning process so you can compare ideas without the overwhelm.</li>
-      <li>Every trip is shaped around comfort, pace and the moments that matter most.</li>
-    </ul>
-  </div>
-  <img class="feature-image" src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=85" alt="Travellers enjoying a scenic outdoor holiday" loading="lazy">
-</div></section>
-<section class="section"><div class="container">
-  <div class="section-heading"><div><div class="kicker">A little inspiration</div><h2>Places to start dreaming about.</h2><p>These are starting points, not fixed itineraries. Ask us to tailor the trip to your pace, group size and budget.</p></div></div>
-  <div class="grid grid-3">
-    <article class="card"><img class="card-image" src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80" alt="Kerala" loading="lazy"><div class="card-body"><div class="card-meta">India</div><h3>Kerala</h3><p>Lush backwaters, relaxing stays, and slow travel designed around comfort and scenic evenings.</p><a class="card-link" href="domestic-holidays.html">Learn more <span>→</span></a></div></article>
-    <article class="card"><img class="card-image" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80" alt="Bali" loading="lazy"><div class="card-body"><div class="card-meta">International</div><h3>Bali</h3><p>Beachfront villas, cultural day trips, and the warm, hassle-free rhythm many travellers want.</p><a class="card-link" href="international-holidays.html">Plan this trip <span>→</span></a></div></article>
-    <article class="card"><img class="card-image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Pilgrimage tours" loading="lazy"><div class="card-body"><div class="card-meta">Pilgrimage</div><h3>Pilgrimage tours</h3><p>Comfortable stays, clearly organised logistics, and journeys built around peace and simplicity.</p><a class="card-link" href="pilgrimage-tours.html">Find details <span>→</span></a></div></article>
-  </div>
-</div></section>
-<section class="section section-soft" id="modi-ai">
-  <div class="container feature-band">
-    <div>
-      <div class="kicker">ChatGPT-style trip planning</div>
-      <h2>Ask Modi AI for fresh holiday ideas.</h2>
-      <p class="muted">Whether you're dreaming about a family beach break, a short international getaway, or a spiritual journey, a quick prompt can help shape the right starting point.</p>
-      <ul class="check-list">
-        <li>Get tailored destination suggestions based on your travel month and budget.</li>
-        <li>Compare family, couple and group holiday styles in minutes.</li>
-        <li>Use it as a fast first step before speaking with our travel team.</li>
-      </ul>
-      <button class="btn btn-primary" type="button" data-chat-toggle>Open the AI planner</button>
-    </div>
-    <div class="chat-preview" aria-hidden="true">
-      <div class="chat-preview-window">
-        <div class="chat-preview-header">Modi AI</div>
-        <div class="chat-preview-body">
-          <div class="chat-bubble bot">Hi! I can suggest beach breaks, hill retreats, or pilgrim-friendly trips.</div>
-          <div class="chat-bubble user">I want a 5-day family holiday under ₹35,000 per person.</div>
-          <div class="chat-bubble bot">Great fit: Kerala backwaters, Goa with resort stay, or a short Himachal getaway.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section section-dark"><div class="container">
-  <div class="section-heading"><div><div class="kicker">The Modi Holidays approach</div><h2>Careful planning. Clear communication.</h2><p>We want you to understand the trip before you commit. Every itinerary is built around what matters most to you.</p></div></div>
-  <div class="trust-grid"><div class="trust-item"><strong>Personalised</strong><span>Recommendations based on your dates, group and budget.</span></div><div class="trust-item"><strong>Transparent</strong><span>Clear guidance on timings, pacing and what to expect.</span></div><div class="trust-item"><strong>Thoughtful</strong><span>Trips designed to feel calm, easy and memorable from start to finish.</span></div></div>
-</div></section>
-<section class="section"><div class="container"><div class="cta-strip"><div><h2>Have a destination in mind?</h2><p>Share a few details. We'll take it from there, one step at a time.</p></div><a class="btn btn-primary" href="plan-my-holiday.html">Plan my holiday</a></div></div></section>
-
-<section class="section section-soft"><div class="container"><div class="kicker">Explore more</div><h2>Find your next holiday</h2><p>Browse 12 suggested journeys with day-wise itineraries and request a customised quote tailored to your dates and group.</p><div class="mt-2"><a class="btn btn-primary" href="packages.html">View package ideas</a></div></div></section>
-
-</main>
-
-<footer class="site-footer"><div class="container">
-  <div class="footer-grid">
-    <div><img class="footer-brand" src="assets/logo.svg" alt="Modi Holidays"><p>Thoughtfully planned holidays, personalised itineraries and attentive support for families and groups travelling from Mumbai and across India.</p></div>
-    <div><h3>Explore</h3><ul><li><a href="domestic-holidays.html">Domestic Holidays</a></li><li><a href="international-holidays.html">International Holidays</a></li><li><a href="group-tours.html">Group Tours</a></li><li><a href="pilgrimage-tours.html">Pilgrimage Tours</a></li></ul></div>
-    <div><h3>Modi Holidays</h3><ul><li><a href="about.html">Our Story</a></li><li><a href="contact.html">Contact</a></li><li><a href="plan-my-holiday.html">Customise a Trip</a></li><li><a href="privacy.html">Privacy</a></li></ul></div>
-    <div><h3>Get in touch</h3><ul><li><a href="mailto:hello@modiholidays.in" data-email>hello@modiholidays.in</a></li><li><span data-phone>+91 XXXXX XXXXX</span></li><li><span data-location>Mumbai, Maharashtra, India</span></li><li><a href="cancellation.html">Cancellation</a></li></ul></div>
-  </div>
-  <div class="footer-bottom"><div>© <span data-year></span> Modi Holidays. All rights reserved.</div><span>Prices and availability are confirmed manually before booking.</span></div>
-</div></footer>
-<a class="whatsapp-float" href="#" data-whatsapp data-message="Hello Modi Holidays, I'd like help planning a holiday." aria-label="Contact Modi Holidays on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.8 11.8 0 0 0 12.1 0C5.43 0 .06 5.37.06 12.04c0 2.13.56 4.2 1.62 6.02L0 24l6.1-1.6a12.02 12.02 0 0 0 5.98 1.52h.01c6.66 0 12.03-5.37 12.03-12.03 0-3.22-1.25-6.25-3.48-8.48ZM12.12 21.1h-.01a9.96 9.96 0 0 1-5.09-1.39l-.36-.21-3.61.94.97-3.52-.23-.36A9.9 9.9 0 0 1 2.1 12c0-5.51 4.47-9.98 9.98-9.98 2.66 0 5.16 1.04 7.04 2.92A9.92 9.92 0 0 1 22.1 12c0 5.51-4.47 9.98-9.98 9.98Zm5.47-7.46c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.08-.3-.14-1.28-.47-2.43-1.5-.9-.8-1.5-1.79-1.68-2.09-.17-.3-.02-.47.13-.62.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.63-.94-2.23-.25-.58-.5-.5-.68-.51l-.58-.01c-.2 0-.53.08-.8.38-.27.3-1.02 1-1.02 2.43s1.04 2.81 1.19 3c.15.2 2.04 3.13 4.95 4.38 2.9 1.25 2.9.84 3.43.78.53-.06 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.27-.2-.58-.35Z"/></svg><span class="wa-label">Chat on WhatsApp</span></a>
-<button class="chat-toggle" type="button" data-chat-toggle aria-label="Open ChatGPT-style planner">
-  <span class="chat-toggle-icon">✦</span>
-  <span>ChatGPT</span>
-</button>
-<div class="chat-widget" id="chat-widget" aria-live="polite" aria-label="Travel planner chat">
-  <div class="chat-window">
-    <div class="chat-header">
-      <div>
-        <span class="chat-badge">ChatGPT-style</span>
-        <strong>Modi AI</strong>
-      </div>
-      <button class="chat-close" type="button" data-chat-close aria-label="Close AI chat">×</button>
-    </div>
-    <div class="chat-messages" id="chat-messages">
-      <div class="chat-bubble bot">Hi! I can suggest family trips, group holidays and international ideas based on your budget and dates.</div>
-    </div>
-    <form class="chat-form" id="chat-form">
-      <label class="sr-only" for="chat-input">Ask about your holiday</label>
-      <input id="chat-input" name="message" type="text" placeholder="Ask about a destination or budget..." autocomplete="off">
-      <button type="submit">Send</button>
-    </form>
-  </div>
-</div>
-<script src="assets/config.js"></script><script src="assets/main.js"></script>
-
-</body>
-</html>
+.package-controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:28px}.package-controls input,.package-controls select{border:1px solid #d9dfd7;border-radius:8px;padding:12px 14px;background:#fff;color:#173f35;min-width:210px}.package-detail-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:32px;align-items:start}.detail-photo{width:100%;height:390px;object-fit:cover;border-radius:14px}.package-aside{border:1px solid #d9dfd7;border-radius:14px;background:#fff;position:sticky;top:100px}.itinerary-day{padding:18px 0;border-bottom:1px solid #e4e8e3}.itinerary-day p{margin:8px 0 0}.package-aside .btn{display:inline-block}@media(max-width:760px){.package-detail-layout{grid-template-columns:1fr}.detail-photo{height:240px}.package-aside{position:static}.package-controls{align-items:stretch}.package-controls input,.package-controls select{width:100%}}
