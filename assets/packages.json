@@ -1,0 +1,284 @@
+[
+  {
+    "id": "MH-001",
+    "name": "Kashmir Family Discovery",
+    "category": "India",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Srinagar",
+      "Gulmarg",
+      "Pahalgam"
+    ],
+    "summary": "Lakes, valleys and mountain scenery",
+    "image": "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Srinagar; check in and relax.",
+      "Explore Srinagar at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Srinagar at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Gulmarg at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Gulmarg at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Pahalgam at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  },
+  {
+    "id": "MH-002",
+    "name": "Himachal Mountain Retreat",
+    "category": "India",
+    "duration": "9 Days / 8 Nights",
+    "route": [
+      "Shimla",
+      "Manali",
+      "Dharamshala",
+      "Dalhousie"
+    ],
+    "summary": "Himalayan towns and scenic drives",
+    "image": "https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Shimla; check in and relax.",
+      "Explore Shimla at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Shimla at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Manali at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Manali at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Dharamshala at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Dharamshala at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Dalhousie at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  },
+  {
+    "id": "MH-003",
+    "name": "Kerala Scenic Escape",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Kochi",
+      "Munnar",
+      "Thekkady",
+      "Alleppey"
+    ],
+    "summary": "Tea gardens, wildlife and backwaters",
+    "image": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Kochi; check in and relax.",
+      "Explore Kochi at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Kochi at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Munnar at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Thekkady at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Thekkady at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Alleppey at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  },
+  {
+    "id": "MH-004",
+    "name": "Royal Rajasthan Heritage",
+    "category": "India",
+    "duration": "9 Days / 8 Nights",
+    "route": [
+      "Jaipur",
+      "Bikaner",
+      "Jaisalmer",
+      "Jodhpur"
+    ],
+    "summary": "Palaces, forts and desert landscapes",
+    "image": "https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Jaipur; check in and relax.",
+      "Explore Jaipur at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Jaipur at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Bikaner at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Bikaner at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Jaisalmer at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Jaisalmer at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Jodhpur at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  },
+  {
+    "id": "MH-005",
+    "name": "Ooty Mysore & Coorg",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Ooty",
+      "Mysore",
+      "Coorg"
+    ],
+    "summary": "Hill stations and cultural landmarks",
+    "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Ooty; check in and relax.",
+      "Explore Ooty at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Ooty at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Mysore at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Mysore at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Coorg at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Coorg at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  },
+  {
+    "id": "MH-006",
+    "name": "Sikkim & Darjeeling Explorer",
+    "category": "India",
+    "duration": "8 Days / 7 Nights",
+    "route": [
+      "Gangtok",
+      "Pelling",
+      "Darjeeling"
+    ],
+    "summary": "Tea estates and eastern Himalayan views",
+    "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Gangtok; check in and relax.",
+      "Explore Gangtok at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Gangtok at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Pelling at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Pelling at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Darjeeling at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Darjeeling at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  },
+  {
+    "id": "MH-007",
+    "name": "Uttarakhand Nature Trail",
+    "category": "India",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Nainital",
+      "Kausani",
+      "Corbett"
+    ],
+    "summary": "Lakes, hills and forest stays",
+    "image": "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Nainital; check in and relax.",
+      "Explore Nainital at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Nainital at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Kausani at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Kausani at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Corbett at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  },
+  {
+    "id": "MH-008",
+    "name": "Leh Ladakh Adventure",
+    "category": "India",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Leh",
+      "Nubra Valley",
+      "Pangong Lake"
+    ],
+    "summary": "High-altitude landscapes and mountain passes",
+    "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Leh; check in and relax.",
+      "Explore Leh at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Leh at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Nubra Valley at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Nubra Valley at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Pangong Lake at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  },
+  {
+    "id": "MH-009",
+    "name": "Andaman Island Escape",
+    "category": "India",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Port Blair",
+      "Havelock",
+      "Neil Island"
+    ],
+    "summary": "Beaches and island experiences",
+    "image": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Port Blair; check in and relax.",
+      "Explore Port Blair at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Port Blair at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Havelock at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Havelock at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Neil Island at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  },
+  {
+    "id": "MH-010",
+    "name": "Chardham Spiritual Journey",
+    "category": "Pilgrimage",
+    "duration": "11 Days / 10 Nights",
+    "route": [
+      "Yamunotri",
+      "Gangotri",
+      "Kedarnath",
+      "Badrinath"
+    ],
+    "summary": "A carefully paced pilgrimage proposal",
+    "image": "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Yamunotri; check in and relax.",
+      "Explore Yamunotri at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Yamunotri at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Yamunotri at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Gangotri at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Gangotri at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Kedarnath at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Kedarnath at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Badrinath at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Badrinath at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  },
+  {
+    "id": "MH-011",
+    "name": "Bhutan Himalayan Discovery",
+    "category": "International",
+    "duration": "7 Days / 6 Nights",
+    "route": [
+      "Phuentsholing",
+      "Thimphu",
+      "Paro"
+    ],
+    "summary": "Culture, monasteries and mountain scenery",
+    "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Phuentsholing; check in and relax.",
+      "Explore Phuentsholing at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Phuentsholing at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Thimphu at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Thimphu at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Paro at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  },
+  {
+    "id": "MH-012",
+    "name": "Northeast India Explorer",
+    "category": "India",
+    "duration": "10 Days / 9 Nights",
+    "route": [
+      "Guwahati",
+      "Shillong",
+      "Kaziranga"
+    ],
+    "summary": "Wildlife and northeast landscapes",
+    "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=80",
+    "days": [
+      "Arrive and transfer to Guwahati; check in and relax.",
+      "Explore Guwahati at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Guwahati at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Guwahati at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Shillong at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Shillong at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Shillong at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Kaziranga at a comfortable pace; sightseeing subject to local conditions.",
+      "Explore Kaziranga at a comfortable pace; sightseeing subject to local conditions.",
+      "Depart from the final stop after checkout; transfers to be confirmed."
+    ]
+  }
+]
