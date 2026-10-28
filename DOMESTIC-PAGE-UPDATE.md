@@ -1,0 +1,1 @@
+Domestic Holidays now lists every published Domestic and India Pilgrimage package from assets/packages.json, with search, destination and tour type filters. No price shown. Open with python3 -m http.server 8010. This change does not alter the original 140-package catalogue or package editor.
