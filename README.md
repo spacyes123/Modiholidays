@@ -1,83 +1,70 @@
-# Modi Holidays — Website
+# Modi Holidays
 
-A responsive, static website for Modi Holidays. English-language, enquiry-led travel website for Mumbai launch and pan-India customers.
+A static, enquiry-led travel website for **modiholidays.in**, retaining the existing forest-green, ivory and gold branding. No payments, booking engine, backend or automatic booking confirmation.
 
-## Features
-- Premium forest-green, ivory and gold visual identity
-- Responsive mobile navigation
-- Domestic, international, group and pilgrimage tour categories
-- Destination/package detail pages with indicative pricing wording
-- Enquiry form that prepares a WhatsApp message (no booking engine or online payment)
-- Editable contact details and WhatsApp number in `assets/config.js`
-- Basic SEO metadata, sitemap, robots file, privacy/cancellation/terms starter pages
-- GitHub Pages deployment workflow
+## Build and preview
 
-## Before launch — required configuration
+Requires Python 3.10+. No dependencies are needed for building or static validation.
 
-1. Open `assets/config.js`.
-2. Replace `WHATSAPP_NUMBER` with the business WhatsApp number in international format, digits only, e.g. `919876543210`.
-3. Replace `BUSINESS_EMAIL`, `BUSINESS_PHONE_DISPLAY`, and the business address/operating hours if needed.
-4. Review all tour information, itinerary and indicative pricing. Package details are illustrative starting content, not confirmed live offers.
-5. Review legal pages with an Indian professional and replace placeholder company/contact details.
-6. Replace any sample testimonials only with genuine reviews used with permission.
-7. Use original/licensed images and check image licensing before commercial launch. The current design uses remote Unsplash image URLs for prototype imagery.
-8. Check that `modiholidays.in` is registered to the business and configure DNS after hosting is selected.
-
-## Run locally
-No build step required. Open `index.html` in a browser, or run a local static server:
-
-```bash
-python3 -m http.server 8000
+```sh
+python build_site.py
+python scripts/validate.py
+python -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
+Visit `http://localhost:8000`. Commit generated HTML, tour pages and sitemap alongside source changes. The builder reads the catalogue without rewriting it and produces repeatable output.
 
-## Publish on GitHub Pages
+## Package editing
 
-1. Create a new GitHub repository named `modi-holidays-website` (or another name you prefer).
-2. Upload all files and folders in this project to the repository root. Do not upload the ZIP itself as the only repository file.
-3. In GitHub, go to **Settings → Pages**.
-4. Under build and deployment, choose **GitHub Actions**. The included workflow `.github/workflows/pages.yml` deploys the static site.
-5. After the workflow succeeds, GitHub will show the Pages URL.
-6. For a custom domain, go to **Settings → Pages → Custom domain**, enter `modiholidays.in`, and follow GitHub's current DNS instructions at your domain registrar.
-7. Configure the apex-domain A records / recommended DNS records exactly as GitHub currently documents, and add a `www` CNAME if you want `www.modiholidays.in`. DNS changes may take time to propagate.
-8. Enable HTTPS in GitHub Pages once the DNS check passes.
+`assets/packages.json` is the central source: **140 unique records — 88 Domestic, 9 Pilgrimage, 43 International**. IDs and day-by-day itineraries are preserved; only image fields changed. IDs have historical gaps; do not renumber them.
 
-**Important:** GitHub Pages is static hosting. The enquiry form does not store submissions on a server; it opens WhatsApp with the visitor's details pre-filled. A working WhatsApp number must be configured first.
+All Packages contains 140 static cards. Domestic contains 97 under All tours, or 88 Domestic / 9 Pilgrimage when filtered. International contains 43. Every published package has its own static itinerary URL. Catalogues need neither pagination nor runtime fetching to show their cards.
 
-## Project structure
+Use GitHub's file editor or a local editor on a feature branch:
 
-```text
-modi-holidays/
-├── index.html
-├── domestic-holidays.html
-├── international-holidays.html
-├── group-tours.html
-├── pilgrimage-tours.html
-├── plan-my-holiday.html
-├── about.html
-├── contact.html
-├── privacy.html
-├── terms.html
-├── cancellation.html
-├── 404.html
-├── robots.txt
-├── sitemap.xml
-├── CNAME
-├── assets/
-│   ├── config.js
-│   ├── main.js
-│   ├── styles.css
-│   └── logo.svg
-└── .github/workflows/pages.yml
-```
+| Change | Edit |
+| --- | --- |
+| Name, category, destination, duration, route, summary | Corresponding fields in `assets/packages.json` |
+| Itinerary | One complete day per string in `days`; include truthful sightseeing and overnight information |
+| Unpublish / withdraw | Set `published: false`; keep its ID and record. The build removes its generated page and sitemap entry |
+| Add | Copy a suitable record; assign a new unused ID and unique descriptive slug; write the route, duration and days; add an image-manifest entry for that ID |
+| Featured homepage tours | `featuredPackageIds` in `assets/site-settings.json` |
+| Homepage hero | `homeHeroPackageId` in `assets/site-settings.json` |
+| Replace photo | Update the package's `image`, its manifest entry, both WebP files and attribution |
+| Verified inclusions / exclusions | Set `inclusionsVerified` / `exclusionsVerified` to true only after business verification. Otherwise the data remains stored but is not shown as a confirmed offer |
 
-## Important notes
-- No online booking engine, payment gateway, live availability, or automatic quote engine is included.
-- All package pricing and availability must be confirmed manually before accepting a booking.
-- The enquiry form currently sends information to WhatsApp; don't collect unnecessary sensitive personal information.
-- Add real business registration, contact, tax, and policy details before launch.
+Rebuild and validate after every edit. The validator deliberately locks the launch baseline of 140 records and the category totals. For an intentional addition, removal or category change, update these baseline assertions with the reviewed change. Unpublishing keeps the 140 source records; rendered counts adapt to publication status.
 
+`admin.html` remains a browser-local JSON editor, not a secure backend. Save/download its JSON, replace the source file, rebuild and commit. Its image field now accepts local paths. The legacy editor regenerates slugs from names; edit JSON directly to preserve established public slugs.
 
-## Package catalogue (v2)
-The `packages.html` listing and `package.html?id=MH-001` detail pages read from `assets/packages.json`. To add or edit a package, update that JSON file and commit to GitHub. This is **not** an admin backend; changes require GitHub editing. The day-wise itineraries are illustrative planning drafts and must be verified with suppliers before selling. Prices and departures are not confirmed.
+## Photography and attribution
+
+`assets/image-manifest.json` explicitly maps every package ID to a photograph, source page, author, licence, alt text, search phrase and review status. `assets/photos/` stores WebP versions at up to 1280px and 640px, without enlarging smaller originals. Cards use lazy loading and responsive sizing; itinerary heroes load eagerly. Visitors perform no runtime image search.
+
+[IMAGE-CREDITS.md](IMAGE-CREDITS.md) lists all 140 sources. Photos retain their original CC BY, CC BY-SA, CC0 or public-domain terms; share-alike derivatives retain their respective terms. Visible credits link to the source and licence and disclose resize/cropping. Images illustrate destinations and do not promise a hotel or included activity.
+
+Optional replacement sourcing: `scripts/source-images.cjs` requires Node and `sharp` (`npm install --no-save sharp`, or set `SHARP_PATH` to an existing installation). `assets/image-queries.json` documents destination and itinerary queries. The tool checks metadata and downloads/optimises candidates. **Manually check each new photo against its source and itinerary before publishing.** The current set was source-checked and visually reviewed; this does not warrant third-party upload provenance.
+
+## Contacts — intentionally pending
+
+Per the owner's instruction, `whatsappNumber`, `businessEmail` and `businessPhoneDisplay` in `assets/config.js` remain blank. The interface identifies setup as pending. Before launch, add verified details; WhatsApp accepts 10–15 digits including country code, without punctuation.
+
+The form collects name, mobile, optional email, destination/package, dates, adults, children, departure city, budget and special requirements. It prepares a message and displays **Open WhatsApp with my enquiry**. The visitor must then press Send in WhatsApp; the website neither sends nor stores the enquiry. Missing configuration explicitly reports that nothing was sent. Package quote links preselect the itinerary.
+
+For local message QA only, run `python scripts/enquiry-fixture.py` and open `/work/enquiry-configured.html`. This ignored fixture contains a test number: do not send messages through it or deploy `work/`.
+
+## GitHub Pages and launch
+
+`.github/workflows/pages.yml` builds and validates PRs. It stages public HTML, assets, tours, robots, sitemap and CNAME. Deployment uses GitHub Pages artifacts and OIDC only on `main` (or manual dispatch against main). A feature branch / PR does not deploy.
+
+1. Push the feature branch and open a PR; review before merging.
+2. In the existing repository's **Settings → Pages**, select **GitHub Actions**.
+3. Retain `modiholidays.in` as the custom domain. Verify registrar DNS against GitHub's current instructions and enable HTTPS after validation.
+4. Configure contacts and verify actual WhatsApp receipt before public launch.
+5. Verify itinerary routing, nights, seasons, permits and arrangements with the business/suppliers. Existing itineraries remain suggested drafts; no new hotels, prices or guaranteed departures were invented.
+6. Review actual company, privacy, cancellation and legal details.
+7. Merge when ready, verify the actual Actions deployment and smoke-test the live domain.
+8. Verify Google Search Console ownership, submit `https://modiholidays.in/sitemap.xml` and inspect representative URLs. No verification token was invented.
+9. Test physical iOS/Android devices, Safari and Firefox; measure field Core Web Vitals after deployment.
+
+The implementation uses GitHub Pages-compatible static assets. Live deployment, DNS, HTTPS, Search Console, actual message receipt and field performance are not verified from this local checkout. See [QA-REPORT.md](QA-REPORT.md) and [MODIFIED-FILES.md](MODIFIED-FILES.md). Older audit/update documents remain historical; this README and the current manifest/report describe the final implementation.
