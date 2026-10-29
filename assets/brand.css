@@ -1,0 +1,65 @@
+/* Approved Plum + Saffron identity. Artwork itself is never recoloured or cropped. */
+:root{
+ --plum:#55234B;--plum-hover:#421B3A;--soft-plum:#8C4879;--plum-tint:#F5EBF2;
+ --saffron:#F39A24;--saffron-light:#FFD9A8;--ivory:#FFF8F0;--paper:#FFFFFF;
+ --ink:#29232B;--muted:#6C5968;--line:#E8DCE3;
+ --shadow:0 16px 42px rgb(85 35 75 / 9%);
+}
+body{background:var(--paper);color:var(--ink)}
+h1,h2,h3{color:var(--plum)}
+.hero h1,.section-dark h2,.contact-panel h2{color:white}
+.topbar{background:var(--plum);color:white}
+.topbar a{color:var(--saffron-light);text-decoration:underline;text-underline-offset:3px}
+.site-header{background:#fff;border-bottom:1px solid var(--line);backdrop-filter:none}
+.header-inner{min-height:132px;gap:1.25rem}
+.brand{display:block;flex:0 0 128px;background:white;border-radius:12px}
+.brand img{width:128px!important;height:128px;object-fit:contain;aspect-ratio:1;max-width:none}
+.nav{gap:1rem;font-size:.875rem;color:var(--plum)}
+.nav a{font-weight:600}
+.nav .nav-cta,.btn-primary{background:var(--saffron);color:var(--ink);border-color:var(--saffron)}
+.nav .nav-cta:hover,.btn-primary:hover{background:#FFB34E;border-color:#FFB34E;color:var(--ink);box-shadow:0 6px 20px rgb(243 154 36 / 22%)}
+.nav a[aria-current=page]{text-decoration-color:var(--saffron);text-decoration-thickness:3px}
+.destination-toggle{color:var(--plum);min-width:32px;min-height:40px}
+.nav-dropdown-menu{border-top:3px solid var(--saffron);background:white}
+.nav-dropdown-menu a:hover,.nav-dropdown-menu a:focus-visible{background:var(--ivory)}
+.menu-toggle{color:var(--plum);border-color:var(--line);min-height:44px}
+.hero{background:var(--plum)}
+.hero::before{background:linear-gradient(90deg,rgb(48 18 43 / 93%) 0%,rgb(60 25 52 / 70%) 48%,rgb(48 18 43 / 8%) 100%)}
+.hero-content{padding:6rem 0 7rem}
+.eyebrow{color:var(--saffron-light)}
+.eyebrow::before{background:var(--saffron)}
+.hero .photo-credit{background:rgb(48 18 43 / 85%);color:#fff}
+.kicker,.card-meta,.step::before{color:var(--soft-plum)}
+.page-hero .kicker{color:var(--soft-plum)}
+.page-hero{background:radial-gradient(ellipse at right top,rgb(243 154 36 / 16%),transparent 65%),var(--ivory);border-color:var(--line)}
+.section-soft{background:var(--ivory)}
+.section-dark,.contact-panel,.site-footer{background:var(--plum);color:white}
+.section-dark .kicker{color:var(--saffron-light)}
+.site-footer{border-top:5px solid var(--saffron);padding-top:3rem}
+.footer-brand{width:192px;height:192px;object-fit:contain;aspect-ratio:1;background:#fff;border-radius:14px;margin-bottom:1.5rem}
+.site-footer h3,.site-footer .card-link,.contact-panel a{color:var(--saffron-light)}
+.site-footer p,.site-footer li,.footer-bottom{color:#EFE2EC}
+.site-footer a:hover{text-decoration:underline;color:white}
+.card{border-color:var(--line);box-shadow:0 4px 18px rgb(85 35 75 / 4%)}
+.card:hover{box-shadow:var(--shadow);border-color:#CFAEC5}
+.card .photo-credit{background:var(--ivory);color:var(--muted)}
+.card-link{color:var(--plum)}
+.card-link span{color:var(--soft-plum)}
+.feature-image,.feature-band>.destination-photo-wrap{border-radius:18px;overflow:hidden}
+.cta-strip{background:#FFE8CA;border:1px solid #F8CCA0}
+.cta-strip p,.prose p,.prose li{color:var(--muted)}
+.note,.setup-note{background:var(--ivory);border-left-color:var(--saffron);color:var(--ink)}
+.check-list li::before{background:var(--plum-tint);color:var(--plum)}
+label,.domestic-filter-bar label{color:var(--plum)}
+input,select,textarea,.domestic-filter-bar input,.domestic-filter-bar select{background:#fff;color:var(--ink);border-color:#CBAFC3}
+input:focus,select:focus,textarea:focus,.domestic-filter-bar input:focus,.domestic-filter-bar select:focus{outline:3px solid var(--plum);outline-offset:2px;border-color:var(--plum)}
+:focus-visible{outline:3px solid var(--plum);outline-offset:4px;box-shadow:0 0 0 6px var(--saffron-light)}
+.site-footer :focus-visible,.section-dark :focus-visible,.contact-panel :focus-visible{outline-color:var(--saffron-light);box-shadow:none}
+.btn-outline-dark{border-color:var(--plum);color:var(--plum)}
+.btn-outline-dark:hover{background:var(--plum-tint)}
+.whatsapp-float{background:var(--plum);color:white;border:1px solid #A87899}
+.contact-notice{background:var(--plum);border-color:var(--saffron);color:white}
+.package-aside{border-top:4px solid var(--saffron)}
+@media(min-width:1191px){.header-inner{gap:1rem}.nav{gap:.85rem;font-size:.875rem}}
+@media(max-width:1190px){.nav{background:white}.header-inner{min-height:116px}.brand{flex-basis:112px}.brand img{width:112px!important;height:112px}.nav-dropdown-menu{max-width:none}.nav .nav-cta{margin-top:.7rem}}
+@media(max-width:760px){.header-inner{min-height:108px}.brand{flex-basis:104px}.brand img{width:104px!important;height:104px}.hero-content{padding:4rem 0 6rem}.hero::before{background:linear-gradient(90deg,rgb(48 18 43 / 88%),rgb(48 18 43 / 50%))}.footer-brand{width:176px;height:176px}.site-header{position:relative}.nav{max-height:70vh}}

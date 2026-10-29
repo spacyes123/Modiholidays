@@ -1,6 +1,14 @@
 # Modi Holidays
 
-A static, enquiry-led travel website for **modiholidays.in**, retaining the existing forest-green, ivory and gold branding. No payments, booking engine, backend or automatic booking confirmation.
+A static, enquiry-led travel website for **modiholidays.in**, using the owner-approved Modi Holidays logo and Plum + Saffron identity. No payments, booking engine, backend or automatic booking confirmation.
+
+## Approved brand identity
+
+The original owner-supplied PNG is retained byte-for-byte in `assets/brand/modi-holidays-approved.png`, with its SHA-256 recorded in `assets/brand/provenance.json`. Header, footer, favicon and social assets use only resized copies of the complete approved artwork. The logo is never redrawn, recoloured, inverted, cropped or stretched. Its light background stays intact on a light panel within the plum footer.
+
+Shared palette tokens in `assets/brand.css`: deep plum `#55234B`, saffron `#F39A24`, warm ivory `#FFF8F0`, soft plum `#8C4879` and charcoal `#29232B`. Primary buttons use dark text on saffron for readable contrast. The brand stylesheet loads after existing shared layout styles on all pages.
+
+To regenerate only the faithful brand derivatives, use `scripts/prepare-brand.cjs` with Node and `sharp` (or `SHARP_PATH`). Existing destination photographs must not be regenerated for a branding update. Run `python scripts/validate-brand.py` after the normal validator to check preservation against the completed launch-preparation revision. See `REBRAND-REPORT.md` for review evidence and publication status.
 
 ## Build and preview
 

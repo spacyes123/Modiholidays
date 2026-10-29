@@ -1,9 +1,9 @@
-/* Final responsive layer for the existing forest / ivory / gold design. */
+/* Final responsive layer for the Plum + Saffron brand. */
 [hidden]{display:none!important}
-:focus-visible{outline:3px solid #9a7738;outline-offset:4px}
+:focus-visible{outline:3px solid #8C4879;outline-offset:4px}
 .destination-photo-wrap{margin:0;min-width:0}
 .card .destination-photo-wrap img{height:235px;border-radius:0}
-.card .photo-credit{margin:0;white-space:normal;font-size:11px;line-height:1.5;min-height:44px;padding:7px 14px;background:#f8f5ed}
+.card .photo-credit{margin:0;white-space:normal;font-size:11px;line-height:1.5;min-height:44px;padding:7px 14px;background:#FFF8F0}
 .photo-credit a{text-decoration:underline;text-underline-offset:2px}
 .package-detail-layout article>.destination-photo-wrap{margin-bottom:2.5rem}
 .catalogue-grid{margin-top:2rem}
@@ -11,20 +11,20 @@
 .card-body{display:flex;flex-direction:column;flex:1}
 .card-link{margin-top:auto;padding-top:.5rem}
 .nav-dropdown{display:flex;align-items:center;flex-wrap:wrap}
-.destination-toggle{background:transparent;border:0;color:#173f35;cursor:pointer;padding:.5rem;font-size:1rem}
+.destination-toggle{background:transparent;border:0;color:#55234B;cursor:pointer;padding:.5rem;font-size:1rem}
 .nav-dropdown-menu{display:none!important;max-width:calc(100vw - 32px)}
 .nav-dropdown.is-expanded .nav-dropdown-menu{display:grid!important}
-.nav a[aria-current=page]{text-decoration:underline;text-decoration-color:#9a7738;text-underline-offset:7px}
+.nav a[aria-current=page]{text-decoration:underline;text-decoration-color:#8C4879;text-underline-offset:7px}
 .package-aside h2{font-size:2rem}
 .package-aside .btn{margin-block:.5rem}
-.page-hero{background:radial-gradient(ellipse at right top,#e8d7a83d,transparent 65%),#f8f5ed;border-bottom:1px solid #e5e2d8}
+.page-hero{background:radial-gradient(ellipse at right top,#F39A2426,transparent 65%),#FFF8F0;border-bottom:1px solid #E8DCE3}
 .breadcrumb{font-size:.85rem;overflow-wrap:anywhere;margin-bottom:1.5rem}
 .breadcrumb a{text-decoration:underline;text-underline-offset:3px}
-.contact-notice{position:fixed;bottom:1rem;left:1rem;right:5rem;max-width:650px;background:#173f35;color:#fff;padding:1rem;border:2px solid #c6a45a;border-radius:12px;z-index:100}
+.contact-notice{position:fixed;bottom:1rem;left:1rem;right:5rem;max-width:650px;background:#55234B;color:#fff;padding:1rem;border:2px solid #F39A24;border-radius:12px;z-index:100}
 [aria-disabled=true]{opacity:.75;cursor:help}
-.setup-note{padding:1rem;background:#f8f5ed;border-left:3px solid #9a7738}
+.setup-note{padding:1rem;background:#FFF8F0;border-left:3px solid #8C4879}
 .site-footer{padding-bottom:5rem}
-.hero .photo-credit{position:absolute;bottom:.5rem;right:.5rem;max-width:70%;z-index:3;color:white;background:#173f35d9;font-size:11px;white-space:normal}
+.hero .photo-credit{position:absolute;bottom:.5rem;right:.5rem;max-width:70%;z-index:3;color:white;background:#55234Bd9;font-size:11px;white-space:normal}
 @media(min-width:1191px){.header-inner{gap:.7rem}.brand img{width:205px}.nav{gap:.7rem;font-size:.82rem}.nav-dropdown-menu{top:100%;left:0;width:260px}.nav-dropdown-menu a{white-space:normal}.nav-dropdown:last-of-type .nav-dropdown-menu{left:auto;right:0}}
 @media(max-width:1190px){.nav-dropdown>a{flex:1}.nav-dropdown-menu{flex-basis:100%;width:100%;margin-left:0}.nav-dropdown-menu a{white-space:normal}.nav-dropdown.is-expanded .nav-dropdown-menu{display:grid!important}.nav-dropdown{display:flex}.nav .nav-dropdown-menu{max-height:240px}}
 @media(min-width:761px) and (max-width:1050px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.package-detail-layout{grid-template-columns:minmax(0,1.6fr) minmax(230px,1fr)}}
