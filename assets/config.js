@@ -5,9 +5,9 @@
 window.MODI_HOLIDAYS_CONFIG = {
   brandName: "Modi Holidays",
   domain: "https://modiholidays.in",
-  whatsappNumber: "91XXXXXXXXXX", // TODO: replace with actual business WhatsApp number
-  businessEmail: "hello@modiholidays.in", // TODO: confirm this mailbox exists
-  businessPhoneDisplay: "+91 XXXXX XXXXX", // TODO: replace
+  whatsappNumber: "", // Setup pending: country code and digits only, 10–15 digits
+  businessEmail: "", // Setup pending: enter a confirmed working mailbox
+  businessPhoneDisplay: "", // Setup pending: enter the verified public phone number
   baseLocation: "Mumbai, Maharashtra, India",
   responsePromise: "We usually respond during business hours.",
   defaultMessage: "Hello Modi Holidays, I would like help planning a holiday."
