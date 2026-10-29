@@ -11,6 +11,13 @@ E = html.escape
 DOMAIN = 'https://modiholidays.in/'
 SETTINGS = json.loads((ROOT/'assets/site-settings.json').read_text(encoding='utf-8'))
 
+def brand_image(prefix='', footer=False):
+    size=192 if footer else 128
+    cls='footer-brand' if footer else 'brand-artwork'
+    return (f'<img class="{cls}" src="{prefix}assets/brand/logo-256.png" '
+            f'srcset="{prefix}assets/brand/logo-256.png 256w, {prefix}assets/brand/logo-512.png 512w" '
+            f'sizes="{size}px" alt="Modi Holidays" width="{size}" height="{size}" decoding="async">')
+
 def write(path, text):
     path.write_text(text, encoding='utf-8')
 
@@ -43,7 +50,7 @@ def navigation(prefix=''):
         items+=f'<div class="nav-dropdown">{link(file,category)}<button class="destination-toggle" type="button" aria-expanded="false" aria-controls="{category.lower()}-menu" aria-label="Show {category.lower()} destinations">⌄</button><div class="nav-dropdown-menu" id="{category.lower()}-menu">{options}</div></div>'
     items+= ''.join(link(f,l) for f,l in [('packages.html','All Packages'),('group-tours.html','Group Tours'),('pilgrimage-tours.html','Pilgrimage'),('about.html','About Us'),('contact.html','Contact')])
     items+=f'<a class="nav-cta" href="{prefix}plan-my-holiday.html">Get a Quote</a>'
-    return f'<header class="site-header"><div class="container header-inner"><a class="brand" href="{prefix}index.html" aria-label="Modi Holidays home"><img src="{prefix}assets/logo.svg" alt="Modi Holidays — Your Journey. Our Experience." width="245" height="61"></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation menu">☰ Menu</button><nav class="nav" id="primary-nav" aria-label="Primary navigation">{items}</nav></div></header>'
+    return f'<header class="site-header"><div class="container header-inner"><a class="brand" href="{prefix}index.html" aria-label="Modi Holidays home">{brand_image(prefix)}</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation menu">☰ Menu</button><nav class="nav" id="primary-nav" aria-label="Primary navigation">{items}</nav></div></header>'
 
 HOME = (ROOT/'index.html').read_text(encoding='utf-8')
 FOOTER = re.search(r'<footer.*?</footer>',HOME,re.S)[0]
@@ -52,6 +59,14 @@ def footer(prefix=''):
     return re.sub(r'(href|src)="(?!https?:|mailto:|#)([^"]+)"',lambda m:f'{m[1]}="{prefix}{m[2]}"',FOOTER)
 
 def metadata(text, file):
+    prefix='../' if file.startswith('tours/') else ''
+    # Only logo-related metadata changes; catalogue titles, descriptions and canonicals remain intact.
+    text=re.sub(r'<link[^>]*rel="(?:icon|apple-touch-icon|manifest)"[^>]*>','',text)
+    text=re.sub(r'<meta name="theme-color"[^>]*>','',text)
+    text=re.sub(r'<img[^>]*class="footer-brand"[^>]*>',lambda _:brand_image(prefix,True),text)
+    brand_head=f'<meta name="theme-color" content="#55234B"><link rel="icon" type="image/png" sizes="32x32" href="{prefix}assets/brand/icon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="{prefix}assets/brand/icon-48.png"><link rel="apple-touch-icon" sizes="180x180" href="{prefix}assets/brand/icon-180.png"><link rel="manifest" href="{prefix}assets/brand/site.webmanifest">'
+    text=text.replace('</head>',brand_head+'</head>')
+    text=re.sub(r'<link rel="stylesheet" href="(?:\.\./)?assets/brand.css">','',text)
     if 'assets/launch.css' not in text:
         prefix='../' if file.startswith('tours/') else ''
         text=text.replace('</head>',f'<link rel="stylesheet" href="{prefix}assets/launch.css"></head>')
@@ -68,9 +83,9 @@ def metadata(text, file):
     if title:extra+=f'<meta property="og:title" content="{title[1]}">'
     if desc:extra+=f'<meta property="og:description" content="{desc[1]}">'
     selected=next((p for p in LIVE if file=='tours/'+p['slug']+'.html'),None)
-    image=PHOTOS.get(selected['id'],{}).get('image') if selected else next((PHOTOS[p['id']]['image'] for p in LIVE if p['id'] in PHOTOS),None)
+    image=PHOTOS.get(selected['id'],{}).get('image') if selected else 'assets/brand/social-sharing.png'
     if image:extra+=f'<meta property="og:image" content="{DOMAIN}{image}">'
-    return text.replace('</head>',extra+'</head>')
+    return text.replace('</head>',f'<link rel="stylesheet" href="{prefix}assets/brand.css">'+extra+'</head>')
 
 for path in ROOT.glob('*.html'):
     text=path.read_text(encoding='utf-8')
