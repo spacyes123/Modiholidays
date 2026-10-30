@@ -81,7 +81,7 @@ pnpm build
 pnpm start
 ```
 
-23 automated tests pass in this workspace. Vitest tests use isolated PostgreSQL via PGlite and synthetic QA-only fixtures, never deployment seed data. They cover RLS/roles, persisted enquiry/itinerary revisions, version approval, decimal pricing, PDF allowlisting/rendering, booking/payment rules and invalid inputs. The PDF smoke test writes ignored `../work/admin-pdf/qa-quotation.pdf`; it is not a real offer. The storage migration requires Supabase's storage schema and must additionally be tested against the staging project.
+24 automated tests pass in this workspace. Vitest tests use isolated PostgreSQL via PGlite and synthetic QA-only fixtures, never deployment seed data. They cover RLS/roles, persisted enquiry/itinerary revisions, version approval, decimal pricing, PDF allowlisting/rendering, booking/payment rules and invalid inputs. The PDF smoke test writes ignored `../work/admin-pdf/qa-quotation.pdf`; it is not a real offer. The storage migration requires Supabase's storage schema and must additionally be tested against the staging project.
 
 Before acceptance, run with two actual employee accounts (admin/staff): login/logout, refresh sessions, create enquiry, edit/reopen itinerary, compare versions, reject staff approval, approve as admin, save/download/reopen PDF, manually share, convert booking and record payments. Test storage denied to anonymous/unprovisioned/deactivated users, and cross-browser/mobile authenticated forms. No authenticated end-to-end claim is made until that configured-project exercise passes.
 

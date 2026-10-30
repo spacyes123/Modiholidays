@@ -319,4 +319,27 @@ describe("Persisted Postgres workflow and row-level security", () => {
     expect(row.details.mobile).toBe(payload.phone);
     expect(row.details.destinations).toBe("Kerala");
   });
+  it("rejects unapproved PDF registration and revokes deactivated staff access", async () => {
+    await asUser(adminId);
+    const draft = (
+      await db.query<{ id: string }>(
+        "select id from quotation_versions where approved_at is null limit 1",
+      )
+    ).rows[0].id;
+    await expect(
+      rpc("register_pdf", [draft, draft + "/qa.pdf", "0".repeat(64)]),
+    ).rejects.toThrow(/Approved/);
+    await db.exec("reset role");
+    await db.query("update admin_profiles set active=false where id=$1", [
+      staffId,
+    ]);
+    await asUser(staffId);
+    expect((await db.query("select * from enquiries")).rows).toHaveLength(0);
+    await expect(rpc("dashboard_overview", [])).rejects.toThrow();
+    await db.exec("reset role");
+    await db.query("update admin_profiles set active=true where id=$1", [
+      staffId,
+    ]);
+    await asUser(adminId);
+  });
 });
