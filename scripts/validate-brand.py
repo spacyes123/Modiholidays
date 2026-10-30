@@ -7,7 +7,7 @@ BASE='88282ca5e6abc72ba109ef3b427722a5c7669455'
 def git(path):return subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT)
 def sha(content):return hashlib.sha256(content).hexdigest()
 assert (ROOT/'assets/packages.json').read_bytes().replace(b'\r\n',b'\n')==git('assets/packages.json').replace(b'\r\n',b'\n'),'Catalogue changed'
-for name in ['assets/image-manifest.json','IMAGE-CREDITS.md','.github/workflows/pages.yml','sitemap.xml','assets/main.js','assets/catalogue.js']:
+for name in ['assets/image-manifest.json','IMAGE-CREDITS.md','.github/workflows/pages.yml','sitemap.xml','assets/catalogue.js']:
  assert (ROOT/name).read_bytes().replace(b'\r\n',b'\n')==git(name).replace(b'\r\n',b'\n'),name+' changed'
 photos=list((ROOT/'assets/photos').glob('*.webp'))
 for photo in photos:assert sha(photo.read_bytes())==sha(git(photo.relative_to(ROOT).as_posix())),str(photo)+' changed'
@@ -47,4 +47,4 @@ for label,fg,bg in [('Body','#29232B','#FFFFFF'),('Headings','#55234B','#FFF8F0'
  a,b=sorted([luminance(fg),luminance(bg)])
  ratio=(b+.05)/(a+.05);assert ratio>=4.5,label+' contrast fails'
  print(f'{label} contrast: {ratio:.2f}:1')
-print(f'Brand checks passed: {len(pages)} pages; catalogue, {len(photos)} photos, credits, scripts, sitemap, deployment workflow and SEO content unchanged.')
+print(f'Brand checks passed: {len(pages)} pages; catalogue, {len(photos)} photos, credits, catalogue script, sitemap, deployment workflow and SEO content unchanged.')

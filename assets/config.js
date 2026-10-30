@@ -5,9 +5,11 @@
 window.MODI_HOLIDAYS_CONFIG = {
   brandName: "Modi Holidays",
   domain: "https://modiholidays.in",
-  whatsappNumber: "", // Setup pending: country code and digits only, 10–15 digits
+  whatsappNumber: "917666018401", // Owner-provided business WhatsApp
   businessEmail: "", // Setup pending: enter a confirmed working mailbox
-  businessPhoneDisplay: "", // Setup pending: enter the verified public phone number
+  businessPhoneDisplay: "+91 7666018401",
+  publicEnquiryEndpoint: "", // Enable /api/public/enquiries only on the configured Next.js host
+  turnstileSiteKey: "", // Configure the public site key together with the server's Turnstile secret
   baseLocation: "Mumbai, Maharashtra, India",
   responsePromise: "We usually respond during business hours.",
   defaultMessage: "Hello Modi Holidays, I would like help planning a holiday."

@@ -3,3 +3,11 @@ __pycache__/
 node_modules/
 _site/
 work/
+.env
+.env.*
+!.env.example
+.next/
+admin-app/public/
+admin-app/coverage/
+admin-app/test-results/
+*.tsbuildinfo
