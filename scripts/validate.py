@@ -2,7 +2,7 @@
 import json, re, sys
 from pathlib import Path
 from html.parser import HTMLParser
-from urllib.parse import urlsplit, unquote
+from urllib.parse import urlsplit, unquote, parse_qs
 from collections import Counter
 import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parent.parent
@@ -37,6 +37,12 @@ class Page(HTMLParser):
     def __init__(self):super().__init__();self.links=[];self.ids=[];self.scripts=[];self.ld=False;self.metadata={};self.canonical=[];self.cards=0;self.nav=0
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
+        if 'data-whatsapp' in a:
+            url=urlsplit(a.get('href',''))
+            check(tag=='a' and url.scheme=='https' and url.netloc=='wa.me' and url.path=='/917666018401', 'WhatsApp must be a native anchor to the business number')
+            check(a.get('target') in (None,'_self'), 'WhatsApp must not depend on a new popup/tab')
+            message=parse_qs(url.query).get('text',[''])[0]
+            check(bool(message) and message==a.get('data-message',message), 'WhatsApp fallback must preserve the enquiry message without JavaScript')
         if 'id' in a:self.ids.append(a['id'])
         if tag=='nav' and a.get('id')=='primary-nav':self.nav+=1
         if 'data-category' in a:self.cards+=1

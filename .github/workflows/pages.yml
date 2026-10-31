@@ -16,6 +16,10 @@ jobs:
           python-version: '3.12'
       - run: python build_site.py
       - run: python scripts/validate.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node --test scripts/whatsapp.test.cjs
       - name: Stage public website only
         run: |
           mkdir _site

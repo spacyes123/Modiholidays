@@ -22,7 +22,17 @@ def contacts(text):
     text=text.replace('Email setup pending','modiholidays15@gmail.com').replace('Phone setup pending','+91 76660 18401')
     text=re.sub(r'<a\s+data-email>', '<a href="mailto:modiholidays15@gmail.com" data-email>', text)
     text=text.replace('<span data-phone>+91 76660 18401</span>','<a href="tel:+917666018401" data-phone>+91 76660 18401</a>')
-    text=text.replace('href="#" data-whatsapp','href="https://wa.me/917666018401" data-whatsapp')
+    # Emit real links, including each tour's message, before JavaScript runs.
+    def whatsapp_anchor(match):
+        tag=match[0]
+        message=re.search(r'\bdata-message="([^"]*)"',tag)
+        message=html.unescape(message[1]) if message else 'Hello Modi Holidays, I would like help planning a holiday.'
+        href='https://wa.me/917666018401?'+urlencode({'text':message})
+        tag=re.sub(r'\s+target="[^"]*"','',tag)
+        if re.search(r'\bhref="[^"]*"',tag):
+            return re.sub(r'\bhref="[^"]*"',lambda _:f'href="{E(href,quote=True)}"',tag,count=1)
+        return tag[:-1]+f' href="{E(href,quote=True)}">'
+    text=re.sub(r'<a\b[^>]*\bdata-whatsapp\b[^>]*>',whatsapp_anchor,text)
     return text
 
 def write(path, text):
