@@ -63,3 +63,8 @@ input:focus,select:focus,textarea:focus,.domestic-filter-bar input:focus,.domest
 @media(min-width:1191px){.header-inner{gap:1rem}.nav{gap:.85rem;font-size:.875rem}}
 @media(max-width:1190px){.nav{background:white}.header-inner{min-height:116px}.brand{flex-basis:112px}.brand img{width:112px!important;height:112px}.nav-dropdown-menu{max-width:none}.nav .nav-cta{margin-top:.7rem}}
 @media(max-width:760px){.header-inner{min-height:108px}.brand{flex-basis:104px}.brand img{width:104px!important;height:104px}.hero-content{padding:4rem 0 6rem}.hero::before{background:linear-gradient(90deg,rgb(48 18 43 / 88%),rgb(48 18 43 / 50%))}.footer-brand{width:176px;height:176px}.site-header{position:relative}.nav{max-height:70vh}}
+
+/* Final approved header sizing: preserve full artwork and aspect ratio. */
+.header-inner{min-height:164px}.brand{flex-basis:160px}.brand img{width:160px!important;height:auto}
+@media(max-width:1190px){.header-inner{min-height:144px}.brand{flex-basis:140px}.brand img{width:140px!important;height:auto}}
+@media(max-width:760px){.header-inner{min-height:128px}.brand{flex-basis:120px}.brand img{width:120px!important;height:auto}}
