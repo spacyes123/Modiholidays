@@ -70,17 +70,41 @@
     } else field.value = selected;
   }
   if (!ready && status) status.textContent = 'Enquiry setup pending: the business WhatsApp number has not been configured. This form cannot send yet.';
-  form.addEventListener('submit', event => {
+  let captchaToken = '', captchaWidget;
+  let lastSubmission = '', submissionKey = '';
+  const intakeReady = config.publicEnquiryEndpoint === '/api/public/enquiries' && !!config.turnstileSiteKey;
+  if (intakeReady) {
+    const honey = document.createElement('input'); honey.name = 'website'; honey.type = 'text'; honey.tabIndex = -1; honey.autocomplete = 'off'; honey.hidden = true; form.append(honey);
+    const box = document.createElement('div'); form.querySelector('button[type="submit"]').before(box);
+    const script = document.createElement('script'); script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; script.async = true;
+    script.onload = () => { captchaWidget = window.turnstile.render(box, {sitekey: config.turnstileSiteKey, action: 'enquiry', callback: token => {captchaToken = token;}, 'expired-callback': () => {captchaToken = '';}}); };
+    script.onerror = () => {if (status) status.textContent = 'Enquiry verification could not load. You can still prepare a WhatsApp message.';}; document.head.append(script);
+  }
+  form.addEventListener('submit', async event => {
     event.preventDefault();
     if (!form.reportValidity()) return;
     if (!ready) {status.textContent = 'Your enquiry has not been sent. The business must configure WhatsApp before launch. Please keep your details and try again once contact details are available.';return;}
     const data = new FormData(form);
+    let intakeStatus = '';
+    if (intakeReady && captchaToken) {
+      const payload = Object.fromEntries(data.entries()); const fingerprint = JSON.stringify(payload);
+      if (lastSubmission !== fingerprint) { submissionKey = crypto.randomUUID(); lastSubmission = fingerprint; }
+      const submit = form.querySelector('button[type="submit"]'); submit.disabled = true;
+      if (status) status.textContent = 'Saving your enquiry securely…';
+      try {
+        const response = await fetch(config.publicEnquiryEndpoint, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({...payload,idempotencyKey:submissionKey,captchaToken}),signal:AbortSignal.timeout(15000)});
+        const result = await response.json();
+        if (!response.ok || !result.ok) throw Error(result.error || 'Database intake failed');
+        intakeStatus = 'Your enquiry was saved for the Modi Holidays team. ';
+      } catch {intakeStatus = 'Database receipt was not confirmed. You can send the enquiry manually through WhatsApp below. ';}
+      finally {submit.disabled = false; captchaToken = ''; if (window.turnstile && captchaWidget !== undefined) window.turnstile.reset(captchaWidget);}
+    } else if (intakeReady) intakeStatus = 'Complete the verification to save to the database, or send the prepared message manually through WhatsApp. ';
     const fields = [['Name','name'],['Mobile','phone'],['Email','email'],['Destination / package','destination'],['Travel dates','travelDates'],['Adults','adults'],['Children','children'],['Departure city','departureCity'],['Budget per person','budget'],['Special requirements','preferences']];
     const message = 'Hello Modi Holidays, please prepare a personalised quote.\n\n' + fields.map(([label,key]) => `${label}: ${String(data.get(key)||'Not specified').trim()}`).join('\n') + '\n\nPlease confirm availability and arrangements in writing.';
     let link = document.getElementById('prepared-enquiry');
     if (!link) {link = document.createElement('a');link.id='prepared-enquiry';link.className='btn btn-primary';link.target='_blank';link.rel='noopener noreferrer';status.after(link);}
     link.href = makeUrl(message);link.textContent = 'Open WhatsApp with my enquiry ↗';
-    status.textContent = 'Your message is ready. Open WhatsApp below and press Send to submit. Nothing has been sent or saved by this website.';
+    status.textContent = intakeStatus + 'Your WhatsApp message is ready. Open WhatsApp below and press Send to send it.' + (!intakeReady ? ' Nothing has been sent or saved by this website.' : ' No booking is confirmed.');
     link.focus();
   });
 })();

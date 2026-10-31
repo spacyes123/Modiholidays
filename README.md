@@ -76,3 +76,7 @@ For local message QA only, run `python scripts/enquiry-fixture.py` and open `/wo
 9. Test physical iOS/Android devices, Safari and Firefox; measure field Core Web Vitals after deployment.
 
 The implementation uses GitHub Pages-compatible static assets. Live deployment, DNS, HTTPS, Search Console, actual message receipt and field performance are not verified from this local checkout. See [QA-REPORT.md](QA-REPORT.md) and [MODIFIED-FILES.md](MODIFIED-FILES.md). Older audit/update documents remain historical; this README and the current manifest/report describe the final implementation.
+
+## Private operations dashboard
+
+A protected Next.js/Supabase admin application is in [admin-app](admin-app/README.md). It needs a server-capable host and owner-provisioned employee accounts; GitHub Pages cannot run it. Setup, migrations, environment variables, validation, deployment preparation and known limits are documented there. Production deployment and merging remain separate owner decisions.

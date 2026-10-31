@@ -12,14 +12,21 @@ DOMAIN = 'https://modiholidays.in/'
 SETTINGS = json.loads((ROOT/'assets/site-settings.json').read_text(encoding='utf-8'))
 
 def brand_image(prefix='', footer=False):
-    size=192 if footer else 128
+    size=192 if footer else 160
     cls='footer-brand' if footer else 'brand-artwork'
     return (f'<img class="{cls}" src="{prefix}assets/brand/logo-256.png" '
             f'srcset="{prefix}assets/brand/logo-256.png 256w, {prefix}assets/brand/logo-512.png 512w" '
             f'sizes="{size}px" alt="Modi Holidays" width="{size}" height="{size}" decoding="async">')
 
+def contacts(text):
+    text=text.replace('Email setup pending','modiholidays15@gmail.com').replace('Phone setup pending','+91 76660 18401')
+    text=re.sub(r'<a\s+data-email>', '<a href="mailto:modiholidays15@gmail.com" data-email>', text)
+    text=text.replace('<span data-phone>+91 76660 18401</span>','<a href="tel:+917666018401" data-phone>+91 76660 18401</a>')
+    text=text.replace('href="#" data-whatsapp','href="https://wa.me/917666018401" data-whatsapp')
+    return text
+
 def write(path, text):
-    path.write_text(text, encoding='utf-8')
+    path.write_text(contacts(text), encoding='utf-8')
 
 def photo(p, prefix='', hero=False):
     m = PHOTOS.get(p['id'])
@@ -43,20 +50,21 @@ def card(p, prefix=''):
 
 def navigation(prefix=''):
     def link(file,label): return f'<a href="{prefix}{file}">{label}</a>'
-    items=link('index.html','Home')
+    items=''
     for category, file in [('Domestic','domestic-holidays.html'),('International','international-holidays.html')]:
-        dests=sorted({p['destination'] for p in LIVE if p['category']==category})
+        dests=sorted({p['destination'] for p in LIVE if p['category']==category or (category=='Domestic' and p['category']=='Pilgrimage')})
         options=''.join(link(file+'?'+E(urlencode({'destination':d})),E(d)) for d in dests)
         items+=f'<div class="nav-dropdown">{link(file,category)}<button class="destination-toggle" type="button" aria-expanded="false" aria-controls="{category.lower()}-menu" aria-label="Show {category.lower()} destinations">⌄</button><div class="nav-dropdown-menu" id="{category.lower()}-menu">{options}</div></div>'
-    items+= ''.join(link(f,l) for f,l in [('packages.html','All Packages'),('group-tours.html','Group Tours'),('pilgrimage-tours.html','Pilgrimage'),('about.html','About Us'),('contact.html','Contact')])
+    items+= ''.join(link(f,l) for f,l in [('group-tours.html','Group Tours'),('about.html','About Us'),('contact.html','Contact')])
     items+=f'<a class="nav-cta" href="{prefix}plan-my-holiday.html">Get a Quote</a>'
     return f'<header class="site-header"><div class="container header-inner"><a class="brand" href="{prefix}index.html" aria-label="Modi Holidays home">{brand_image(prefix)}</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation menu">☰ Menu</button><nav class="nav" id="primary-nav" aria-label="Primary navigation">{items}</nav></div></header>'
 
 HOME = (ROOT/'index.html').read_text(encoding='utf-8')
 FOOTER = re.search(r'<footer.*?</footer>',HOME,re.S)[0]
+FOOTER = contacts(FOOTER)
 FOOTER = re.sub(r'href="mailto:hello@modiholidays.in"', '', FOOTER)
 def footer(prefix=''):
-    return re.sub(r'(href|src)="(?!https?:|mailto:|#)([^"]+)"',lambda m:f'{m[1]}="{prefix}{m[2]}"',FOOTER)
+    return re.sub(r'(href|src)="(?!https?:|mailto:|tel:|#)([^"]+)"',lambda m:f'{m[1]}="{prefix}{m[2]}"',FOOTER)
 
 def metadata(text, file):
     prefix='../' if file.startswith('tours/') else ''
