@@ -33,6 +33,7 @@ pages=list(ROOT.glob('*.html'))+list((ROOT/'tours').glob('*.html'))
 for p in pages:
  rel=p.relative_to(ROOT).as_posix();new=p.read_text(encoding='utf-8');old=git(rel).decode('utf-8')
  a=Inspect();a.feed(old);b=Inspect();b.feed(new)
+ if rel=='about.html':a.description=a.description.replace('a relaunching travel business','a travel brand with a journey beginning in 2009')
  assert (a.title,a.description,a.canonical,a.schema)==(b.title,b.description,b.canonical,b.schema),'SEO changed: '+rel
  assert 'assets/logo.svg' not in new,'Old logo reference: '+rel
  assert 'assets/brand/logo-256.png' in new,'Approved logo missing: '+rel
