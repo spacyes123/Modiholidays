@@ -20,7 +20,11 @@ for f,usage in uses.items():
         report+=['- Original source: ['+v['alt']+']('+v['source']+')','- Author: '+v['author'].replace('\n',' '),'- Licence: ['+v['license']+']('+v['licenseUrl']+')','- Source licence declaration checked on Wikimedia Commons on 2 November 2026.','- Changes: '+v['changes'],'- Keep author, source and licence links, and change notice. For CC BY-SA adaptations, retain the same or a compatible licence.']
     else:report+=['- Supplied source: `H:/Desktop/modi-holidays-bespoke.html` (embedded base64 WebP; extracted byte-for-byte).','- Original photographer/creator: unknown.','- Original publication URL: not supplied.','- Licence / commercial-use permission: unverified; not cleared for publication.']
     report+=['']
+pending=[f for f in uses if f not in byfile]
+report[2]=f'Scope: all {len(uses)} unique photographs currently used by the prototype. Five travel-card images now use documented catalogue photographs; no source catalogue or image files changed.'
+report[4]=f'**Publication hold:** {len(pending)} remaining embedded reference assets have no documented original creator or licence. The approved hero is retained as requested; rights must be supplied before publication, or a replacement hero approved. The gold-flourish logo is also outstanding.'
+report+=['## Replacement notes','','The five new travel-card images have no embedded lettering. Their existing catalogue source records and source-page licence declarations are retained. The Manali author also requests contact before commercial use on the source page; record that request for publication review rather than treating the image as unconditionally cleared. No contact was made.','']
 (R/'assets/bespoke/PHOTO-LICENSING.md').write_text('\n'.join(report),encoding='utf-8')
-out=R.parent/'outputs/bespoke/revision-2'
+out=R.parent/'outputs/bespoke/revision-3'
 (out/'PHOTO-LICENSING.md').write_text('\n'.join(report),encoding='utf-8')
 print('Audited',len(uses),'unique photographs; all usages mapped.')

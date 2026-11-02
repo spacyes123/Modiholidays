@@ -1,80 +1,8 @@
 # Homepage photograph provenance audit — 2 November 2026
 
-Scope: every unique photograph used by the prototype. Source HTML supplies eight unique embedded images, reused in multiple sections. Three additional photographs come from the existing catalogue. No image was regenerated.
+Scope: all 6 unique photographs currently used by the prototype. Five travel-card images now use documented catalogue photographs; no source catalogue or image files changed.
 
-**Publication hold:** the eight embedded photographs have no author, original source URL or licence declaration in the supplied HTML. Their source file is identifiable, but their rights are unverified. Owner must provide original source/licence or documented generation provenance before publication. The approved logo is also outstanding.
-
-## assets/bespoke/8a5168c0a0034d70.webp
-
-- Usage: Family safari experience
-- SHA-256: `8a5168c0a0034d701952bbbd395c12ada4b333b1f9d9c3a314b5af03da83a25b`
-- Supplied source: `H:/Desktop/modi-holidays-bespoke.html` (embedded base64 WebP; extracted byte-for-byte).
-- Original photographer/creator: unknown.
-- Original publication URL: not supplied.
-- Licence / commercial-use permission: unverified; not cleared for publication.
-
-## assets/bespoke/543917baf6ca7c4b.webp
-
-- Usage: Couple enjoying a sunset
-- SHA-256: `543917baf6ca7c4baf7c887aa70ca55c5df4dc12ccb930041e89235bc1c6a925`
-- Supplied source: `H:/Desktop/modi-holidays-bespoke.html` (embedded base64 WebP; extracted byte-for-byte).
-- Original photographer/creator: unknown.
-- Original publication URL: not supplied.
-- Licence / commercial-use permission: unverified; not cleared for publication.
-
-## assets/bespoke/f27ed012b0617351.webp
-
-- Usage: Hiker in the mountains
-- SHA-256: `f27ed012b0617351a3db3863f98825fe4568d2e6fa4f065c76b6ddd86024a4b1`
-- Supplied source: `H:/Desktop/modi-holidays-bespoke.html` (embedded base64 WebP; extracted byte-for-byte).
-- Original photographer/creator: unknown.
-- Original publication URL: not supplied.
-- Licence / commercial-use permission: unverified; not cleared for publication.
-
-## assets/bespoke/73b13e168af9ad70.webp
-
-- Usage: Friends traveling together
-- SHA-256: `73b13e168af9ad705fa8711834744034280c0ac13fb84933c85fdca99b5ec9b6`
-- Supplied source: `H:/Desktop/modi-holidays-bespoke.html` (embedded base64 WebP; extracted byte-for-byte).
-- Original photographer/creator: unknown.
-- Original publication URL: not supplied.
-- Licence / commercial-use permission: unverified; not cleared for publication.
-
-## assets/bespoke/fa0f3652c190474d.webp
-
-- Usage: Himalayan spiritual destination
-- SHA-256: `fa0f3652c190474d3c2b3efeef3ba4cde16b688530d87b5d88c3c2648c9f5f28`
-- Supplied source: `H:/Desktop/modi-holidays-bespoke.html` (embedded base64 WebP; extracted byte-for-byte).
-- Original photographer/creator: unknown.
-- Original publication URL: not supplied.
-- Licence / commercial-use permission: unverified; not cleared for publication.
-
-## assets/bespoke/e0c10fecd0a1d461.webp
-
-- Usage: Indian heritage palace at sunset; Indian palace architecture in warm evening light
-- SHA-256: `e0c10fecd0a1d46160a07ad6b3ff42ee9c86d20baf1995d58339c6770b8fac05`
-- Supplied source: `H:/Desktop/modi-holidays-bespoke.html` (embedded base64 WebP; extracted byte-for-byte).
-- Original photographer/creator: unknown.
-- Original publication URL: not supplied.
-- Licence / commercial-use permission: unverified; not cleared for publication.
-
-## assets/bespoke/f89b15baf6d11ede.webp
-
-- Usage: Scenic international mountain and lake destination
-- SHA-256: `f89b15baf6d11edeba85bb2e27062d5d63a5498c3d0fb3107ed0b923a74fab62`
-- Supplied source: `H:/Desktop/modi-holidays-bespoke.html` (embedded base64 WebP; extracted byte-for-byte).
-- Original photographer/creator: unknown.
-- Original publication URL: not supplied.
-- Licence / commercial-use permission: unverified; not cleared for publication.
-
-## assets/bespoke/d3ecc59c78c187be.webp
-
-- Usage: Luxury Mediterranean coastal escape; Hero desktop/mobile background
-- SHA-256: `d3ecc59c78c187be42994e50d40543c50b1fbffd83111b305107d662f27c34cf`
-- Supplied source: `H:/Desktop/modi-holidays-bespoke.html` (embedded base64 WebP; extracted byte-for-byte).
-- Original photographer/creator: unknown.
-- Original publication URL: not supplied.
-- Licence / commercial-use permission: unverified; not cleared for publication.
+**Publication hold:** 1 remaining embedded reference assets have no documented original creator or licence. The approved hero is retained as requested; rights must be supplied before publication, or a replacement hero approved. The gold-flourish logo is also outstanding.
 
 ## assets/photos/mh-001.webp
 
@@ -108,3 +36,38 @@ Scope: every unique photograph used by the prototype. Source HTML supplies eight
 - Source licence declaration checked on Wikimedia Commons on 2 November 2026.
 - Changes: Resized and converted to WebP; displayed with object-fit cropping.
 - Keep author, source and licence links, and change notice. For CC BY-SA adaptations, retain the same or a compatible licence.
+
+## assets/photos/mh-002.webp
+
+- Usage: Simsa Manali East Himachal Oct22 A7C 03328
+- SHA-256: `9bad281c802c07ee931b42c6a38a097c77bb35d81a1c2099e5b908402172a87b`
+- Original source: [Simsa Manali East Himachal Oct22 A7C 03328](https://commons.wikimedia.org/wiki/File:Simsa_Manali_East_Himachal_Oct22_A7C_03328.jpg)
+- Author: Timothy A. Gonsalves
+- Licence: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- Source licence declaration checked on Wikimedia Commons on 2 November 2026.
+- Changes: Resized and converted to WebP; displayed with object-fit cropping.
+- Keep author, source and licence links, and change notice. For CC BY-SA adaptations, retain the same or a compatible licence.
+
+## assets/photos/mh-003.webp
+
+- Usage: Kerala backwaters, Houseboats, India
+- SHA-256: `8f92248de1da6f61f7c51e2ddec8f00fce6fe9fb218dd69393bb241aa440dc31`
+- Original source: [Kerala backwaters, Houseboats, India](https://commons.wikimedia.org/wiki/File:Kerala_backwaters,_Houseboats,_India.jpg)
+- Author: Vyacheslav Argenberg
+- Licence: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)
+- Source licence declaration checked on Wikimedia Commons on 2 November 2026.
+- Changes: Resized and converted to WebP; displayed with object-fit cropping.
+- Keep author, source and licence links, and change notice. For CC BY-SA adaptations, retain the same or a compatible licence.
+
+## assets/bespoke/d3ecc59c78c187be.webp
+
+- Usage: Hero desktop/mobile background
+- SHA-256: `d3ecc59c78c187be42994e50d40543c50b1fbffd83111b305107d662f27c34cf`
+- Supplied source: `H:/Desktop/modi-holidays-bespoke.html` (embedded base64 WebP; extracted byte-for-byte).
+- Original photographer/creator: unknown.
+- Original publication URL: not supplied.
+- Licence / commercial-use permission: unverified; not cleared for publication.
+
+## Replacement notes
+
+The five new travel-card images have no embedded lettering. Their existing catalogue source records and source-page licence declarations are retained. The Manali author also requests contact before commercial use on the source page; record that request for publication review rather than treating the image as unconditionally cleared. No contact was made.

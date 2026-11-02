@@ -74,5 +74,35 @@ icons={
 for label,path in icons.items():
     icon='<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+path+'</svg>'
     s=s.replace('>'+label+'</', '>'+icon+'<span>'+label.replace(' us','').replace(' ↗','')+'</span></')
+# Catalogue-backed prototype refinements. Source catalogue remains read-only.
+live=[p for p in packages if p.get('published',True)]
+search_controls='<label for="holiday-category">Holiday type</label><select id="holiday-category"><option value="">All holidays</option><option>Domestic</option><option>International</option></select><label for="holiday-duration">Duration</label><select id="holiday-duration"><option value="">Any duration</option>'
+search_controls+=''.join(f'<option value="{d}">{d} days</option>' for d in sorted({int(re.search(r"\d+",p['duration'])[0]) for p in live}))+'</select>'
+s=s.replace('<form action="packages.html">','<form id="catalogue-search" action="packages.html">'+search_controls)
+s=s.replace('<button class="btn btn-dark">Find holidays ↗</button></form></section>','<button class="btn btn-dark">Find holidays ↗</button></form><p id="search-status" role="status"></p><div id="search-results" class="featured-grid"></div><noscript><p>Use destination search above or <a href="packages.html">browse all holidays</a>. Type and duration filtering requires JavaScript.</p></noscript></section>')
+rows=[{k:p[k] for k in ['id','name','category','destination','duration','slug']} for p in live]
+s=s.replace('</head>','<script id="catalogue-data" type="application/json">'+json.dumps(rows,ensure_ascii=False).replace('<','\\u003c')+'</script></head>')
+s=s.replace('<label for="kind">','<label for="customer-name">Your name</label><input id="customer-name" name="name" autocomplete="name" maxlength="100" required><label for="travellers">Number of travellers</label><input id="travellers" name="travellers" type="number" min="1" max="100" step="1" value="2" required><label for="kind">')
+s=s.replace('PREPARE WHATSAPP ENQUIRY ↗','Continue to WhatsApp').replace('Open WhatsApp ↗','Continue to WhatsApp ↗')
+s=s.replace('<textarea id="message-copy" readonly hidden></textarea>','<textarea id="message-copy" readonly hidden></textarea><button type="button" id="copy-enquiry" hidden>Copy message</button>')
+# Replace text-baked reference card images with documented catalogue photography.
+card_ids=iter(['MH-001','MH-004','MH-011','MH-002','MH-003'])
+def clean_card(match):
+    key=next(card_ids); im=manifest[key]
+    card=re.sub(r'<img[^>]+>',f'<img loading="lazy" src="{E(im["image"])}" alt="{E(im["alt"],quote=True)}">',match[0],count=1)
+    return '<div class="travel-item">'+card+f'<small class="image-credit"><a href="{E(im["source"])}">{E(im["author"] or "Contributor")}</a> · <a href="{E(im["licenseUrl"])}">{E(im["license"])}</a> · resized/cropped</small></div>'
+s=re.sub(r'<a [^>]*class="travel-card">.*?</a>',clean_card,s,flags=re.S)
+s=s.replace('</small></article>',' · resized / cropped</small></article>')
+# Remove the remaining text-baked/uncleared inline imagery; keep the approved hero background unchanged.
+replacement_ids=iter(['MH-004','MH-011','MH-004','MH-003'])
+def replace_reference_image(match):
+    im=manifest[next(replacement_ids)]
+    return f'<img loading="lazy" src="{E(im["image"])}" alt="{E(im["alt"],quote=True)}">'
+s=re.sub(r'<img[^>]+src="assets/bespoke/[^"]+"[^>]*>',replace_reference_image,s)
+credits='<details class="photo-credits"><summary>Photograph credits</summary>'
+for key in ['MH-001','MH-004','MH-011','MH-002','MH-003']:
+    im=manifest[key]
+    credits+=f'<p><a href="{E(im["source"])}">{E(im["alt"])} — {E(im["author"])}</a> · <a href="{E(im["licenseUrl"])}">{E(im["license"])}</a> · resized / converted to WebP / cropped for display.</p>'
+s=s.replace('</footer>',credits+'</details></footer>')
 (ROOT/'homepage-prototype.html').write_text(s,encoding='utf-8')
 print('Built homepage-prototype.html; extracted',len(list(assets.glob('*.webp'))),'unique photographs. Existing pages untouched.')
