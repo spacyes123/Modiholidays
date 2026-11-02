@@ -67,5 +67,12 @@ s=s.replace('<body>','<body><a class="skip-link" href="#home">Skip to content</a
 s=s.replace('<nav class="nav"','<nav id="primary-nav" class="nav"')
 s=s.replace('</head>','<meta property="og:title" content="Modi Holidays — The World, Exceptionally Yours"><meta property="og:description" content="Personalised holidays across India and the world. A brand story beginning in 2009."><meta property="og:url" content="https://modiholidays.in/"></head>')
 s=s.replace('<img src=','<img loading="lazy" src=')
+icons={
+ 'Call us': '<path d="M5 3h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4c0 2-2 3-4 2C9 19 5 15 3 7c-1-2 0-4 2-4Z"/>',
+ 'WhatsApp': '<path d="M21 11a9 9 0 0 1-13 8l-5 2 2-5A9 9 0 1 1 21 11Z"/><path d="M8 7c0 5 3 8 8 8l1-2-3-1-1 1-2-2 1-1-1-3Z"/>',
+ 'Enquire ↗': '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>'}
+for label,path in icons.items():
+    icon='<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+path+'</svg>'
+    s=s.replace('>'+label+'</', '>'+icon+'<span>'+label.replace(' us','').replace(' ↗','')+'</span></')
 (ROOT/'homepage-prototype.html').write_text(s,encoding='utf-8')
 print('Built homepage-prototype.html; extracted',len(list(assets.glob('*.webp'))),'unique photographs. Existing pages untouched.')
