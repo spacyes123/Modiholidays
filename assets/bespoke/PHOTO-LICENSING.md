@@ -1,8 +1,8 @@
 # Homepage photograph provenance audit — 2 November 2026
 
-Scope: all 6 unique photographs currently used by the prototype. Five travel-card images now use documented catalogue photographs; no source catalogue or image files changed.
+Scope: all 5 unique photographs currently used by the prototype. Five travel-card images now use documented catalogue photographs; no source catalogue or image files changed.
 
-**Publication hold:** 1 remaining embedded reference assets have no documented original creator or licence. The approved hero is retained as requested; rights must be supplied before publication, or a replacement hero approved. The gold-flourish logo is also outstanding.
+All photographs currently used by the homepage map to documented catalogue sources. The owner authorised replacement of the unverified hero; the new hero is Kerala backwaters by Vyacheslav Argenberg, CC BY 4.0, with author/source/licence and modification credits in the footer. Approved transparent raster logos are installed. No original embedded reference photographs remain in the rendered homepage. Retained source-reference files are not publication artwork.
 
 ## assets/photos/mh-001.webp
 
@@ -50,7 +50,7 @@ Scope: all 6 unique photographs currently used by the prototype. Five travel-car
 
 ## assets/photos/mh-003.webp
 
-- Usage: Kerala backwaters, Houseboats, India
+- Usage: Kerala backwaters, Houseboats, India; Hero desktop/mobile background
 - SHA-256: `8f92248de1da6f61f7c51e2ddec8f00fce6fe9fb218dd69393bb241aa440dc31`
 - Original source: [Kerala backwaters, Houseboats, India](https://commons.wikimedia.org/wiki/File:Kerala_backwaters,_Houseboats,_India.jpg)
 - Author: Vyacheslav Argenberg
@@ -58,15 +58,6 @@ Scope: all 6 unique photographs currently used by the prototype. Five travel-car
 - Source licence declaration checked on Wikimedia Commons on 2 November 2026.
 - Changes: Resized and converted to WebP; displayed with object-fit cropping.
 - Keep author, source and licence links, and change notice. For CC BY-SA adaptations, retain the same or a compatible licence.
-
-## assets/bespoke/d3ecc59c78c187be.webp
-
-- Usage: Hero desktop/mobile background
-- SHA-256: `d3ecc59c78c187be42994e50d40543c50b1fbffd83111b305107d662f27c34cf`
-- Supplied source: `H:/Desktop/modi-holidays-bespoke.html` (embedded base64 WebP; extracted byte-for-byte).
-- Original photographer/creator: unknown.
-- Original publication URL: not supplied.
-- Licence / commercial-use permission: unverified; not cleared for publication.
 
 ## Replacement notes
 

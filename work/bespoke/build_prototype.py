@@ -15,7 +15,7 @@ s=re.sub(r'Since 2009, Subhash Modi.*?personal care\.', 'With a brand story begi
 s=s.replace('<strong>5,000+</strong><small>TRAVELERS WELCOMED</small>','<strong>Personal</strong><small>JOURNEY PLANNING</small>')
 s=s.replace('Solo, social<br>& sacred','Solo &amp;<br>Social')
 s=s.replace('The world,<br><em>exceptionally</em><br>yours.','The World,<br><em>Exceptionally</em><br>Yours.')
-logo='<span class="logo-pending">MODI HOLIDAYS<small>Approved gold-flourish logo pending</small></span>'
+logo='<img class="approved-logo" src="assets/brand/approved/modi-holidays-logo-dark-background.png" alt="Modi Holidays — Curated journeys since 2009">'
 s=re.sub(r'<span class="wordmark">.*?</small>',logo,s,count=1)
 s=s.replace('<div class="eyebrow" style="color:#cbb18b">MODI HOLIDAYS</div>',logo)
 packages=json.loads((ROOT/'assets/packages.json').read_text(encoding='utf-8'))
@@ -61,7 +61,7 @@ s=s.replace('COPY MY JOURNEY ENQUIRY ↗','PREPARE WHATSAPP ENQUIRY ↗')
 s=s.replace('You can paste the copied message into your preferred email or messaging app.','Nothing is sent until you choose to send it in WhatsApp.')
 s=s.replace('</form></div></div>','<a id="send-enquiry" class="btn" hidden target="_blank" rel="noopener">Open WhatsApp ↗</a><label for="message-copy">Enquiry message — copy manually if needed</label><textarea id="message-copy" readonly hidden></textarea></form></div></div>')
 s=re.sub(r'<script>.*?</script>', '<script src="assets/bespoke/prototype.js"></script>',s,flags=re.S)
-s=s.replace('</head>','<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://modiholidays.in/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/bespoke/prototype.css"></head>')
+s=s.replace('</head>','<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://modiholidays.in/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/bespoke/prototype.css?v=licensed-hero"></head>')
 s=s.replace('</body>','<div class="mobile-contact"><a href="tel:+917666018401">Call us</a><a href="https://wa.me/917666018401?text=Hello%20Modi%20Holidays%2C%20please%20help%20me%20plan%20a%20holiday.">WhatsApp</a><button onclick="openEnquiry()">Enquire ↗</button></div></body>')
 s=s.replace('<body>','<body><a class="skip-link" href="#home">Skip to content</a>')
 s=s.replace('<nav class="nav"','<nav id="primary-nav" class="nav"')
@@ -104,5 +104,20 @@ for key in ['MH-001','MH-004','MH-011','MH-002','MH-003']:
     im=manifest[key]
     credits+=f'<p><a href="{E(im["source"])}">{E(im["alt"])} — {E(im["author"])}</a> · <a href="{E(im["licenseUrl"])}">{E(im["license"])}</a> · resized / converted to WebP / cropped for display.</p>'
 s=s.replace('</footer>',credits+'</details></footer>')
+# Inclusive positioning: preserve metadata while updating visible public copy.
+head,body=s.split('</head>',1)
+for old,new in {
+ 'Private journeys · Personal concierge · Since 2009':'Domestic · International · Group Tours · Since 2009',
+ 'Mumbai-based bespoke travel concierge.':'Mumbai-based premium holiday planning.',
+ 'Private journeys across India and the world.':'Domestic, international and group holidays.',
+ 'privately discovered.':'thoughtfully discovered.',
+ 'BEGIN A PRIVATE CONVERSATION':'LET’S PLAN YOUR HOLIDAY',
+ 'YOUR PRIVATE JOURNEY':'YOUR NEXT HOLIDAY',
+}.items():body=body.replace(old,new)
+s=head+'</head>'+body
+s=re.sub(r"url\('assets/bespoke/[^']+'\)","url('assets/photos/mh-003.webp')",s)
 (ROOT/'homepage-prototype.html').write_text(s,encoding='utf-8')
 print('Built homepage-prototype.html; extracted',len(list(assets.glob('*.webp'))),'unique photographs. Existing pages untouched.')
+
+
+

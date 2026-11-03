@@ -60,7 +60,7 @@ def navigation(prefix=''):
     return f'<header class="site-header"><div class="container header-inner"><a class="brand" href="{prefix}index.html" aria-label="Modi Holidays home">{brand_image(prefix)}</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation menu">☰ Menu</button><nav class="nav" id="primary-nav" aria-label="Primary navigation">{items}</nav></div></header>'
 
 HOME = (ROOT/'index.html').read_text(encoding='utf-8')
-FOOTER = re.search(r'<footer.*?</footer>',HOME,re.S)[0]
+FOOTER = (ROOT/'templates/public-footer.html').read_text(encoding='utf-8-sig')
 FOOTER = contacts(FOOTER)
 FOOTER = re.sub(r'href="mailto:hello@modiholidays.in"', '', FOOTER)
 def footer(prefix=''):
@@ -96,6 +96,7 @@ def metadata(text, file):
     return text.replace('</head>',f'<link rel="stylesheet" href="{prefix}assets/brand.css">'+extra+'</head>')
 
 for path in ROOT.glob('*.html'):
+    if path.name in ['index.html','homepage-prototype.html','admin.html']:continue
     text=path.read_text(encoding='utf-8')
     if '<header' in text:text=re.sub(r'<header.*?</header>',navigation(),text,count=1,flags=re.S)
     else:text=text.replace('<body>','<body>'+navigation())
@@ -172,5 +173,7 @@ expected={p['slug']+'.html' for p in LIVE}
 for path in (ROOT/'tours').glob('*.html'):
     if path.name not in expected:path.unlink()
 urls=[p.name for p in ROOT.glob('*.html') if p.name not in ['admin.html','404.html','package.html']]+['tours/'+p['slug']+'.html' for p in LIVE]
-write(ROOT/'sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{DOMAIN}{E(u)}</loc></url>\n' for u in sorted(urls))+'</urlset>\n')
+import subprocess, sys
+subprocess.run([sys.executable,str(ROOT/'scripts/apply-public-brand.py')],check=True)
+subprocess.run([sys.executable,str(ROOT/'scripts/render-homepage.py')],check=True)
 print(f'Built {len(LIVE)} tour pages and four complete static catalogues; source records unchanged.')
