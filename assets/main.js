@@ -1,30 +1,23 @@
 (() => {
   'use strict';
   const config = window.MODI_HOLIDAYS_CONFIG || {};
-  const number = String(config.whatsappNumber || '');
-  const ready = /^[1-9]\d{9,14}$/.test(number);
+  const intakeEndpoint = (() => {
+    try {
+      const endpoint = new URL(String(config.publicEnquiryEndpoint || ''));
+      if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password || endpoint.search || endpoint.hash || endpoint.pathname !== '/api/public/enquiries') return '';
+      return endpoint.href;
+    } catch { return ''; }
+  })();
+  const configuredNumber = String(config.whatsappNumber || '');
+  // The confirmed public business number remains usable if config.js fails to load.
+  const number = /^[1-9]\d{9,14}$/.test(configuredNumber) ? configuredNumber : '917666018401';
   const makeUrl = message => `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
   const status = document.querySelector('#form-status');
-  function notice(text) {
-    let el = document.getElementById('contact-notice');
-    if (!el) {
-      el = document.createElement('p');
-      el.id = 'contact-notice'; el.className = 'contact-notice'; el.setAttribute('role', 'status');
-      document.body.append(el);
-    }
-    el.textContent = text;
-  }
   document.querySelectorAll('[data-whatsapp]').forEach(el => {
-    if (ready) el.href = makeUrl(el.dataset.message || config.defaultMessage || 'Hello Modi Holidays.');
-    else {
-      el.removeAttribute('href'); el.setAttribute('role', 'button'); el.tabIndex = 0;
-      el.setAttribute('aria-disabled', 'true'); el.title = 'Business WhatsApp setup pending';
-      el.setAttribute('aria-label', 'WhatsApp enquiry — business number setup pending');
-      el.addEventListener('click', event => { event.preventDefault(); notice('WhatsApp enquiries are not available yet. The business number must be configured before launch.'); });
-      el.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') {event.preventDefault();el.click();} });
-    }
+    el.href = makeUrl(el.dataset.message || config.defaultMessage || 'Hello Modi Holidays.');
+    el.removeAttribute('target');
   });
-  document.querySelectorAll('[data-contact-status]').forEach(el => el.textContent = ready ? 'Your message is sent only after you press Send in WhatsApp.' : 'WhatsApp setup pending. Online enquiries are not operational yet.');
+  document.querySelectorAll('[data-contact-status]').forEach(el => el.textContent = 'Your message is sent only after you press Send in WhatsApp.');
   document.querySelectorAll('[data-year],[data-current-year]').forEach(el => el.textContent = new Date().getFullYear());
   document.querySelectorAll('[data-email]').forEach(el => {
     el.textContent = config.businessEmail || 'Email setup pending';
@@ -69,11 +62,15 @@
       const option = new Option(selected, selected, true, true);field.add(option);
     } else field.value = selected;
   }
-  if (!ready && status) status.textContent = 'Enquiry setup pending: the business WhatsApp number has not been configured. This form cannot send yet.';
   let captchaToken = '', captchaWidget;
   let lastSubmission = '', submissionKey = '';
-  const intakeReady = config.publicEnquiryEndpoint === '/api/public/enquiries' && !!config.turnstileSiteKey;
+  const intakeReady = !!intakeEndpoint && !!config.turnstileSiteKey;
   if (intakeReady) {
+    const consentLabel = document.createElement('label'); consentLabel.className = 'form-consent';
+    const consent = document.createElement('input'); consent.type = 'checkbox'; consent.name = 'crmConsent'; consent.value = 'yes';
+    const consentText = document.createElement('span'); consentText.textContent = 'Also save my enquiry securely for Modi Holidays to follow up. This is optional; WhatsApp messages are sent separately.';
+    consentLabel.append(consent, consentText);
+    form.querySelector('button[type="submit"]').before(consentLabel);
     const honey = document.createElement('input'); honey.name = 'website'; honey.type = 'text'; honey.tabIndex = -1; honey.autocomplete = 'off'; honey.hidden = true; form.append(honey);
     const box = document.createElement('div'); form.querySelector('button[type="submit"]').before(box);
     const script = document.createElement('script'); script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; script.async = true;
@@ -83,28 +80,32 @@
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (!form.reportValidity()) return;
-    if (!ready) {status.textContent = 'Your enquiry has not been sent. The business must configure WhatsApp before launch. Please keep your details and try again once contact details are available.';return;}
     const data = new FormData(form);
-    let intakeStatus = '';
-    if (intakeReady && captchaToken) {
-      const payload = Object.fromEntries(data.entries()); const fingerprint = JSON.stringify(payload);
+    let intakeStatus = '', crmSaved = false;
+    if (intakeReady && data.get('crmConsent') === 'yes' && captchaToken) {
+      const payload = Object.fromEntries(['name','phone','email','destination','departureCity','travelDates','adults','children','budget','preferences','website'].map(key => [key, String(data.get(key) || '')]));
+      const fingerprint = JSON.stringify(payload);
       if (lastSubmission !== fingerprint) { submissionKey = crypto.randomUUID(); lastSubmission = fingerprint; }
       const submit = form.querySelector('button[type="submit"]'); submit.disabled = true;
       if (status) status.textContent = 'Saving your enquiry securely…';
       try {
-        const response = await fetch(config.publicEnquiryEndpoint, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({...payload,idempotencyKey:submissionKey,captchaToken}),signal:AbortSignal.timeout(15000)});
+        const response = await fetch(intakeEndpoint, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({...payload,idempotencyKey:submissionKey,captchaToken}),signal:AbortSignal.timeout(15000)});
         const result = await response.json();
-        if (!response.ok || !result.ok) throw Error(result.error || 'Database intake failed');
+        if (!response.ok || result.ok !== true || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(result.enquiryId || '')) throw Error(result.error || 'Database intake failed');
+        crmSaved = true;
         intakeStatus = 'Your enquiry was saved for the Modi Holidays team. ';
-      } catch {intakeStatus = 'Database receipt was not confirmed. You can send the enquiry manually through WhatsApp below. ';}
+      } catch {intakeStatus = 'We could not confirm that the enquiry was saved. Nothing is confirmed as saved. You can retry or continue with WhatsApp below. ';}
       finally {submit.disabled = false; captchaToken = ''; if (window.turnstile && captchaWidget !== undefined) window.turnstile.reset(captchaWidget);}
-    } else if (intakeReady) intakeStatus = 'Complete the verification to save to the database, or send the prepared message manually through WhatsApp. ';
+    } else if (intakeReady) intakeStatus = data.get('crmConsent') === 'yes' ? 'Complete the verification to save your enquiry, or send the prepared message manually through WhatsApp. Nothing has been saved. ' : 'You have not opted to save this enquiry. Nothing has been saved. ';
     const fields = [['Name','name'],['Mobile','phone'],['Email','email'],['Destination / package','destination'],['Travel dates','travelDates'],['Adults','adults'],['Children','children'],['Departure city','departureCity'],['Budget per person','budget'],['Special requirements','preferences']];
     const message = 'Hello Modi Holidays, please prepare a personalised quote.\n\n' + fields.map(([label,key]) => `${label}: ${String(data.get(key)||'Not specified').trim()}`).join('\n') + '\n\nPlease confirm availability and arrangements in writing.';
     let link = document.getElementById('prepared-enquiry');
-    if (!link) {link = document.createElement('a');link.id='prepared-enquiry';link.className='btn btn-primary';link.target='_blank';link.rel='noopener noreferrer';status.after(link);}
-    link.href = makeUrl(message);link.textContent = 'Open WhatsApp with my enquiry ↗';
-    status.textContent = intakeStatus + 'Your WhatsApp message is ready. Open WhatsApp below and press Send to send it.' + (!intakeReady ? ' Nothing has been sent or saved by this website.' : ' No booking is confirmed.');
+    if (!link) {link = document.createElement('a');link.id='prepared-enquiry';link.className='btn btn-primary';status.after(link);}
+    // A native same-tab anchor works in mobile/in-app browsers without popup permissions.
+    link.removeAttribute('target');
+    link.href = makeUrl(message);link.textContent = crmSaved ? 'Continue to WhatsApp (optional) ↗' : 'Open WhatsApp with my enquiry ↗';
+    status.textContent = intakeStatus + 'Your WhatsApp message is ready. Open WhatsApp below and press Send to send it.' + (!crmSaved ? (intakeReady ? ' This website has not confirmed a CRM save.' : ' Nothing has been sent or saved by this website.') : ' WhatsApp is optional; no booking is confirmed.');
     link.focus();
   });
+  form.querySelector('button[type="submit"]').disabled = false;
 })();

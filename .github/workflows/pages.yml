@@ -16,10 +16,15 @@ jobs:
           python-version: '3.12'
       - run: python build_site.py
       - run: python scripts/validate.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node --test scripts/whatsapp.test.cjs
       - name: Stage public website only
         run: |
           mkdir _site
-          cp *.html robots.txt sitemap.xml CNAME _site/
+          find . -maxdepth 1 -name "*.html" ! -name "homepage-prototype.html" ! -name "admin.html" -exec cp {} _site/ \;
+          cp robots.txt sitemap.xml CNAME _site/
           cp -r assets tours _site/
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
