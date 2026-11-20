@@ -49,6 +49,11 @@ function normalizeImages(html, file) {
     const className = tag.match(/\bclass="([^"]*)"/i)?.[1] || '';
     const isHeaderLogo = className.split(/\s+/).includes('brand-artwork');
     const isFooterLogo = className.split(/\s+/).includes('footer-brand');
+    const isApprovedHomepageLogo = className.split(/\s+/).includes('approved-logo');
+    if (isApprovedHomepageLogo) {
+      const updated = tag.replace(/\s+width="[^"]*"/i, '').replace(/\s+height="[^"]*"/i, '');
+      return updated.replace(/>$/, ' width="2077" height="724">');
+    }
     if (isHeaderLogo || isFooterLogo) {
       const variant = isFooterLogo ? 'dark' : 'light';
       const src = `${prefix}assets/brand/approved/modi-holidays-logo-${variant}-background.png`;
