@@ -100,11 +100,12 @@
     const fields = [['Name','name'],['Mobile','phone'],['Email','email'],['Destination / package','destination'],['Travel dates','travelDates'],['Adults','adults'],['Children','children'],['Departure city','departureCity'],['Budget per person','budget'],['Special requirements','preferences']];
     const message = 'Hello Modi Holidays, please prepare a personalised quote.\n\n' + fields.map(([label,key]) => `${label}: ${String(data.get(key)||'Not specified').trim()}`).join('\n') + '\n\nPlease confirm availability and arrangements in writing.';
     let link = document.getElementById('prepared-enquiry');
-    if (!link) {link = document.createElement('a');link.id='prepared-enquiry';link.className='btn btn-primary';status.after(link);}
-    // A native same-tab anchor works in mobile/in-app browsers without popup permissions.
+    if (!link) {link = document.createElement('a');link.id='prepared-enquiry';link.className='btn btn-outline-dark';status.after(link);}
     link.removeAttribute('target');
-    link.href = makeUrl(message);link.textContent = crmSaved ? 'Continue to WhatsApp (optional) ↗' : 'Open WhatsApp with my enquiry ↗';
-    status.textContent = intakeStatus + 'Your WhatsApp message is ready. Open WhatsApp below and press Send to send it.' + (!crmSaved ? (intakeReady ? ' This website has not confirmed a CRM save.' : ' Nothing has been sent or saved by this website.') : ' WhatsApp is optional; no booking is confirmed.');
+    link.href = makeUrl(message);link.textContent = 'Open WhatsApp if it did not open ↗';
+    let opened = null;
+    try { opened = window.open(link.href, '_blank'); if (opened) opened.opener = null; } catch {}
+    status.textContent = intakeStatus + (opened ? 'WhatsApp opened with your message. Review it there and press Send.' : 'Your WhatsApp message is ready, but the browser did not open it. Use the link below and press Send in WhatsApp.') + (!crmSaved ? (intakeReady ? ' This website has not confirmed a CRM save.' : ' Nothing has been sent or saved by this website.') : ' WhatsApp is optional; no booking is confirmed.');
     link.focus();
   });
   form.querySelector('button[type="submit"]').disabled = false;
