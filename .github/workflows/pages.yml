@@ -1,7 +1,7 @@
 name: Validate and deploy GitHub Pages
 on:
   push:
-    branches: [main]
+    branches: [main, feature/website-homepage-approval]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -11,15 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python build_site.py
+      - run: node scripts/prepare-seo.cjs
       - run: python scripts/validate.py
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - run: node --test scripts/whatsapp.test.cjs
+      - run: node --test scripts/whatsapp.test.cjs scripts/seo-quality.test.cjs
       - name: Stage public website only
         run: |
           mkdir _site
