@@ -4,6 +4,8 @@ const fs=require('node:fs');
 const path=require('node:path');
 const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
 const prototype=fs.readFileSync(path.join(__dirname,'../assets/bespoke/prototype.js'),'utf8');
+const styles=fs.readFileSync(path.join(__dirname,'../assets/bespoke/prototype.css'),'utf8');
+const homepageRenderer=fs.readFileSync(path.join(__dirname,'render-homepage.py'),'utf8');
 const packages=JSON.parse(fs.readFileSync(path.join(__dirname,'../assets/packages.json'),'utf8'));
 const planner=fs.readFileSync(path.join(__dirname,'../plan-my-holiday.html'),'utf8');
 const escape=x=>String(x).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
@@ -13,7 +15,22 @@ test('homepage keeps all 140 tours and catalogue-backed destination, type and du
  for(const id of ['holiday-destination','holiday-category','holiday-duration','holiday-month','holiday-reset'])assert.ok(html.includes(`id="${id}"`));
  const options=[...html.matchAll(/<option value="([^"]+)">([^<]+)<\/option>/g)].map(x=>x[1]);
  for(const p of packages)assert.ok(options.includes(escape(p.destination)),`destination option missing: ${p.destination}`);
- assert.ok(html.indexOf('id="holiday-search"')<html.indexOf('class="trust"'),'search panel should overlap the hero before the trust strip');
+ const heroStart=html.indexOf('<section class="hero"');
+ const heroEnd=html.indexOf('</section>',heroStart);
+ const searchStart=html.indexOf('<section class="holiday-search"');
+ const searchEnd=html.indexOf('</section>',searchStart);
+ const resultRegion=html.indexOf('id="search-results-region"');
+ assert.ok(searchStart>heroEnd,'search panel must follow the hero without covering it');
+ assert.ok(resultRegion>searchEnd,'dynamic search results must sit outside the controls panel');
+ assert.match(html,/id="search-results-region"[^>]*hidden/);
+ assert.match(styles,/\.holiday-search\{position:relative;z-index:35;max-width:1200px;margin:28px auto 0/);
+ assert.match(styles,/\.holiday-search\{margin:22px 14px 0/);
+ assert.doesNotMatch(styles,/margin:-(?:72px|54px)/,'search panel must not use negative-margin hero overlap');
+ assert.match(styles,/\.holiday-search button\[type=submit\]\{grid-column:1\/3;grid-row:4/);
+ assert.match(styles,/\.holiday-search #holiday-reset\{grid-column:3\/5;grid-row:4/);
+ assert.match(styles,/grid-template-areas:"destination-label type-label" "destination type" "month-label duration-label" "month duration" "note note" "button button" "reset reset"/);
+ assert.match(styles,/\.holiday-search button\[type=submit\]\{grid-area:button/);
+ assert.match(styles,/\.holiday-search #holiday-reset\{grid-area:reset/);
  assert.match(html,/id="holiday-destination"><option value="">All destinations/);assert.match(html,/id="holiday-category"><option value="">All holidays/);
  assert.match(html,/<summary>Domestic<\/summary>/);assert.match(html,/<summary>International<\/summary>/);
  for(const item of ['Group Tours','About Us','Contact','Get a Quote'])assert.ok(html.includes(`>${item}</a>`),`primary navigation missing ${item}`);
@@ -26,6 +43,10 @@ test('travel month is a planning preference without invented departure availabil
  assert.match(prototype,/const month=document\.getElementById\('holiday-month'\)\.value/);
  assert.match(prototype,/function durationNights/);assert.match(prototype,/preferred duration: /i);
  assert.doesNotMatch(prototype,/p\.month\s*===|p\.departureMonth/);
+});
+test('catalogue build cannot replace the approved homepage with the review prototype',()=>{
+ assert.match(homepageRenderer,/Preserved the approved index\.html/);
+ assert.doesNotMatch(homepageRenderer,/build-homepage-review\.cjs|write_text\s*\(|open\s*\(/);
 });
 test('enquiry requires consent and a reply channel, then prepares WhatsApp and copy fallback',()=>{
  assert.match(html,/id="consent"[^>]*required/);assert.match(html,/id="email"/);assert.match(html,/id="mobile"/);

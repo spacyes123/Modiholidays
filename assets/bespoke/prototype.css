@@ -5,7 +5,7 @@ body{font-family:Manrope,Arial,sans-serif}.serif,h1,h2,h3,.proof strong,.dialog 
 /* Review revision: compact mobile hero and accessible 44px contact targets. */
 @media(max-width:700px){.hero{align-items:flex-start;min-height:660px;height:85svh;max-height:790px}.hero-content{padding:155px 0 95px;margin:0 23px}.hero h1{margin:18px 0}.mobile-contact a,.mobile-contact button{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:10px 4px}.mobile-contact svg{width:18px;height:18px;flex-shrink:0}body{padding-bottom:calc(45px + env(safe-area-inset-bottom))}}
 @media(max-width:700px) and (max-height:740px){.hero{height:auto;min-height:650px}.hero-content{padding-top:135px}}
-.travel-item{min-width:0}.travel-card{display:flex;aspect-ratio:4/5;min-height:0}.travel-card img{object-position:center}.image-credit{display:block;font-size:9px;line-height:1.5;color:var(--muted);padding:10px 3px}.image-credit a{text-decoration:underline}.featured-grid article{background:var(--paper);border:1px solid #F39A2455;border-radius:16px;overflow:hidden;box-shadow:0 8px 28px #55234B08}.featured-grid article>a{display:block}.featured-grid article h3,.featured-grid article p,.featured-grid article small{margin-left:22px;margin-right:22px}.featured-grid article small{display:block;padding-bottom:20px;line-height:1.6}.featured-grid img{aspect-ratio:3/2}.featured-grid article h3{font-size:32px;line-height:1.1}.holiday-search form{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.holiday-search label{grid-row:1}.holiday-search select{min-width:0;width:100%;grid-row:2}.holiday-search button{grid-column:1/-1;justify-self:start}.holiday-search #search-results{margin-top:24px}.search-result{padding:22px}.search-result h3{font-size:30px;margin:12px 0}.search-result p{font-size:12px}#copy-enquiry{padding:12px;background:var(--paper);color:var(--wine);border:1px solid var(--wine);margin-top:10px}
+.travel-item{min-width:0}.travel-card{display:flex;aspect-ratio:4/5;min-height:0}.travel-card img{object-position:center}.image-credit{display:block;font-size:9px;line-height:1.5;color:var(--muted);padding:10px 3px}.image-credit a{text-decoration:underline}.featured-grid article{background:var(--paper);border:1px solid #F39A2455;border-radius:16px;overflow:hidden;box-shadow:0 8px 28px #55234B08}.featured-grid article>a{display:block}.featured-grid article h3,.featured-grid article p,.featured-grid article small{margin-left:22px;margin-right:22px}.featured-grid article small{display:block;padding-bottom:20px;line-height:1.6}.featured-grid img{aspect-ratio:3/2}.featured-grid article h3{font-size:32px;line-height:1.1}.holiday-search form{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.holiday-search label{grid-row:1}.holiday-search select{min-width:0;width:100%;grid-row:2}.holiday-search button{grid-column:1/-1;justify-self:start}.#search-results-region{max-width:1200px;margin:24px auto 0;padding:0 clamp(22px,4vw,56px)}#search-results-region h2{font-size:clamp(28px,3vw,38px);line-height:1.1;margin:0 0 18px;color:#55234B}#search-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px}.search-result{padding:22px}.search-result h3{font-size:30px;margin:12px 0}.search-result p{font-size:12px}#copy-enquiry{padding:12px;background:var(--paper);color:var(--wine);border:1px solid var(--wine);margin-top:10px}
 @media(max-width:700px){.travel-grid{display:grid;grid-template-columns:1fr 1fr;align-items:start}.travel-card{height:auto;aspect-ratio:3/4;min-height:0}.travel-card:last-child{grid-column:auto;min-height:0}.travel-item:last-child{grid-column:1/-1}.travel-item:last-child .travel-card{aspect-ratio:3/2}.travel-card h3{font-size:25px}.travel-card .inner{padding:13px}.holiday-search form{display:flex;flex-direction:column}.holiday-search button{align-self:stretch}.image-credit{font-size:9px}.featured-grid article h3{font-size:32px}}
 .approved-logo{display:block;width:300px;max-width:100%;height:auto;object-fit:contain}.header .brand{width:300px;flex-shrink:0}.footer .approved-logo{width:340px}@media(max-width:700px){.header .brand{width:260px}.header .approved-logo{width:260px}.header{gap:12px}.hero-content{padding-top:170px}}
 /* Inclusive-travel header review: keep approved logo pixels unchanged. */
@@ -16,11 +16,11 @@ body{font-family:Manrope,Arial,sans-serif}.serif,h1,h2,h3,.proof strong,.dialog 
 .header .wordmark{font:400 clamp(27px,2.4vw,38px)/.9 'Cormorant Garamond',Georgia,serif;letter-spacing:.08em}
 .header .brand small{display:block;font:500 9px/1.2 Manrope,Arial,sans-serif;letter-spacing:.42em;margin-top:8px;white-space:nowrap}
 .footer .approved-logo{display:none}
-.holiday-search{position:relative;z-index:35;max-width:1200px;margin:-72px auto 0;padding:27px clamp(22px,4vw,56px);border:1px solid #F39A24;background:#FFF8F0;box-shadow:0 18px 48px #160a1426;border-radius:5px}
+.holiday-search{position:relative;z-index:35;max-width:1200px;margin:28px auto 0;padding:27px clamp(22px,4vw,56px);border:1px solid #F39A24;background:#FFF8F0;box-shadow:0 18px 48px #160a1426;border-radius:5px}
 .holiday-search form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 16px;align-items:end}
 .holiday-search label{grid-row:auto;font-size:12px;font-weight:600;color:#55234B}
 .holiday-search select{grid-row:auto;min-width:0;width:100%;padding:13px 14px;border:1px solid #E8DCE3;border-radius:2px;background:#FFFFFF;color:#29232B}
-.holiday-search button{grid-column:1/-1;justify-self:start;margin-top:5px}
+.holiday-search button[type=submit]{grid-column:1/3;grid-row:4;justify-self:start;margin-top:5px}.holiday-search #holiday-reset{grid-column:3/5;grid-row:4;justify-self:start;margin-top:5px}
 .month-note{grid-column:3/-1;grid-row:3;font-size:10px;line-height:1.4;color:#6C5968}
 .trust{position:relative;z-index:1;padding-top:38px}
 .dialog input[type=email],.dialog input[type=tel],.dialog input[type=text],.dialog input[type=number]{width:100%;min-height:44px;padding:11px 12px;border:1px solid #E8DCE3;background:#FFFFFF;color:#29232B}
@@ -30,7 +30,7 @@ body{font-family:Manrope,Arial,sans-serif}.serif,h1,h2,h3,.proof strong,.dialog 
 .dialog label.consent-row span{display:block;flex:1 1 auto;width:calc(100% - 30px);min-width:0;max-width:calc(100% - 30px);white-space:normal;overflow-wrap:anywhere;text-transform:none;letter-spacing:normal}
 .dialog small{display:block;font-size:11px;line-height:1.45;color:#6C5968}
 .travel-card img{object-position:center}
-@media(max-width:700px){.header .brand{width:auto;min-width:0}.header .wordmark{font-size:27px}.header .brand small{font-size:8px;letter-spacing:.37em}.holiday-search{margin:-54px 14px 0;padding:24px 18px}.holiday-search form{display:flex;flex-direction:column;align-items:stretch}.holiday-search label{margin-top:8px}.holiday-search select{width:100%}.month-note{order:7}.holiday-search button{align-self:stretch;justify-self:stretch}.trust{padding-top:32px}.consent-row{margin:8px 0}}
+@media(max-width:700px){.header .brand{width:auto;min-width:0}.header .wordmark{font-size:27px}.header .brand small{font-size:8px;letter-spacing:.37em}.holiday-search{margin:22px 14px 0;padding:24px 18px}.holiday-search form{display:flex;flex-direction:column;align-items:stretch}.holiday-search label{margin-top:8px}.holiday-search select{width:100%}.month-note{order:7}.holiday-search button{align-self:stretch;justify-self:stretch}.trust{padding-top:32px}.consent-row{margin:8px 0}}
 /* Keep the hero scroll cue clear of the overlapping search panel. */
 .hero-bottom{z-index:36;bottom:94px;pointer-events:none}
 @media(min-width:701px){.hero-bottom{justify-content:flex-end}.hero-bottom span:first-child{display:none}}
@@ -40,7 +40,7 @@ body{font-family:Manrope,Arial,sans-serif}.serif,h1,h2,h3,.proof strong,.dialog 
 @media(max-width:700px){
   .hero-bottom{bottom:82px}
   .holiday-search{scroll-margin-bottom:70px}
-  .holiday-search form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"destination-label type-label" "destination type" "month-label duration-label" "month duration" "note note" "button button";gap:8px 10px}
+  .holiday-search form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"destination-label type-label" "destination type" "month-label duration-label" "month duration" "note note" "button button" "reset reset";gap:8px 10px}
   .holiday-search label{margin:0;align-self:end;font-size:11px}
   .holiday-search label[for=holiday-destination]{grid-area:destination-label}
   .holiday-search label[for=holiday-category]{grid-area:type-label}
@@ -52,7 +52,8 @@ body{font-family:Manrope,Arial,sans-serif}.serif,h1,h2,h3,.proof strong,.dialog 
   #holiday-duration{grid-area:duration}
   .holiday-search select{min-height:44px;padding:10px 8px;font-size:12px}
   .holiday-search .month-note{grid-area:note;order:initial}
-  .holiday-search button{grid-area:button;margin-top:4px}
+  .holiday-search button[type=submit]{grid-area:button;margin-top:4px}
+  .holiday-search #holiday-reset{grid-area:reset;margin-top:0}
 }
 .header .brand{flex:0 0 auto;width:auto;min-width:0}
 .brand-logo{display:block;width:clamp(220px,19.3vw,278px);max-width:56vw;height:auto;object-fit:contain;object-position:left center}

@@ -19,8 +19,9 @@ class Node {
   append(...children){this.children.push(...children);}
 }
 function setup({valid=true,popup=true}={}){
-  const ids=['year','enquiry','tripform','customer-name','travellers','email','mobile','departure-city','budget','consent','kind','where','when','details','holiday-month','send-enquiry','message-copy','copy-enquiry','status','catalogue-search','holiday-destination','holiday-category','holiday-duration','holiday-reset','search-results','search-status','catalogue-data','crm-enquiry-link'];
+  const ids=['year','enquiry','tripform','customer-name','travellers','email','mobile','departure-city','budget','consent','kind','where','when','details','holiday-month','send-enquiry','message-copy','copy-enquiry','status','catalogue-search','holiday-destination','holiday-category','holiday-duration','holiday-reset','search-results','search-results-region','search-status','catalogue-data','crm-enquiry-link'];
   const els=Object.fromEntries(ids.map(id=>[id,new Node(id)]));
+  els['search-results-region'].hidden=true;
   els['catalogue-data'].textContent=JSON.stringify(rows);
   els['tripform'].reportValidity=()=>valid&&Boolean(els['customer-name'].value)&&Boolean(els.where.value)&&(els.email.value.trim()||els.mobile.value.trim())&&els.consent.checked;
   els['catalogue-search'].reportValidity=()=>valid;
@@ -35,6 +36,7 @@ function submitSearch(app){let prevented=false;app.els['catalogue-search'].liste
 test('Andaman, Domestic, 4 nights matches the real 5-day/4-night catalogue package; November remains a preference',()=>{
   const app=setup();submitSearch(app);
   assert.equal(app.els['search-results'].children.length,1);
+  assert.equal(app.els['search-results-region'].hidden,false);
   assert.equal(app.els['search-results'].children[0].children[2].href,'tours/andaman-island-honeymoon-mh-100.html');
   assert.match(app.els['search-status'].textContent,/1 matching holiday/);
   assert.match(app.els['search-status'].textContent,/November; departure availability is not published/);
@@ -68,6 +70,7 @@ test('reset clears all search preferences/results and returns keyboard focus to 
   const app=setup();submitSearch(app);app.els['holiday-reset'].listeners.click();
   for(const id of ['holiday-destination','holiday-category','holiday-month','holiday-duration'])assert.equal(app.els[id].value,'');
   assert.equal(app.els['search-results'].children.length,0);assert.equal(app.els['holiday-destination'].focused,true);
+  assert.equal(app.els['search-results-region'].hidden,true);
   assert.match(app.els['search-status'].textContent,/Filters cleared/);
 });
 test('valid enquiry opens one correctly encoded WhatsApp message and leaves an explicit fallback',()=>{
