@@ -42,5 +42,42 @@ const search=document.getElementById('catalogue-search');
 function durationNights(packageRow){const match=String(packageRow.duration||'').match(/\/\s*(\d+)\s*Nights?/i);return match?Number(match[1]):null;}
 function matchesType(packageRow,category){return !category||packageRow.category===category||(category==='Domestic'&&packageRow.category==='Pilgrimage');}
 function makeCustomEnquiry(destination,category,month,nights){const message=['Hello Modi Holidays, please help tailor a holiday enquiry.','Destination: '+(destination||'Flexible'),'Holiday type: '+(category||'Flexible'), 'Preferred travel month: '+(month||'Flexible / not selected'), 'Preferred duration: '+(nights?nights+' nights':'Flexible'),'I understand dates, availability and arrangements need to be confirmed in writing.'].join('\n');const link=document.createElement('a');link.className='btn btn-dark custom-itinerary-link';link.href='https://wa.me/917666018401?text='+encodeURIComponent(message);link.textContent='Ask us to tailor this itinerary on WhatsApp ↗';return link;}
-search.addEventListener('submit',e=>{e.preventDefault();const destination=document.getElementById('holiday-destination').value;const category=document.getElementById('holiday-category').value;const nights=document.getElementById('holiday-duration').value;const month=document.getElementById('holiday-month').value;const exact=catalogue.filter(p=>(!destination||p.destination===destination)&&matchesType(p,category)&&(!nights||durationNights(p)===Number(nights)));const alternatives=exact.length?[]:catalogue.filter(p=>(!destination||p.destination===destination)&&matchesType(p,category));const results=exact.length?exact:alternatives;const box=document.getElementById('search-results');box.replaceChildren();document.getElementById('search-results-region').hidden=false;const status=document.getElementById('search-status');const monthNote=month?` Travel month preference: ${month}; departure availability is not published.`:'';if(exact.length)status.textContent=`${exact.length} matching ${exact.length===1?'holiday':'holidays'}. Duration means nights. Itineraries are suggestions; dates and availability are confirmed in writing.${monthNote}`;else if(alternatives.length)status.textContent=`No exact ${nights}-night match. Here are ${alternatives.length} ${alternatives.length===1?'option':'options'} for ${destination||'your selected holiday type'} with other durations. You can adjust or reset the filters.${monthNote}`;else status.textContent=`No catalogue match for these preferences. Ask us about a custom itinerary or adjust/reset the filters.${monthNote}`;for(const p of results){const card=document.createElement('article');card.className='search-result';const meta=document.createElement('p');meta.textContent=p.destination+' · '+p.duration+' · '+p.id;const heading=document.createElement('h3');heading.textContent=p.name;const link=document.createElement('a');link.href='tours/'+p.slug+'.html';link.textContent='View itinerary ↗';card.append(meta,heading,link);box.append(card);}if(!exact.length)box.append(makeCustomEnquiry(destination,category,month,nights));});
-document.getElementById('holiday-reset').addEventListener('click',()=>{for(const id of ['holiday-destination','holiday-category','holiday-month','holiday-duration'])document.getElementById(id).value='';document.getElementById('search-results').replaceChildren();document.getElementById('search-results-region').hidden=true;document.getElementById('search-status').textContent='Filters cleared. Choose preferences to explore the catalogue.';document.getElementById('holiday-destination').focus();});
+search.addEventListener('submit',e=>{
+ e.preventDefault();
+ const destination=document.getElementById('holiday-destination').value;
+ const category=document.getElementById('holiday-category').value;
+ const nights=document.getElementById('holiday-duration').value;
+ const month=document.getElementById('holiday-month').value;
+ const exact=catalogue.filter(p=>(!destination||p.destination===destination)&&matchesType(p,category)&&(!nights||durationNights(p)===Number(nights)));
+ const alternatives=exact.length?[]:catalogue.filter(p=>(!destination||p.destination===destination)&&matchesType(p,category));
+ const results=exact.length?exact:alternatives;
+ const box=document.getElementById('search-results');
+ const region=document.getElementById('search-results-region');
+ const custom=document.getElementById('search-custom-enquiry');
+ box.replaceChildren();custom.replaceChildren();custom.hidden=true;region.hidden=false;box.className=results.length===1?'has-single-result':results.length===2?'has-two-results':'';
+ const status=document.getElementById('search-status');
+ const monthNote=month?' Travel month preference: '+month+'; departure availability is not published.':'';
+ if(exact.length)status.textContent=exact.length+' matching '+(exact.length===1?'holiday':'holidays')+'. Duration means nights. Itineraries are suggestions; dates and availability are confirmed in writing.'+monthNote;
+ else if(alternatives.length)status.textContent='No exact '+nights+'-night match. Here are '+alternatives.length+' '+(alternatives.length===1?'option':'options')+' for '+(destination||'your selected holiday type')+' with other durations. You can adjust or reset the filters.'+monthNote;
+ else status.textContent='No catalogue match for these preferences. Ask us about a custom itinerary or adjust/reset the filters.'+monthNote;
+ for(const p of results){
+  const card=document.createElement('article');card.className='search-result';
+  const image=document.createElement('img');image.className='search-result-image';image.src=p.image;image.alt=p.destination+' · '+p.name;image.loading='lazy';image.decoding='async';
+  const body=document.createElement('div');body.className='search-result-body';
+  const location=document.createElement('p');location.className='result-destination';location.textContent=p.destination;
+  const heading=document.createElement('h3');heading.textContent=p.name;
+  const duration=document.createElement('p');duration.className='result-duration';duration.textContent=p.duration;
+  const actions=document.createElement('div');actions.className='search-result-actions';
+  const itinerary=document.createElement('a');itinerary.className='btn btn-outline-dark';itinerary.href='tours/'+p.slug+'.html';itinerary.textContent='View itinerary';
+  const enquiry=document.createElement('a');enquiry.className='btn btn-dark';
+  const enquiryMessage=['Hello Modi Holidays, I am interested in '+p.name+' ('+p.id+').','Destination: '+p.destination,'Duration: '+p.duration,'Preferred travel month: '+(month||'Flexible / not selected'),'Please share the itinerary and confirm dates, arrangements and availability in writing.'].join('\n');
+  enquiry.href='https://wa.me/917666018401?text='+encodeURIComponent(enquiryMessage);enquiry.textContent='Enquire on WhatsApp ↗';enquiry.setAttribute('aria-label','Enquire about '+p.name+' on WhatsApp');
+  actions.append(itinerary,enquiry);body.append(location,heading,duration,actions);card.append(image,body);box.append(card);
+ }
+ if(!exact.length){
+  const prompt=document.createElement('p');prompt.className='custom-enquiry-copy';
+  prompt.textContent=alternatives.length?'Want a different trip length? We can help tailor this journey. Dates and availability are confirmed in writing.':'We could not find a catalogue match. Tell us what you have in mind and we can discuss a tailored itinerary.';
+  custom.append(prompt,makeCustomEnquiry(destination,category,month,nights));custom.hidden=false;
+ }
+});
+document.getElementById('holiday-reset').addEventListener('click',()=>{for(const id of ['holiday-destination','holiday-category','holiday-month','holiday-duration'])document.getElementById(id).value='';document.getElementById('search-results').replaceChildren();document.getElementById('search-custom-enquiry').replaceChildren();document.getElementById('search-custom-enquiry').hidden=true;document.getElementById('search-results-region').hidden=true;document.getElementById('search-status').textContent='Filters cleared. Choose preferences to explore the catalogue.';document.getElementById('holiday-destination').focus();});

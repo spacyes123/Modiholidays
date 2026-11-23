@@ -7,6 +7,7 @@ const prototype=fs.readFileSync(path.join(__dirname,'../assets/bespoke/prototype
 const styles=fs.readFileSync(path.join(__dirname,'../assets/bespoke/prototype.css'),'utf8');
 const homepageRenderer=fs.readFileSync(path.join(__dirname,'render-homepage.py'),'utf8');
 const packages=JSON.parse(fs.readFileSync(path.join(__dirname,'../assets/packages.json'),'utf8'));
+const embeddedCatalogue=JSON.parse(html.match(/<script id="catalogue-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 const planner=fs.readFileSync(path.join(__dirname,'../plan-my-holiday.html'),'utf8');
 const escape=x=>String(x).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
 test('homepage keeps all 140 tours and catalogue-backed destination, type and duration controls',()=>{
@@ -43,6 +44,22 @@ test('travel month is a planning preference without invented departure availabil
  assert.match(prototype,/const month=document\.getElementById\('holiday-month'\)\.value/);
  assert.match(prototype,/function durationNights/);assert.match(prototype,/preferred duration: /i);
  assert.doesNotMatch(prototype,/p\.month\s*===|p\.departureMonth/);
+});
+test('search results use catalogue photographs and details in a responsive premium card grid',()=>{
+ assert.match(html,/id="search-results"[^>]*><\/div><div id="search-custom-enquiry"[^>]*hidden/);
+ assert.equal(embeddedCatalogue.length,140);
+ for(const p of packages){const embedded=embeddedCatalogue.find(row=>row.id===p.id);assert.ok(embedded,`homepage search data missing ${p.id}`);assert.equal(embedded.image,p.image,`homepage search data has the wrong image for ${p.id}`);}
+ assert.match(prototype,/image\.src=p\.image/);assert.match(prototype,/image\.alt=p\.destination/);
+ assert.match(prototype,/p\.name/);assert.match(prototype,/p\.duration/);assert.match(prototype,/p\.slug/);
+ assert.match(prototype,/Enquire on WhatsApp/);assert.match(prototype,/wa\.me\/917666018401/);
+ assert.match(styles,/\.search-results-region\{max-width:1250px;margin:28px auto 0;padding:0 clamp\(18px,3vw,40px\)\}/);
+ assert.match(styles,/#search-results\{display:grid;grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+ assert.match(styles,/#search-results\.has-single-result\{grid-template-columns:minmax\(0,520px\);justify-content:center\}/);
+ assert.match(styles,/#search-results\.has-two-results\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+ assert.match(styles,/@media\(max-width:1100px\) and \(min-width:701px\).*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+ assert.match(styles,/@media\(max-width:700px\).*#search-results\{grid-template-columns:minmax\(0,1fr\)/);
+ assert.match(styles,/\.search-custom-enquiry:not\(\[hidden\]\).*flex-direction:column/);
+ assert.doesNotMatch(html,/\.hero-image\{[^}]*transform:scale\(1\.01\)/,'hero background must not create a horizontal scroll overflow');
 });
 test('catalogue build cannot replace the approved homepage with the review prototype',()=>{
  assert.match(homepageRenderer,/Preserved the approved index\.html/);

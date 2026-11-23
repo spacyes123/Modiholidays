@@ -19,7 +19,7 @@ class Node {
   append(...children){this.children.push(...children);}
 }
 function setup({valid=true,popup=true}={}){
-  const ids=['year','enquiry','tripform','customer-name','travellers','email','mobile','departure-city','budget','consent','kind','where','when','details','holiday-month','send-enquiry','message-copy','copy-enquiry','status','catalogue-search','holiday-destination','holiday-category','holiday-duration','holiday-reset','search-results','search-results-region','search-status','catalogue-data','crm-enquiry-link'];
+  const ids=['year','enquiry','tripform','customer-name','travellers','email','mobile','departure-city','budget','consent','kind','where','when','details','holiday-month','send-enquiry','message-copy','copy-enquiry','status','catalogue-search','holiday-destination','holiday-category','holiday-duration','holiday-reset','search-results','search-custom-enquiry','search-results-region','search-status','catalogue-data','crm-enquiry-link'];
   const els=Object.fromEntries(ids.map(id=>[id,new Node(id)]));
   els['search-results-region'].hidden=true;
   els['catalogue-data'].textContent=JSON.stringify(rows);
@@ -37,39 +37,68 @@ test('Andaman, Domestic, 4 nights matches the real 5-day/4-night catalogue packa
   const app=setup();submitSearch(app);
   assert.equal(app.els['search-results'].children.length,1);
   assert.equal(app.els['search-results-region'].hidden,false);
-  assert.equal(app.els['search-results'].children[0].children[2].href,'tours/andaman-island-honeymoon-mh-100.html');
+  const card=app.els['search-results'].children[0],body=card.children[1],actions=body.children[3];
+  assert.equal(card.className,'search-result');
+  assert.equal(card.children[0].src,'assets/photos/mh-100.webp');
+  assert.equal(card.children[0].alt,'Andaman · Andaman Island Honeymoon');
+  assert.equal(body.children[0].textContent,'Andaman');
+  assert.equal(body.children[1].textContent,'Andaman Island Honeymoon');
+  assert.equal(body.children[2].textContent,'5 Days / 4 Nights');
+  assert.equal(actions.children[0].href,'tours/andaman-island-honeymoon-mh-100.html');
+  const enquiryUrl=new URL(actions.children[1].href),message=enquiryUrl.searchParams.get('text');
+  assert.equal(enquiryUrl.pathname,'/917666018401');
+  for(const part of ['Andaman Island Honeymoon','Andaman','5 Days / 4 Nights','November'])assert.ok(message.includes(part));
+  assert.equal(app.els['search-custom-enquiry'].hidden,true);
   assert.match(app.els['search-status'].textContent,/1 matching holiday/);
   assert.match(app.els['search-status'].textContent,/November; departure availability is not published/);
   assert.doesNotMatch(app.els['search-status'].textContent,/departure available|availability confirmed/i);
 });
 test('multiple matches respect destination, category and exact night count',()=>{
   const app=setup();app.els['holiday-duration'].value='6';submitSearch(app);
-  const names=app.els['search-results'].children.map(card=>card.children[1].textContent);
+  assert.equal(app.els['search-results'].className,'has-two-results');
+  const names=app.els['search-results'].children.map(card=>card.children[1].children[1].textContent);
   assert.deepEqual(names,['Andaman Island Escape','Andaman Three Island Escape']);
 });
 test('zero exact matches show same-destination alternatives and a contextual WhatsApp custom-itinerary link',()=>{
   const app=setup();app.els['holiday-destination'].value='Andaman';app.els['holiday-duration'].value='3';submitSearch(app);
   const cards=app.els['search-results'].children.filter(child=>child.className==='search-result');
-  const custom=app.els['search-results'].children.at(-1);
+  const custom=app.els['search-custom-enquiry'];
   assert.ok(cards.length>0);
-  assert.ok(cards.every(card=>card.children[0].textContent.startsWith('Andaman ·')));
+  assert.ok(cards.every(card=>card.children[1].children[0].textContent==='Andaman'));
+  assert.ok(cards.every(card=>card.children[1].children[2].textContent!=='3 nights'));
   assert.match(app.els['search-status'].textContent,/No exact 3-night match/);
-  const url=new URL(custom.href),message=url.searchParams.get('text');
+  assert.equal(custom.hidden,false);
+  const url=new URL(custom.children[1].href),message=url.searchParams.get('text');
   assert.equal(url.pathname,'/917666018401');
   for(const part of ['Andaman','Domestic','November','3 nights'])assert.ok(message.includes(part));
 });
 test('no catalogue match still offers a correctly contextual custom itinerary enquiry',()=>{
   const app=setup();app.els['holiday-destination'].value='Kashmir';app.els['holiday-category'].value='International';submitSearch(app);
-  assert.equal(app.els['search-results'].children.length,1);
-  const url=new URL(app.els['search-results'].children[0].href),message=url.searchParams.get('text');
+  assert.equal(app.els['search-results'].children.length,0);
+  assert.equal(app.els['search-custom-enquiry'].hidden,false);
+  const url=new URL(app.els['search-custom-enquiry'].children[1].href),message=url.searchParams.get('text');
   assert.equal(url.hostname,'wa.me');assert.equal(url.pathname,'/917666018401');
   assert.match(message,/Destination: Kashmir/);assert.match(message,/Holiday type: International/);
   assert.match(app.els['search-status'].textContent,/No catalogue match/);
+});
+test('Delhi and Agra six-night search shows the correctly imaged four-night alternative outside the result grid',()=>{
+  const app=setup();app.els['holiday-destination'].value='Delhi & Agra';app.els['holiday-category'].value='Domestic';app.els['holiday-month'].value='May';app.els['holiday-duration'].value='6';submitSearch(app);
+  assert.equal(app.els['search-results'].children.length,1);
+  const card=app.els['search-results'].children[0],body=card.children[1];
+  assert.equal(card.children[0].src,'assets/photos/mh-077.webp');
+  assert.equal(body.children[0].textContent,'Delhi & Agra');
+  assert.equal(body.children[1].textContent,'Delhi Agra Heritage');
+  assert.equal(body.children[2].textContent,'5 Days / 4 Nights');
+  assert.match(app.els['search-status'].textContent,/No exact 6-night match/);
+  assert.match(app.els['search-status'].textContent,/May; departure availability is not published/);
+  assert.equal(app.els['search-custom-enquiry'].hidden,false);
+  assert.equal(app.els['search-custom-enquiry'].children.length,2);
 });
 test('reset clears all search preferences/results and returns keyboard focus to destination',()=>{
   const app=setup();submitSearch(app);app.els['holiday-reset'].listeners.click();
   for(const id of ['holiday-destination','holiday-category','holiday-month','holiday-duration'])assert.equal(app.els[id].value,'');
   assert.equal(app.els['search-results'].children.length,0);assert.equal(app.els['holiday-destination'].focused,true);
+  assert.equal(app.els['search-custom-enquiry'].children.length,0);assert.equal(app.els['search-custom-enquiry'].hidden,true);
   assert.equal(app.els['search-results-region'].hidden,true);
   assert.match(app.els['search-status'].textContent,/Filters cleared/);
 });
