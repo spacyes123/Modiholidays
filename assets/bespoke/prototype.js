@@ -41,7 +41,8 @@ const catalogue=JSON.parse(document.getElementById('catalogue-data').textContent
 const search=document.getElementById('catalogue-search');
 function durationNights(packageRow){const match=String(packageRow.duration||'').match(/\/\s*(\d+)\s*Nights?/i);return match?Number(match[1]):null;}
 function matchesType(packageRow,category){return !category||packageRow.category===category||(category==='Domestic'&&packageRow.category==='Pilgrimage');}
-function makeCustomEnquiry(destination,category,month,nights){const message=['Hello Modi Holidays, please help tailor a holiday enquiry.','Destination: '+(destination||'Flexible'),'Holiday type: '+(category||'Flexible'), 'Preferred travel month: '+(month||'Flexible / not selected'), 'Preferred duration: '+(nights?nights+' nights':'Flexible'),'I understand dates, availability and arrangements need to be confirmed in writing.'].join('\n');const link=document.createElement('a');link.className='btn btn-dark custom-itinerary-link';link.href='https://wa.me/917666018401?text='+encodeURIComponent(message);link.textContent='Ask us to tailor this itinerary on WhatsApp ↗';return link;}
+function makeWhatsAppIcon(){const ns='http://www.w3.org/2000/svg',icon=document.createElementNS(ns,'svg');icon.setAttribute('viewBox','0 0 24 24');icon.setAttribute('fill','none');icon.setAttribute('stroke','currentColor');icon.setAttribute('stroke-width','1.8');icon.setAttribute('stroke-linecap','round');icon.setAttribute('stroke-linejoin','round');icon.setAttribute('aria-hidden','true');const bubble=document.createElementNS(ns,'path');bubble.setAttribute('d','M20.5 11.5a8.8 8.8 0 0 1-12.7 7.8L3 21l1.7-4.6A8.8 8.8 0 1 1 20.5 11.5Z');const handset=document.createElementNS(ns,'path');handset.setAttribute('d','M8.3 7.5c.2-.5.5-.5.8-.5h.6c.2 0 .4.1.5.4l.8 1.9c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4-.1.6.4.8 1.4 1.8 2.2 2.2.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.7-.1l1.8.9c.3.2.4.3.4.5 0 .4-.2 1.2-.7 1.6-.5.5-1.3.7-2 .5-1.1-.3-2.4-.9-3.8-2.2-1.2-1.1-2-2.5-2.2-3.4-.3-.9 0-1.8.3-2.2Z');icon.append(bubble,handset);return icon;}
+function makeCustomEnquiry(destination,category,month,nights){const message=['Hello Modi Holidays, please help customise a holiday itinerary.','Destination: '+(destination||'Flexible'),'Holiday type: '+(category||'Flexible'), 'Preferred travel month: '+(month||'Flexible / not selected'), 'Preferred duration: '+(nights?nights+' nights':'Flexible'),'I understand dates, availability and arrangements need to be confirmed in writing.'].join('\n');const link=document.createElement('a');link.className='btn btn-dark custom-itinerary-link';link.href='https://wa.me/917666018401?text='+encodeURIComponent(message);link.append(makeWhatsAppIcon(),document.createTextNode('Customise My Trip on WhatsApp'));return link;}
 search.addEventListener('submit',e=>{
  e.preventDefault();
  const destination=document.getElementById('holiday-destination').value;
@@ -54,7 +55,8 @@ search.addEventListener('submit',e=>{
  const box=document.getElementById('search-results');
  const region=document.getElementById('search-results-region');
  const custom=document.getElementById('search-custom-enquiry');
- box.replaceChildren();custom.replaceChildren();custom.hidden=true;region.hidden=false;box.className=results.length===1?'has-single-result':results.length===2?'has-two-results':'';
+ const alternativesHeading=document.getElementById('search-alternatives-heading');
+ box.replaceChildren();custom.replaceChildren();custom.hidden=true;alternativesHeading.hidden=true;region.hidden=false;box.className=results.length===1?'has-single-result':results.length===2?'has-two-results':'';
  const status=document.getElementById('search-status');
  const monthNote=month?' Travel month preference: '+month+'; departure availability is not published.':'';
  if(exact.length)status.textContent=exact.length+' matching '+(exact.length===1?'holiday':'holidays')+'. Duration means nights. Itineraries are suggestions; dates and availability are confirmed in writing.'+monthNote;
@@ -75,9 +77,11 @@ search.addEventListener('submit',e=>{
   actions.append(itinerary,enquiry);body.append(location,heading,duration,actions);card.append(image,body);box.append(card);
  }
  if(!exact.length){
-  const prompt=document.createElement('p');prompt.className='custom-enquiry-copy';
-  prompt.textContent=alternatives.length?'Want a different trip length? We can help tailor this journey. Dates and availability are confirmed in writing.':'We could not find a catalogue match. Tell us what you have in mind and we can discuss a tailored itinerary.';
-  custom.append(prompt,makeCustomEnquiry(destination,category,month,nights));custom.hidden=false;
+  const content=document.createElement('div');content.className='search-custom-enquiry-content';
+  const heading=document.createElement('h3');heading.textContent='No exact match found for your search.';
+  const prompt=document.createElement('p');prompt.className='custom-enquiry-copy';prompt.textContent='We can customise a holiday itinerary based on your destination, travel dates, duration and preferences.';
+  content.append(heading,prompt);custom.append(content,makeCustomEnquiry(destination,category,month,nights));custom.hidden=false;
+  alternativesHeading.hidden=alternatives.length===0;
  }
 });
-document.getElementById('holiday-reset').addEventListener('click',()=>{for(const id of ['holiday-destination','holiday-category','holiday-month','holiday-duration'])document.getElementById(id).value='';document.getElementById('search-results').replaceChildren();document.getElementById('search-custom-enquiry').replaceChildren();document.getElementById('search-custom-enquiry').hidden=true;document.getElementById('search-results-region').hidden=true;document.getElementById('search-status').textContent='Filters cleared. Choose preferences to explore the catalogue.';document.getElementById('holiday-destination').focus();});
+document.getElementById('holiday-reset').addEventListener('click',()=>{for(const id of ['holiday-destination','holiday-category','holiday-month','holiday-duration'])document.getElementById(id).value='';document.getElementById('search-results').replaceChildren();document.getElementById('search-custom-enquiry').replaceChildren();document.getElementById('search-custom-enquiry').hidden=true;document.getElementById('search-alternatives-heading').hidden=true;document.getElementById('search-results-region').hidden=true;document.getElementById('search-status').textContent='Filters cleared. Choose preferences to explore the catalogue.';document.getElementById('holiday-destination').focus();});
