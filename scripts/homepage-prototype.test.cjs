@@ -46,7 +46,7 @@ test('travel month is a planning preference without invented departure availabil
  assert.doesNotMatch(prototype,/p\.month\s*===|p\.departureMonth/);
 });
 test('search results use catalogue photographs and details in a responsive premium card grid',()=>{
- assert.match(html,/id="search-custom-enquiry"[^>]*hidden><\/div><h3 id="search-alternatives-heading"[^>]*hidden>You may also like<\/h3><div id="search-results"/);
+ assert.match(html,/id="search-custom-enquiry"[^>]*aria-live="polite"[^>]*hidden><\/div><h3 id="search-alternatives-heading"[^>]*hidden>You may also like<\/h3><div id="search-results"/);
  assert.equal(embeddedCatalogue.length,140);
  for(const p of packages){const embedded=embeddedCatalogue.find(row=>row.id===p.id);assert.ok(embedded,`homepage search data missing ${p.id}`);assert.equal(embedded.image,p.image,`homepage search data has the wrong image for ${p.id}`);}
  assert.match(prototype,/image\.src=p\.image/);assert.match(prototype,/image\.alt=p\.destination/);
@@ -60,6 +60,8 @@ test('search results use catalogue photographs and details in a responsive premi
  assert.match(styles,/@media\(max-width:700px\).*#search-results\{grid-template-columns:minmax\(0,1fr\)/);
  assert.match(styles,/\.search-custom-enquiry:not\(\[hidden\]\).*flex-direction:column/);
  assert.match(styles,/\.search-custom-enquiry-content h3/);assert.match(styles,/background:#55234B;color:#fff;border:1px solid #55234B/);assert.match(styles,/\.custom-itinerary-link svg/);
+ assert.match(styles,/\.search-custom-enquiry:not\(\[hidden\]\)\{[^}]*margin:16px 0 10px/);assert.match(styles,/\.search-alternatives-heading\{margin:0 0 10px/);
+ assert.match(prototype,/else status\.textContent='';/);assert.doesNotMatch(prototype,/No exact '\+nights\+'-night match|No catalogue match for these preferences/);
  assert.doesNotMatch(html,/\.hero-image\{[^}]*transform:scale\(1\.01\)/,'hero background must not create a horizontal scroll overflow');
 });
 test('catalogue build cannot replace the approved homepage with the review prototype',()=>{

@@ -68,7 +68,7 @@ test('zero exact matches show same-destination alternatives and a contextual Wha
   assert.ok(cards.length>0);
   assert.ok(cards.every(card=>card.children[1].children[0].textContent==='Andaman'));
   assert.ok(cards.every(card=>card.children[1].children[2].textContent!=='3 nights'));
-  assert.match(app.els['search-status'].textContent,/No exact 3-night match/);
+  assert.equal(app.els['search-status'].textContent,'','the form status must not repeat the consolidated no-match message');
   assert.equal(custom.hidden,false);
   const messagePanel=custom.children[0],cta=custom.children[1];
   assert.equal(messagePanel.children[0].textContent,'No exact match found for your search.');
@@ -93,7 +93,7 @@ test('no catalogue match still offers a correctly contextual custom itinerary en
   const url=new URL(custom.children[1].href),message=url.searchParams.get('text');
   assert.equal(url.hostname,'wa.me');assert.equal(url.pathname,'/917666018401');
   assert.match(message,/Destination: Kashmir/);assert.match(message,/Holiday type: International/);assert.match(message,/Preferred travel month: November/);assert.match(message,/Preferred duration: 4 nights/);
-  assert.match(app.els['search-status'].textContent,/No catalogue match/);
+  assert.equal(app.els['search-status'].textContent,'','the results section is the only no-match message');
 });
 test('Delhi and Agra six-night search shows the correctly imaged four-night alternative outside the result grid',()=>{
   const app=setup();app.els['holiday-destination'].value='Delhi & Agra';app.els['holiday-category'].value='Domestic';app.els['holiday-month'].value='May';app.els['holiday-duration'].value='6';submitSearch(app);
@@ -103,8 +103,7 @@ test('Delhi and Agra six-night search shows the correctly imaged four-night alte
   assert.equal(body.children[0].textContent,'Delhi & Agra');
   assert.equal(body.children[1].textContent,'Delhi Agra Heritage');
   assert.equal(body.children[2].textContent,'5 Days / 4 Nights');
-  assert.match(app.els['search-status'].textContent,/No exact 6-night match/);
-  assert.match(app.els['search-status'].textContent,/May; departure availability is not published/);
+  assert.equal(app.els['search-status'].textContent,'','the selected month and duration are not repeated in the form');
   assert.equal(app.els['search-custom-enquiry'].hidden,false);
   assert.equal(app.els['search-alternatives-heading'].textContent,'You may also like');
   assert.equal(app.els['search-alternatives-heading'].hidden,false);

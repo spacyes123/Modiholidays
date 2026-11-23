@@ -60,8 +60,7 @@ search.addEventListener('submit',e=>{
  const status=document.getElementById('search-status');
  const monthNote=month?' Travel month preference: '+month+'; departure availability is not published.':'';
  if(exact.length)status.textContent=exact.length+' matching '+(exact.length===1?'holiday':'holidays')+'. Duration means nights. Itineraries are suggestions; dates and availability are confirmed in writing.'+monthNote;
- else if(alternatives.length)status.textContent='No exact '+nights+'-night match. Here are '+alternatives.length+' '+(alternatives.length===1?'option':'options')+' for '+(destination||'your selected holiday type')+' with other durations. You can adjust or reset the filters.'+monthNote;
- else status.textContent='No catalogue match for these preferences. Ask us about a custom itinerary or adjust/reset the filters.'+monthNote;
+ else status.textContent='';
  for(const p of results){
   const card=document.createElement('article');card.className='search-result';
   const image=document.createElement('img');image.className='search-result-image';image.src=p.image;image.alt=p.destination+' · '+p.name;image.loading='lazy';image.decoding='async';
