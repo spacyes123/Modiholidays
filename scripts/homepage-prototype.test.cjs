@@ -38,6 +38,10 @@ test('homepage keeps all 140 tours and catalogue-backed destination, type and du
  const nights=[...new Set(packages.map(p=>Number(p.duration.match(/\/\s*(\d+)\s*Nights?/i)?.[1])).filter(Number.isFinite))].sort((a,b)=>a-b);
  for(const n of nights)assert.match(html,new RegExp(`<option value="${n}">${n} nights<\\/option>`),`duration filter misses ${n} catalogue nights`);
 });
+test('tablet category cards shrink to their grid columns without document overflow',()=>{
+ assert.match(styles,/@media\s*\(max-width:\s*1100px\)\s*and\s*\(min-width:\s*701px\)\s*\{[^}]*\.travel-card\s*\{[^}]*width:\s*100%;[^}]*min-width:\s*0/);
+ assert.match(styles,/@media\s*\(max-width:\s*1100px\)\s*and\s*\(min-width:\s*701px\)\s*\{\s*\.travel-card\s*\{[^}]*width:\s*100%;[^}]*min-width:\s*0\s*\}\s*\.travel-card\s+\.inner\s*\{[^}]*align-items:\s*stretch/);
+});
 test('travel month is a planning preference without invented departure availability',()=>{
  assert.match(html,/id="holiday-month"/);assert.match(html,/departure availability is not published/);
  assert.match(html,/Trip duration \(nights\)/);assert.match(html,/value="4">4 nights/);

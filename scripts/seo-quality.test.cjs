@@ -212,6 +212,10 @@ test('Cloudflare production artifact excludes admin, private files, inactive pol
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'modi-cloudflare-test-'));
   const output = path.join(temp, 'dist');
   try {
+    const headers = fs.readFileSync(path.join(__dirname, '../_headers'), 'utf8');
+    assert.match(headers, /^https:\/\/modi-holidays-staging\.pages\.dev\/\*\s+X-Robots-Tag: noindex/m);
+    assert.match(headers, /^https:\/\/:deployment\.modi-holidays-staging\.pages\.dev\/\*\s+X-Robots-Tag: noindex/m);
+    assert.doesNotMatch(headers, /modiholidays\.in/i, 'staging noindex rules must not match production');
     const result = buildCloudflareArtifact(output);
     assert.equal(result.tourPages, 140);
     assert.equal(result.sitemapUrls, 149);
@@ -219,6 +223,7 @@ test('Cloudflare production artifact excludes admin, private files, inactive pol
       assert.ok(!fs.existsSync(path.join(output, file)), `${file} must not be published`);
     }
     assert.ok(!fs.existsSync(path.join(output, 'admin-app')));
+    assert.equal(fs.readFileSync(path.join(output, '_headers'), 'utf8'), headers, 'Cloudflare artifact must include staging-only response headers');
     for (const file of [
       'assets/bespoke/f89b15baf6d11ede.webp',
       'assets/bespoke/e0c10fecd0a1d461.webp',

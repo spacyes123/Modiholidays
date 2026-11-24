@@ -74,7 +74,7 @@ function assemble(outputArgument) {
 
   copyPublicTree(path.join(ROOT, 'assets'), path.join(output, 'assets'));
   copyPublicTree(path.join(ROOT, 'tours'), path.join(output, 'tours'));
-  for (const name of ['robots.txt', 'sitemap.xml']) {
+  for (const name of ['robots.txt', 'sitemap.xml', '_headers']) {
     const source = path.join(ROOT, name);
     if (!fs.existsSync(source)) throw new Error(`Required public file missing: ${name}`);
     fs.copyFileSync(source, path.join(output, name));
