@@ -208,7 +208,7 @@ test('staging artifact stays crawlable for noindex discovery and omits private/n
   }
 });
 
-test('Cloudflare production artifact excludes admin, private files and inactive policy drafts', () => {
+test('Cloudflare production artifact excludes admin, private files, inactive policies and uncleared review photos', () => {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'modi-cloudflare-test-'));
   const output = path.join(temp, 'dist');
   try {
@@ -219,6 +219,18 @@ test('Cloudflare production artifact excludes admin, private files and inactive 
       assert.ok(!fs.existsSync(path.join(output, file)), `${file} must not be published`);
     }
     assert.ok(!fs.existsSync(path.join(output, 'admin-app')));
+    for (const file of [
+      'assets/bespoke/f89b15baf6d11ede.webp',
+      'assets/bespoke/e0c10fecd0a1d461.webp',
+      'assets/bespoke/8a5168c0a0034d70.webp',
+      'assets/bespoke/543917baf6ca7c4b.webp',
+      'assets/bespoke/f27ed012b0617351.webp',
+      'assets/bespoke/73b13e168af9ad70.webp',
+      'assets/bespoke/fa0f3652c190474d.webp',
+    ]) {
+      assert.ok(!fs.existsSync(path.join(output, file)), `${file} is uncleared review imagery and must not be published`);
+    }
+    assert.ok(fs.existsSync(path.join(output, 'assets/bespoke/d3ecc59c78c187be.webp')), 'approved hero artwork must remain in the public artifact');
     for (const file of ['index.html', 'about.html', 'contact.html', 'plan-my-holiday.html', 'tours/ajanta-ellora-heritage-mh-064.html']) {
       assert.ok(fs.existsSync(path.join(output, file)), `${file} must remain in the public artifact`);
       const html = fs.readFileSync(path.join(output, file), 'utf8');

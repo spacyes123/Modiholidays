@@ -9,6 +9,15 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 const DRAFT_PAGES = new Set(['terms.html', 'cancellation.html', 'privacy.html']);
 const OMIT_ROOT_PAGES = new Set(['admin.html', 'homepage-prototype.html', ...DRAFT_PAGES]);
+const OMIT_UNCLEARED_REFERENCE_ASSETS = new Set([
+  'assets/bespoke/f89b15baf6d11ede.webp',
+  'assets/bespoke/e0c10fecd0a1d461.webp',
+  'assets/bespoke/8a5168c0a0034d70.webp',
+  'assets/bespoke/543917baf6ca7c4b.webp',
+  'assets/bespoke/f27ed012b0617351.webp',
+  'assets/bespoke/73b13e168af9ad70.webp',
+  'assets/bespoke/fa0f3652c190474d.webp',
+]);
 const OMIT_FILE = /^(?:\.env(?:\..*)?|.*(?:secret|credential|service[-_]?role).*)$|\.(?:pem|key|sql|db|sqlite|md)$/i;
 const SECRET_MARKER = /SUPABASE_SERVICE_ROLE_KEY|TURNSTILE_SECRET_KEY|INGRESS_SECRET|BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY/i;
 const POLICY_LINK = /<a\b(?=[^>]*\bhref=["'](?:\.\.\/)?(?:terms|cancellation|privacy)\.html(?:[?#][^"']*)?["'])[^>]*>[\s\S]*?<\/a>/gi;
@@ -16,8 +25,9 @@ const POLICY_LINK = /<a\b(?=[^>]*\bhref=["'](?:\.\.\/)?(?:terms|cancellation|pri
 function copyPublicTree(source, destination) {
   fs.mkdirSync(destination, { recursive: true });
   for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
-    if (entry.name.toLowerCase() === 'admin.html' || OMIT_FILE.test(entry.name) || /^(?:admin-app|admin|private|secrets?)$/i.test(entry.name)) continue;
     const from = path.join(source, entry.name);
+    const relativePath = path.relative(ROOT, from).split(path.sep).join('/');
+    if (OMIT_UNCLEARED_REFERENCE_ASSETS.has(relativePath) || entry.name.toLowerCase() === 'admin.html' || OMIT_FILE.test(entry.name) || /^(?:admin-app|admin|private|secrets?)$/i.test(entry.name)) continue;
     const to = path.join(destination, entry.name);
     if (entry.isDirectory()) {
       fs.mkdirSync(to, { recursive: true });
