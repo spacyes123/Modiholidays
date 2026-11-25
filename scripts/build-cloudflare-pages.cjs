@@ -18,6 +18,14 @@ const OMIT_UNCLEARED_REFERENCE_ASSETS = new Set([
   'assets/bespoke/73b13e168af9ad70.webp',
   'assets/bespoke/fa0f3652c190474d.webp',
 ]);
+const OMIT_LEGACY_BRAND_ASSETS = new Set([
+  'assets/brand/icon-32.png',
+  'assets/brand/icon-48.png',
+  'assets/brand/icon-180.png',
+  'assets/brand/icon-192.png',
+  'assets/brand/icon-512.png',
+  'assets/brand/site.webmanifest',
+]);
 const OMIT_FILE = /^(?:\.env(?:\..*)?|.*(?:secret|credential|service[-_]?role).*)$|\.(?:pem|key|sql|db|sqlite|md)$/i;
 const SECRET_MARKER = /SUPABASE_SERVICE_ROLE_KEY|TURNSTILE_SECRET_KEY|INGRESS_SECRET|BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY/i;
 const POLICY_LINK = /<a\b(?=[^>]*\bhref=["'](?:\.\.\/)?(?:terms|cancellation|privacy)\.html(?:[?#][^"']*)?["'])[^>]*>[\s\S]*?<\/a>/gi;
@@ -27,7 +35,7 @@ function copyPublicTree(source, destination) {
   for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
     const from = path.join(source, entry.name);
     const relativePath = path.relative(ROOT, from).split(path.sep).join('/');
-    if (OMIT_UNCLEARED_REFERENCE_ASSETS.has(relativePath) || entry.name.toLowerCase() === 'admin.html' || OMIT_FILE.test(entry.name) || /^(?:admin-app|admin|private|secrets?)$/i.test(entry.name)) continue;
+    if (OMIT_UNCLEARED_REFERENCE_ASSETS.has(relativePath) || OMIT_LEGACY_BRAND_ASSETS.has(relativePath) || entry.name.toLowerCase() === 'admin.html' || OMIT_FILE.test(entry.name) || /^(?:admin-app|admin|private|secrets?)$/i.test(entry.name)) continue;
     const to = path.join(destination, entry.name);
     if (entry.isDirectory()) {
       fs.mkdirSync(to, { recursive: true });

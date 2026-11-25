@@ -38,7 +38,9 @@ for p in pages:
  assert 'assets/logo.svg' not in new,'Old logo reference: '+rel
  assert 'assets/brand/logo-256.png' in new,'Approved logo missing: '+rel
  assert 'name="theme-color" content="#55234B"' in new,'Wrong browser theme: '+rel
- assert 'assets/brand/icon-32.png' in new and 'assets/brand.css' in new,'Brand metadata missing: '+rel
+ if rel not in {'admin.html','homepage-prototype.html','terms.html','cancellation.html','privacy.html'}:
+  assert 'assets/brand/favicon-light-32.png' in new and 'assets/brand/favicon-dark-32.png' in new,'Favicon metadata missing: '+rel
+ assert 'assets/brand.css' in new,'Brand metadata missing: '+rel
 
 def luminance(h):
  c=[int(h[i:i+2],16)/255 for i in (1,3,5)]

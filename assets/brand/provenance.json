@@ -4,5 +4,15 @@
   "width": 1254,
   "height": 1254,
   "original": "modi-holidays-approved.png",
-  "treatment": "Original retained byte-for-byte. Derivatives only resize the complete square artwork; no cropping, recolouring, redrawing, transparency removal or typography changes. Social image adds white margins to a 1200×630 canvas."
+  "treatment": "Original square artwork retained byte-for-byte. Full logo derivatives resize the complete artwork. Browser and bookmark icons are crops of the existing aircraft and adjoining gold flight stroke from the approved transparent light/dark logo exports; no redrawing, recolouring, or opaque background was added. The social image adds white margins to a 1200×630 canvas.",
+  "faviconSources": [
+    "approved/modi-holidays-logo-light-background.png",
+    "approved/modi-holidays-logo-dark-background.png"
+  ],
+  "faviconCropPixels": {
+    "x": 1600,
+    "y": 55,
+    "width": 240,
+    "height": 190
+  }
 }

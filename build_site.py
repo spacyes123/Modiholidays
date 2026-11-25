@@ -82,7 +82,16 @@ def metadata(text, file):
     text=re.sub(r'<link[^>]*rel="(?:icon|apple-touch-icon|manifest)"[^>]*>','',text)
     text=re.sub(r'<meta name="theme-color"[^>]*>','',text)
     text=re.sub(r'<img[^>]*class="footer-brand"[^>]*>',lambda _:brand_image(prefix,True),text)
-    brand_head=f'<meta name="theme-color" content="#55234B"><link rel="icon" type="image/png" sizes="32x32" href="{prefix}assets/brand/icon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="{prefix}assets/brand/icon-48.png"><link rel="apple-touch-icon" sizes="180x180" href="{prefix}assets/brand/icon-180.png"><link rel="manifest" href="{prefix}assets/brand/site.webmanifest">'
+    brand_head=(f'<meta name="theme-color" content="#55234B">'
+        f'<link rel="icon" type="image/png" sizes="32x32" href="{prefix}assets/brand/favicon-light-32.png">'
+        f'<link rel="icon" type="image/png" sizes="16x16" href="{prefix}assets/brand/favicon-light-16.png" media="(prefers-color-scheme: light)">'
+        f'<link rel="icon" type="image/png" sizes="32x32" href="{prefix}assets/brand/favicon-light-32.png" media="(prefers-color-scheme: light)">'
+        f'<link rel="icon" type="image/png" sizes="48x48" href="{prefix}assets/brand/favicon-light-48.png" media="(prefers-color-scheme: light)">'
+        f'<link rel="icon" type="image/png" sizes="16x16" href="{prefix}assets/brand/favicon-dark-16.png" media="(prefers-color-scheme: dark)">'
+        f'<link rel="icon" type="image/png" sizes="32x32" href="{prefix}assets/brand/favicon-dark-32.png" media="(prefers-color-scheme: dark)">'
+        f'<link rel="icon" type="image/png" sizes="48x48" href="{prefix}assets/brand/favicon-dark-48.png" media="(prefers-color-scheme: dark)">'
+        f'<link rel="apple-touch-icon" sizes="180x180" href="{prefix}assets/brand/apple-touch-icon.png">'
+        f'<link rel="manifest" href="{prefix}assets/brand/site-v2.webmanifest">')
     text=text.replace('</head>',brand_head+'</head>')
     text=re.sub(r'<link rel="stylesheet" href="(?:\.\./)?assets/brand.css">','',text)
     if 'assets/launch.css' not in text:

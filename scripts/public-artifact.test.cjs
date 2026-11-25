@@ -90,6 +90,9 @@ test('artifact excludes admin, private configuration, inactive policies and revi
     assert.doesNotMatch(path.basename(file), /^(?:\.env(?:\..*)?|.*(?:secret|credential|service[-_]?role).*)$/i);
     assert.doesNotMatch(file, /\.(?:pem|key|sql|db|sqlite|md)$/i);
   }
+  for (const name of ['icon-32.png', 'icon-48.png', 'icon-180.png', 'icon-192.png', 'icon-512.png', 'site.webmanifest']) {
+    assert.ok(!files.includes(`assets/brand/${name}`), `obsolete favicon resource must remain unpublished: ${name}`);
+  }
   for (const page of ['terms.html', 'cancellation.html', 'privacy.html', 'homepage-prototype.html']) {
     assert.ok(!fs.existsSync(path.join(dist, page)), `${page} must not be published`);
   }

@@ -37,3 +37,4 @@ jobs:
           scripts/prototype-interactions.test.cjs
           scripts/public-artifact.test.cjs
           scripts/workflow-safety.test.cjs
+          scripts/favicon.test.cjs
