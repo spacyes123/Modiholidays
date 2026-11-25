@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - release/deployment-safety
+      - release/website-integration-20261125
   pull_request:
 
 permissions:
@@ -21,12 +21,19 @@ jobs:
         with:
           python-version: '3.12'
       - run: python build_site.py
-      - run: python scripts/validate.py
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - run: node --test scripts/whatsapp.test.cjs
-      - name: Build strict public artifact
-        run: node scripts/build-public-artifact.cjs dist
-      - name: Test public artifact exclusions and contents
-        run: node --test scripts/public-artifact.test.cjs scripts/workflow-safety.test.cjs
+      - run: node scripts/prepare-seo.cjs
+      - run: python scripts/validate.py
+      - name: Build strict Cloudflare Pages artifact
+        run: node scripts/build-cloudflare-pages.cjs dist
+      - name: Run public website and artifact regression tests
+        run: >-
+          node --test
+          scripts/whatsapp.test.cjs
+          scripts/seo-quality.test.cjs
+          scripts/homepage-prototype.test.cjs
+          scripts/prototype-interactions.test.cjs
+          scripts/public-artifact.test.cjs
+          scripts/workflow-safety.test.cjs

@@ -1,0 +1,88 @@
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
+const prototype=fs.readFileSync(path.join(__dirname,'../assets/bespoke/prototype.js'),'utf8');
+const styles=fs.readFileSync(path.join(__dirname,'../assets/bespoke/prototype.css'),'utf8');
+const homepageRenderer=fs.readFileSync(path.join(__dirname,'render-homepage.py'),'utf8');
+const packages=JSON.parse(fs.readFileSync(path.join(__dirname,'../assets/packages.json'),'utf8'));
+const embeddedCatalogue=JSON.parse(html.match(/<script id="catalogue-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+const planner=fs.readFileSync(path.join(__dirname,'../plan-my-holiday.html'),'utf8');
+const escape=x=>String(x).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+test('homepage keeps all 140 tours and catalogue-backed destination, type and duration controls',()=>{
+ assert.equal(packages.length,140);
+ assert.equal(new Set(packages.map(p=>p.id)).size,140);assert.equal(new Set(packages.map(p=>p.slug)).size,140);
+ for(const id of ['holiday-destination','holiday-category','holiday-duration','holiday-month','holiday-reset'])assert.ok(html.includes(`id="${id}"`));
+ const options=[...html.matchAll(/<option value="([^"]+)">([^<]+)<\/option>/g)].map(x=>x[1]);
+ for(const p of packages)assert.ok(options.includes(escape(p.destination)),`destination option missing: ${p.destination}`);
+ const heroStart=html.indexOf('<section class="hero"');
+ const heroEnd=html.indexOf('</section>',heroStart);
+ const searchStart=html.indexOf('<section class="holiday-search"');
+ const searchEnd=html.indexOf('</section>',searchStart);
+ const resultRegion=html.indexOf('id="search-results-region"');
+ assert.ok(searchStart>heroEnd,'search panel must follow the hero without covering it');
+ assert.ok(resultRegion>searchEnd,'dynamic search results must sit outside the controls panel');
+ assert.match(html,/id="search-results-region"[^>]*hidden/);
+ assert.match(styles,/\.holiday-search\{position:relative;z-index:35;max-width:1200px;margin:28px auto 0/);
+ assert.match(styles,/\.holiday-search\{margin:22px 14px 0/);
+ assert.doesNotMatch(styles,/margin:-(?:72px|54px)/,'search panel must not use negative-margin hero overlap');
+ assert.match(styles,/\.holiday-search button\[type=submit\]\{grid-column:1\/3;grid-row:4/);
+ assert.match(styles,/\.holiday-search #holiday-reset\{grid-column:3\/5;grid-row:4/);
+ assert.match(styles,/grid-template-areas:"destination-label type-label" "destination type" "month-label duration-label" "month duration" "note note" "button button" "reset reset"/);
+ assert.match(styles,/\.holiday-search button\[type=submit\]\{grid-area:button/);
+ assert.match(styles,/\.holiday-search #holiday-reset\{grid-area:reset/);
+ assert.match(html,/id="holiday-destination"><option value="">All destinations/);assert.match(html,/id="holiday-category"><option value="">All holidays/);
+ assert.match(html,/<summary>Domestic<\/summary>/);assert.match(html,/<summary>International<\/summary>/);
+ for(const item of ['Group Tours','About Us','Contact','Get a Quote'])assert.ok(html.includes(`>${item}</a>`),`primary navigation missing ${item}`);
+ const nights=[...new Set(packages.map(p=>Number(p.duration.match(/\/\s*(\d+)\s*Nights?/i)?.[1])).filter(Number.isFinite))].sort((a,b)=>a-b);
+ for(const n of nights)assert.match(html,new RegExp(`<option value="${n}">${n} nights<\\/option>`),`duration filter misses ${n} catalogue nights`);
+});
+test('tablet category cards shrink to their grid columns without document overflow',()=>{
+ assert.match(styles,/@media\s*\(max-width:\s*1100px\)\s*and\s*\(min-width:\s*701px\)\s*\{[^}]*\.travel-card\s*\{[^}]*width:\s*100%;[^}]*min-width:\s*0/);
+ assert.match(styles,/@media\s*\(max-width:\s*1100px\)\s*and\s*\(min-width:\s*701px\)\s*\{\s*\.travel-card\s*\{[^}]*width:\s*100%;[^}]*min-width:\s*0\s*\}\s*\.travel-card\s+\.inner\s*\{[^}]*align-items:\s*stretch/);
+});
+test('travel month is a planning preference without invented departure availability',()=>{
+ assert.match(html,/id="holiday-month"/);assert.match(html,/departure availability is not published/);
+ assert.match(html,/Trip duration \(nights\)/);assert.match(html,/value="4">4 nights/);
+ assert.match(prototype,/const month=document\.getElementById\('holiday-month'\)\.value/);
+ assert.match(prototype,/function durationNights/);assert.match(prototype,/preferred duration: /i);
+ assert.doesNotMatch(prototype,/p\.month\s*===|p\.departureMonth/);
+});
+test('search results use catalogue photographs and details in a responsive premium card grid',()=>{
+ assert.match(html,/id="search-custom-enquiry"[^>]*aria-live="polite"[^>]*hidden><\/div><h3 id="search-alternatives-heading"[^>]*hidden>You may also like<\/h3><div id="search-results"/);
+ assert.equal(embeddedCatalogue.length,140);
+ for(const p of packages){const embedded=embeddedCatalogue.find(row=>row.id===p.id);assert.ok(embedded,`homepage search data missing ${p.id}`);assert.equal(embedded.image,p.image,`homepage search data has the wrong image for ${p.id}`);}
+ assert.match(prototype,/image\.src=p\.image/);assert.match(prototype,/image\.alt=p\.destination/);
+ assert.match(prototype,/p\.name/);assert.match(prototype,/p\.duration/);assert.match(prototype,/p\.slug/);
+ assert.match(prototype,/Enquire on WhatsApp/);assert.match(prototype,/wa\.me\/917666018401/);
+ assert.match(styles,/\.search-results-region\{max-width:1250px;margin:28px auto 0;padding:0 clamp\(18px,3vw,40px\)\}/);
+ assert.match(styles,/#search-results\{display:grid;grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+ assert.match(styles,/#search-results\.has-single-result\{grid-template-columns:minmax\(0,520px\);justify-content:center\}/);
+ assert.match(styles,/#search-results\.has-two-results\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+ assert.match(styles,/@media\(max-width:1100px\) and \(min-width:701px\).*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+ assert.match(styles,/@media\(max-width:700px\).*#search-results\{grid-template-columns:minmax\(0,1fr\)/);
+ assert.match(styles,/\.search-custom-enquiry:not\(\[hidden\]\).*flex-direction:column/);
+ assert.match(styles,/\.search-custom-enquiry-content h3/);assert.match(styles,/background:#55234B;color:#fff;border:1px solid #55234B/);assert.match(styles,/\.custom-itinerary-link svg/);
+ assert.match(styles,/\.search-custom-enquiry:not\(\[hidden\]\)\{[^}]*margin:16px 0 10px/);assert.match(styles,/\.search-alternatives-heading\{margin:0 0 10px/);
+ assert.match(prototype,/else status\.textContent='';/);assert.doesNotMatch(prototype,/No exact '\+nights\+'-night match|No catalogue match for these preferences/);
+ assert.doesNotMatch(html,/\.hero-image\{[^}]*transform:scale\(1\.01\)/,'hero background must not create a horizontal scroll overflow');
+});
+test('catalogue build cannot replace the approved homepage with the review prototype',()=>{
+ assert.match(homepageRenderer,/Preserved the approved index\.html/);
+ assert.doesNotMatch(homepageRenderer,/build-homepage-review\.cjs|write_text\s*\(|open\s*\(/);
+});
+test('enquiry requires consent and a reply channel, then prepares WhatsApp and copy fallback',()=>{
+ assert.match(html,/id="consent"[^>]*required/);assert.match(html,/id="email"/);assert.match(html,/id="mobile"/);
+ assert.match(html,/Send Enquiry via WhatsApp/);assert.match(html,/id="copy-enquiry"/);assert.match(prototype,/Enter an email or mobile number/);
+ assert.match(html,/I agree to share these details with Modi Holidays in WhatsApp/);
+ for(const id of ['departure-city','budget'])assert.match(html,new RegExp(`id="${id}"`));
+ assert.match(planner,/id="whatsapp-consent"[^>]*required/);assert.match(planner,/Send enquiry via WhatsApp/);
+ assert.match(prototype,/window\.open\(url,'_blank'\)/);assert.match(prototype,/Open WhatsApp if it did not open/);
+ assert.match(prototype,/Email: /);assert.match(prototype,/Mobile: /);assert.match(html,/wa\.me\/917666018401/);
+});
+test('approved logo variants, typography, colours and SEO tags remain present',()=>{
+ assert.match(html,/assets\/brand\/approved\/modi-holidays-logo-dark-background\.png/);assert.match(html,/assets\/brand\/approved\/modi-holidays-logo-light-background\.png/);assert.match(html,/social-sharing-approved\.png/);assert.match(html,/floating-whatsapp[^]*?href="https:\/\/wa\.me\/917666018401"/);assert.match(html,/Cormorant\+Garamond/);assert.match(html,/Manrope/);
+ for(const c of ['#55234B','#F39A24','#FFF8F0','#FFFFFF','#29232B','#6C5968'])assert.ok(html.toLowerCase().includes(c.toLowerCase()),`missing palette value ${c}`);
+ assert.doesNotMatch(html,/name="robots" content="noindex/);assert.match(html,/rel="canonical"/);assert.match(html,/<meta name="description"/);
+});
