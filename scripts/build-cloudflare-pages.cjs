@@ -92,12 +92,13 @@ function assemble(outputArgument) {
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
   if (urls.length !== new Set(urls).size) throw new Error('Duplicate URLs in sitemap');
   for (const pkg of expectedTours) {
-    const url = `https://modiholidays.in/tours/${pkg.slug}.html`;
+    const url = `https://modiholidays.in/tours/${pkg.slug}`;
     if (!urls.includes(url)) throw new Error(`Sitemap omits published package ${pkg.slug}`);
   }
   for (const url of urls) {
     const parsed = new URL(url);
-    const relative = parsed.pathname === '/' ? 'index.html' : parsed.pathname.slice(1);
+    if (/\.html$/i.test(parsed.pathname)) throw new Error(`Sitemap URL would redirect from .html: ${url}`);
+    const relative = parsed.pathname === '/' ? 'index.html' : `${decodeURIComponent(parsed.pathname.slice(1)).replace(/\/$/, '')}.html`;
     const file = path.join(output, relative);
     if (!fs.existsSync(file)) throw new Error(`Sitemap URL has no artifact page: ${url}`);
     const html = fs.readFileSync(file, 'utf8');

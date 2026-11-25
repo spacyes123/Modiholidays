@@ -202,6 +202,112 @@ function ensureTemplateNoindex() {
   ensureNoindex('privacy.html');
 }
 
+const NON_PUBLIC_URL_PAGES = new Set([
+  'admin.html', '404.html', 'homepage-prototype.html', 'package.html',
+  'terms.html', 'cancellation.html', 'privacy.html'
+]);
+
+function publicPageFiles() {
+  const rootPages = fs.readdirSync(ROOT)
+    .filter(name => name.endsWith('.html') && !NON_PUBLIC_URL_PAGES.has(name));
+  return [...rootPages, ...data
+    .filter(pkg => pkg.published !== false)
+    .map(pkg => `tours/${pkg.slug}.html`)];
+}
+
+function canonicalPathForFile(file) {
+  const normalized = file.replaceAll('\\', '/');
+  return normalized === 'index.html' ? '/' : `/${normalized.replace(/\.html$/i, '')}`;
+}
+
+function decodeHtmlAttribute(value) {
+  return value.replaceAll('&amp;', '&').replaceAll('&quot;', '"')
+    .replaceAll('&#39;', "'").replaceAll('&#x27;', "'")
+    .replaceAll('&lt;', '<').replaceAll('&gt;', '>');
+}
+
+function escapeHtmlAttribute(value) {
+  return value.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
+}
+
+function publicFileForPath(pathname, routeFiles) {
+  let relative = decodeURIComponent(pathname).replace(/^\/+/, '');
+  if (!relative) relative = 'index.html';
+  else if (!relative.endsWith('.html')) relative += '.html';
+  return routeFiles.has(relative) ? relative : null;
+}
+
+function normalizeInternalHref(raw, currentFile, routeFiles) {
+  if (!raw || raw.startsWith('#')) return raw;
+  let target;
+  try {
+    target = new URL(decodeHtmlAttribute(raw), `${DOMAIN}/${currentFile}`);
+  } catch {
+    return raw;
+  }
+  if (target.origin !== DOMAIN) return raw;
+  const file = publicFileForPath(target.pathname, routeFiles);
+  if (!file) return raw;
+  return `${canonicalPathForFile(file)}${target.search}${target.hash}`;
+}
+
+function normalizeStructuredDataUrls(value, routeFiles) {
+  if (typeof value === 'string' && value.startsWith(`${DOMAIN}/`)) {
+    try {
+      const target = new URL(value);
+      const file = publicFileForPath(target.pathname, routeFiles);
+      if (file) return `${DOMAIN}${canonicalPathForFile(file)}${target.search}${target.hash}`;
+    } catch {
+      return value;
+    }
+    return value;
+  }
+  if (Array.isArray(value)) return value.map(item => normalizeStructuredDataUrls(item, routeFiles));
+  if (value && typeof value === 'object') {
+    for (const [key, child] of Object.entries(value)) {
+      value[key] = normalizeStructuredDataUrls(child, routeFiles);
+    }
+  }
+  return value;
+}
+
+function normalizePublicUrls() {
+  const files = publicPageFiles();
+  const routeFiles = new Set(files);
+  const expectedCount = 149;
+  if (files.length !== expectedCount) {
+    throw new Error(`Expected ${expectedCount} indexable public pages before URL normalization; found ${files.length}`);
+  }
+
+  for (const name of files) {
+    const file = path.join(ROOT, name);
+    const canonical = `${DOMAIN}${canonicalPathForFile(name)}`;
+    let html = fs.readFileSync(file, 'utf8');
+    const canonicalTag = html.match(/<link\b[^>]*\brel=["']canonical["'][^>]*>/i);
+    if (!canonicalTag) throw new Error(`Canonical link missing from ${name}`);
+    html = html.replace(canonicalTag[0], canonicalTag[0].replace(/\bhref=(['"])[^'"]*\1/i, `href="${canonical}"`));
+
+    html = html.replace(/<a\b[^>]*>/gi, tag => tag.replace(/\bhref=(['"])(.*?)\1/i, (_match, quote, href) => {
+      const normalized = normalizeInternalHref(href, name, routeFiles);
+      return `href=${quote}${escapeHtmlAttribute(normalized)}${quote}`;
+    }));
+
+    html = html.replace(/<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/gi, (_match, json) => {
+      const schema = normalizeStructuredDataUrls(JSON.parse(json), routeFiles);
+      return `<script type="application/ld+json">${JSON.stringify(schema)}</script>`;
+    });
+
+    const ogUrl = /<meta\b[^>]*\bproperty=["']og:url["'][^>]*>/i;
+    if (ogUrl.test(html)) {
+      html = html.replace(ogUrl, tag => tag.replace(/\bcontent=(['"])[^'"]*\1/i, `content="${canonical}"`));
+    } else {
+      html = html.replace('</head>', `<meta property="og:url" content="${canonical}"></head>`);
+    }
+    html = html.replace(/(<meta\b[^>]*\bname=["']twitter:url["'][^>]*>)/i, tag => tag.replace(/\bcontent=(['"])[^'"]*\1/i, `content="${canonical}"`));
+    fs.writeFileSync(file, html, 'utf8');
+  }
+}
+
 function alignSocialUrls() {
   const files = [
     ...fs.readdirSync(ROOT).filter(name => name.endsWith('.html') && name !== 'admin.html' && name !== 'homepage-prototype.html'),
@@ -250,6 +356,7 @@ function optimize() {
   syncCollectionPageSchema();
   ensureOrganizationSchema();
   preparePlannerFaq();
+  normalizePublicUrls();
   alignSocialUrls();
   rebuildSitemap();
   console.log(`SEO refinements applied to ${data.filter(pkg => pkg.published !== false).length} catalogue pages and the production sitemap.`);

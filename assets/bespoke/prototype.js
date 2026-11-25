@@ -69,7 +69,7 @@ search.addEventListener('submit',e=>{
   const heading=document.createElement('h3');heading.textContent=p.name;
   const duration=document.createElement('p');duration.className='result-duration';duration.textContent=p.duration;
   const actions=document.createElement('div');actions.className='search-result-actions';
-  const itinerary=document.createElement('a');itinerary.className='btn btn-outline-dark';itinerary.href='tours/'+p.slug+'.html';itinerary.textContent='View itinerary';
+  const itinerary=document.createElement('a');itinerary.className='btn btn-outline-dark';itinerary.href='/tours/'+p.slug;itinerary.textContent='View itinerary';
   const enquiry=document.createElement('a');enquiry.className='btn btn-dark';
   const enquiryMessage=['Hello Modi Holidays, I am interested in '+p.name+' ('+p.id+').','Destination: '+p.destination,'Duration: '+p.duration,'Preferred travel month: '+(month||'Flexible / not selected'),'Please share the itinerary and confirm dates, arrangements and availability in writing.'].join('\n');
   enquiry.href='https://wa.me/917666018401?text='+encodeURIComponent(enquiryMessage);enquiry.textContent='Enquire on WhatsApp ↗';enquiry.setAttribute('aria-label','Enquire about '+p.name+' on WhatsApp');

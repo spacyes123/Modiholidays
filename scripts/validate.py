@@ -6,9 +6,19 @@ from urllib.parse import urlsplit, unquote, parse_qs
 from collections import Counter
 import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parent.parent
+DOMAIN='https://modiholidays.in'
 errors=[]
 def check(condition,message):
     if not condition:errors.append(message)
+
+def local_target(source, raw):
+    url=urlsplit(raw)
+    if url.scheme or url.netloc:return None
+    relative=unquote(url.path)
+    target=source if not relative else ((ROOT/relative.lstrip('/')) if relative.startswith('/') else (source.parent/relative))
+    if target.is_dir():target=target/'index.html'
+    elif not target.exists() and not target.suffix and target.with_suffix('.html').is_file():target=target.with_suffix('.html')
+    return target.resolve()
 data=json.loads((ROOT/'assets/packages.json').read_text(encoding='utf-8'))
 photos=json.loads((ROOT/'assets/image-manifest.json').read_text(encoding='utf-8'))
 check(len(data)==140,'Catalogue must contain 140 records')
@@ -68,19 +78,36 @@ for file in files:
     check(bool(page.metadata.get('og:title')),f'Missing social metadata: {file.name}')
     for link in page.links:
         url=urlsplit(link)
-        if url.scheme or url.netloc:continue
-        if url.fragment:
-            anchor_file=(file.parent/unquote(url.path)).resolve() if url.path else file
-            if anchor_file.is_file() and anchor_file.suffix=='.html':
-                anchor_page=Page();anchor_page.feed(anchor_file.read_text(encoding='utf-8'))
-                check(unquote(url.fragment) in anchor_page.ids,f'Broken local fragment {file.name}: {link}')
-        if not url.path:continue
-        target=(file.parent/unquote(url.path)).resolve()
+        target=local_target(file,link)
+        if target is None:continue
         check(target.is_relative_to(ROOT) and target.is_file(),f'Broken local link {file.name}: {link}')
+        if url.fragment and target.is_file() and target.suffix=='.html':
+            anchor_page=Page();anchor_page.feed(target.read_text(encoding='utf-8'))
+            check(unquote(url.fragment) in anchor_page.ids,f'Broken local fragment {file.name}: {link}')
+    relative=file.relative_to(ROOT).as_posix()
+    if relative=='index.html' or (relative in [f'{name}.html' for name in ['about','contact','domestic-holidays','group-tours','international-holidays','packages','pilgrimage-tours','plan-my-holiday']] or relative.startswith('tours/')):
+        expected=DOMAIN+('/' if relative=='index.html' else '/'+relative[:-5])
+        check(page.canonical==[expected],f'Canonical must be extensionless for {relative}: {page.canonical}')
+        check(page.metadata.get('og:url')==expected,f'og:url must match extensionless canonical for {relative}')
     live=[p for p in data if p.get('published',True)]
     expected={'packages.html':len(live),'domestic-holidays.html':sum(p['category'] in ['Domestic','Pilgrimage'] for p in live),'international-holidays.html':sum(p['category']=='International' for p in live),'pilgrimage-tours.html':sum(p['category']=='Pilgrimage' for p in live)}.get(file.name)
     if expected:check(page.cards==expected,f'Wrong static catalogue count: {file.name} = {page.cards}')
-ET.parse(ROOT/'sitemap.xml')
+tree=ET.parse(ROOT/'sitemap.xml')
+namespace={'sm':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+sitemap_urls=[node.text or '' for node in tree.findall('.//sm:loc',namespace)]
+check(len(sitemap_urls)==149,'Sitemap must contain 149 URLs')
+check(len(set(sitemap_urls))==len(sitemap_urls),'Sitemap URLs must be unique')
+for value in sitemap_urls:
+    parsed=urlsplit(value)
+    check(parsed.scheme=='https' and parsed.netloc=='modiholidays.in',f'Non-production sitemap URL: {value}')
+    check(not parsed.path.lower().endswith('.html'),f'Sitemap URL redirects from .html: {value}')
+    relative=unquote(parsed.path).strip('/')
+    physical=ROOT/(f'{relative}.html' if relative else 'index.html')
+    check(physical.is_file(),f'Sitemap URL has no physical HTML source: {value}')
+    if physical.is_file():
+        page=Page();page.feed(physical.read_text(encoding='utf-8'))
+        check(page.canonical==[value],f'Sitemap/canonical mismatch: {value}')
+        check(page.metadata.get('og:url')==value,f'Sitemap/Open Graph mismatch: {value}')
 print(f'Catalogue: {len(data)} unique packages; {dict(Counter(p["category"] for p in data))}')
 print(f'Images: {len(photos)} manifest records; checked local WebP files and attribution fields')
 print(f'Pages: {len(files)}; checked links, metadata, JSON-LD, shared navigation and static catalogue counts')

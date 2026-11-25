@@ -45,7 +45,7 @@ test('Andaman, Domestic, 4 nights matches the real 5-day/4-night catalogue packa
   assert.equal(body.children[0].textContent,'Andaman');
   assert.equal(body.children[1].textContent,'Andaman Island Honeymoon');
   assert.equal(body.children[2].textContent,'5 Days / 4 Nights');
-  assert.equal(actions.children[0].href,'tours/andaman-island-honeymoon-mh-100.html');
+  assert.equal(actions.children[0].href,'/tours/andaman-island-honeymoon-mh-100');
   const enquiryUrl=new URL(actions.children[1].href),message=enquiryUrl.searchParams.get('text');
   assert.equal(enquiryUrl.pathname,'/917666018401');
   for(const part of ['Andaman Island Honeymoon','Andaman','5 Days / 4 Nights','November'])assert.ok(message.includes(part));

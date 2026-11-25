@@ -15,6 +15,10 @@ const publicRootPages = fs.readdirSync(ROOT).filter(file => file.endsWith('.html
 const tourFiles = catalogue.filter(pkg => pkg.published !== false).map(pkg => path.join('tours', `${pkg.slug}.html`));
 const read = file => fs.readFileSync(path.join(ROOT, file), 'utf8');
 const decodeHtml = value => value.replaceAll('&amp;', '&').replaceAll('&quot;', '"').replaceAll('&#39;', "'").replaceAll('&lt;', '<').replaceAll('&gt;', '>');
+const physicalPageForUrl = value => {
+  const pathname = decodeURIComponent(new URL(value).pathname).replace(/^\/+/, '');
+  return path.join(ROOT, pathname ? `${pathname.replace(/\/$/, '')}.html` : 'index.html');
+};
 
 test('all published tour pages have unique concise metadata and exactly one H1', () => {
   assert.equal(tourFiles.length, 140);
@@ -69,7 +73,8 @@ test('public internal links and local image assets resolve', () => {
         const relative = decodeURIComponent(url.pathname.replace(/^\//, '')) || 'index.html';
         const resolved = path.resolve(ROOT, relative);
         assert.ok(resolved.startsWith(`${ROOT}${path.sep}`) || resolved === path.join(ROOT, 'index.html'), `${file}: path escapes site root: ${rawTarget}`);
-        const candidate = fs.existsSync(resolved) && fs.statSync(resolved).isDirectory() ? path.join(resolved, 'index.html') : resolved;
+        const withHtml = !path.extname(resolved) && fs.existsSync(`${resolved}.html`) ? `${resolved}.html` : resolved;
+        const candidate = fs.existsSync(withHtml) && fs.statSync(withHtml).isDirectory() ? path.join(withHtml, 'index.html') : withHtml;
         assert.ok(fs.existsSync(candidate), `${file}: missing local target ${rawTarget}`);
         if (url.hash && candidate.endsWith('.html')) {
           const targetHtml = candidate === path.join(ROOT, file) ? html : fs.readFileSync(candidate, 'utf8');
@@ -90,12 +95,11 @@ test('production sitemap includes only indexable self-canonical public URLs', ()
   assert.ok(!urls.some(url => /terms\.html|cancellation\.html|privacy\.html|package\.html|404\.html|admin\.html/.test(url)));
   const titles = new Set();
   const descriptions = new Set();
-  for (const pkg of catalogue) assert.ok(urls.includes(`${DOMAIN}/tours/${pkg.slug}.html`), `package missing from sitemap: ${pkg.slug}`);
+  for (const pkg of catalogue) assert.ok(urls.includes(`${DOMAIN}/tours/${pkg.slug}`), `package missing from sitemap: ${pkg.slug}`);
   for (const url of urls) {
     assert.ok(url.startsWith(`${DOMAIN}/`), `non-production canonical in sitemap: ${url}`);
-    const rel = url.slice(DOMAIN.length + 1) || 'index.html';
-    const file = rel.endsWith('/') ? `${rel}index.html` : rel;
-    const html = read(file);
+    assert.doesNotMatch(new URL(url).pathname, /\.html$/i, `sitemap URL redirects from .html: ${url}`);
+    const html = fs.readFileSync(physicalPageForUrl(url), 'utf8');
     assert.ok(!/name="robots"\s+content="[^"]*noindex/i.test(html), `noindex URL listed: ${url}`);
     assert.equal(html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1], url, `canonical mismatch: ${url}`);
     assert.equal(html.match(/<meta\s+property="og:url"\s+content="([^"]+)"/i)?.[1], url, `social URL mismatch: ${url}`);
@@ -109,6 +113,70 @@ test('production sitemap includes only indexable self-canonical public URLs', ()
   assert.match(read('cancellation.html'), /NOT APPROVED, ACTIVE OR EFFECTIVE/);
   assert.match(read('privacy.html'), /name="robots" content="noindex, nofollow"/);
   assert.match(read('packages.html'), /<meta name="description" content="Browse 140 domestic, international and pilgrimage tours\./);
+});
+
+test('published canonicals, internal links and structured URLs use Cloudflare extensionless routes', () => {
+  const sitemap = read('sitemap.xml');
+  const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+  const publicPaths = new Set(urls.map(value => new URL(value).pathname));
+  const normalizeRoute = value => {
+    try {
+      const url = new URL(value, `${DOMAIN}/`);
+      if (url.origin !== DOMAIN) return null;
+      return decodeURIComponent(url.pathname).replace(/\.html$/i, '') || '/';
+    } catch {
+      return null;
+    }
+  };
+  const visitStrings = (value, visit) => {
+    if (typeof value === 'string') visit(value);
+    else if (Array.isArray(value)) value.forEach(item => visitStrings(item, visit));
+    else if (value && typeof value === 'object') Object.values(value).forEach(item => visitStrings(item, visit));
+  };
+
+  for (const value of urls) {
+    const html = fs.readFileSync(physicalPageForUrl(value), 'utf8');
+    const canonical = html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1];
+    assert.equal(canonical, value, `canonical mismatch for ${value}`);
+    const current = new URL(canonical);
+
+    for (const match of html.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["'][^>]*>/gi)) {
+      const href = decodeHtml(match[1]);
+      const target = new URL(href, current);
+      if (target.origin === DOMAIN && publicPaths.has(target.pathname)) {
+        assert.doesNotMatch(target.pathname, /\.html$/i, `internal link still redirects: ${value} -> ${href}`);
+      }
+    }
+
+    for (const match of html.matchAll(/<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/gi)) {
+      visitStrings(JSON.parse(match[1]), schemaUrl => {
+        const route = normalizeRoute(schemaUrl);
+        if (route && publicPaths.has(route)) {
+          assert.doesNotMatch(new URL(schemaUrl).pathname, /\.html$/i, `structured URL still redirects on ${value}: ${schemaUrl}`);
+        }
+      });
+    }
+  }
+
+  const home = read('index.html');
+  assert.match(home, /href="(?:#|\/#)worlds"/, 'homepage section anchor remains intact');
+  assert.match(home, /id="worlds"/, 'homepage anchor target remains intact');
+  const tour = read('tours/andaman-island-escape-mh-009.html');
+  assert.match(tour, /href="\/domestic-holidays\?destination=Andaman"/, 'destination-filter query is preserved');
+  const quote = tour.match(/<a class="btn btn-primary" href="([^"]+)"[^>]*>Request a quote/i)?.[1];
+  assert.ok(quote, 'tour quote link exists');
+  const quoteUrl = new URL(quote, `${DOMAIN}/tours/andaman-island-escape-mh-009`);
+  assert.equal(quoteUrl.pathname, '/plan-my-holiday');
+  assert.equal(quoteUrl.searchParams.get('destination'), 'Andaman Island Escape');
+});
+
+test('client-generated tour navigation uses extensionless URLs', () => {
+  const searchScript = read('assets/bespoke/prototype.js');
+  const legacyRedirect = read('assets/package-redirect.js');
+  assert.match(searchScript, /itinerary\.href='\/tours\/'\+p\.slug/);
+  assert.doesNotMatch(searchScript, /itinerary\.href=[^;]*\.html/);
+  assert.match(legacyRedirect, /location\.replace\('\/tours\/'\s*\+/);
+  assert.doesNotMatch(legacyRedirect, /p\.slug\)\s*\+\s*['"]\.html/);
 });
 
 test('package collection schema matches the visible heading, introduction and canonical', () => {
