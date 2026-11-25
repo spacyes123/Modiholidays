@@ -1,14 +1,20 @@
-name: Validate and deploy GitHub Pages
+name: Validate public website
+
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - release/deployment-safety
   pull_request:
-  workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -18,28 +24,9 @@ jobs:
       - run: python scripts/validate.py
       - uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: '24'
       - run: node --test scripts/whatsapp.test.cjs
-      - name: Stage public website only
-        run: |
-          mkdir _site
-          cp *.html robots.txt sitemap.xml CNAME _site/
-          cp -r assets tours _site/
-          touch _site/.nojekyll
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-  deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: validate
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Build strict public artifact
+        run: node scripts/build-public-artifact.cjs dist
+      - name: Test public artifact exclusions and contents
+        run: node --test scripts/public-artifact.test.cjs scripts/workflow-safety.test.cjs
