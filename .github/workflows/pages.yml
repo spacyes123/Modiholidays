@@ -1,4 +1,4 @@
-name: Validate and prepare public Pages artifact
+name: Validate public website
 
 on:
   push:
@@ -6,13 +6,6 @@ on:
       - main
       - release/deployment-safety
   pull_request:
-  workflow_dispatch:
-    inputs:
-      publish_production:
-        description: 'Explicitly authorize the main-branch GitHub Pages deployment'
-        required: true
-        default: false
-        type: boolean
 
 permissions:
   contents: read
@@ -36,23 +29,4 @@ jobs:
       - name: Build strict public artifact
         run: node scripts/build-public-artifact.cjs dist
       - name: Test public artifact exclusions and contents
-        run: node --test scripts/public-artifact.test.cjs
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy-production:
-    if: github.event_name == 'workflow_dispatch' && inputs.publish_production == true && github.ref == 'refs/heads/main'
-    needs: validate
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy manually authorized artifact
-        id: deployment
-        uses: actions/deploy-pages@v4
+        run: node --test scripts/public-artifact.test.cjs scripts/workflow-safety.test.cjs
