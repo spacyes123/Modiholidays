@@ -117,7 +117,14 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "changes": "Resized and converted to WebP; displayed with object-fit cropping.",
     "verifiedAt": "2026-10-29",
-    "review": "Source metadata and contact-sheet photograph visually reviewed; destination checked against itinerary route."
+    "review": "Source metadata and contact-sheet photograph visually reviewed; destination checked against itinerary route.",
+    "sourceReuseApproval": {
+      "approvalId": "owner-approval-2026-11-26-mh002-mh025",
+      "approvedBy": "Business owner",
+      "approvedOn": "2026-11-26",
+      "packageIds": ["MH-002", "MH-025"],
+      "reason": "Owner-approved reuse of the cleared Manali India 5 photograph for the two Manali packages."
+    }
   },
   "MH-039": {
     "image": "assets/photos/mh-039.webp",
@@ -177,7 +184,14 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "changes": "Resized and converted to WebP; displayed with object-fit cropping.",
     "verifiedAt": "2026-10-29",
-    "review": "Commercially permitted CC BY 4.0 source metadata and contact-sheet photograph visually reviewed; this cleared Manali photograph is also used by MH-025. Destination checked against itinerary route."
+    "review": "Commercially permitted CC BY 4.0 source metadata and contact-sheet photograph visually reviewed; this cleared Manali photograph is also used by MH-025. Destination checked against itinerary route.",
+    "sourceReuseApproval": {
+      "approvalId": "owner-approval-2026-11-26-mh002-mh025",
+      "approvedBy": "Business owner",
+      "approvedOn": "2026-11-26",
+      "packageIds": ["MH-002", "MH-025"],
+      "reason": "Owner-approved reuse of the cleared Manali India 5 photograph for the two Manali packages."
+    }
   },
   "MH-003": {
     "image": "assets/photos/mh-003.webp",

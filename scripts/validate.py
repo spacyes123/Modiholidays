@@ -5,6 +5,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote, parse_qs
 from collections import Counter
 import xml.etree.ElementTree as ET
+from photo_sources import find_duplicate_source_errors
 ROOT=Path(__file__).resolve().parent.parent
 DOMAIN='https://modiholidays.in'
 errors=[]
@@ -26,7 +27,7 @@ check(len({p['id'] for p in data})==140,'IDs must be unique')
 check(len({p['slug'] for p in data})==140,'Slugs must be unique')
 check(Counter(p['category'] for p in data)=={'Domestic':88,'Pilgrimage':9,'International':43},'Category totals changed')
 check(len(photos)==140,'Image manifest must cover all 140 packages')
-check(len({p['source'] for p in photos.values()})==len(photos),'Duplicate photograph source')
+errors.extend(find_duplicate_source_errors(photos))
 for p in data:
     target=ROOT/'tours'/(p['slug']+'.html')
     if p.get('published',True):check(target.exists(),f'Missing tour: {p["id"]}')

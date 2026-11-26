@@ -16,12 +16,13 @@ Photos illustrate destinations, without promising a particular accommodation or 
 
 ## MH-002 — Himachal Mountain Retreat
 
-- Photograph: Manali India 5 (also used for MH-025)
+- Photograph: Manali India 5 (also used for MH-025 under owner approval `owner-approval-2026-11-26-mh002-mh025`)
 - Author / credit: Philip Nalangan
 - Source and title: [Manali India 5](https://commons.wikimedia.org/wiki/File:Manali_India_5.jpg)
 - Licence: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)
 - Local files: `assets/photos/mh-002.webp`, `assets/photos/mh-002-640.webp`
 - Changes: Reused the already-reviewed MH-025 source, resized and converted to WebP; displayed with object-fit cropping. Attribution and licence link are presented with the photograph.
+- Approved source reuse: owner approval `owner-approval-2026-11-26-mh002-mh025`; also used for MH-025.
 - Catalogue destination: Himachal Pradesh; route: Shimla, Manali, Dharamshala, Dalhousie
 
 ## MH-003 — Kerala Scenic Escape
@@ -234,6 +235,7 @@ Derivative work:  UnpetitproleX
 - Licence: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)
 - Local files: `assets/photos/mh-025.webp`, `assets/photos/mh-025-640.webp`
 - Changes: Resized and converted to WebP; displayed with object-fit cropping.
+- Approved source reuse: owner approval `owner-approval-2026-11-26-mh002-mh025`; also used for MH-002.
 - Catalogue destination: Himachal Pradesh; route: Manali, Kufri, Shimla
 
 ## MH-026 — Ayodhya Varanasi Spiritual Trail

@@ -4,10 +4,24 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent.parent
 data=json.loads((ROOT/'assets/packages.json').read_text(encoding='utf-8'))
 manifest=json.loads((ROOT/'assets/image-manifest.json').read_text(encoding='utf-8'))
-lines=['# Destination image credits','', 'Source metadata retrieved and photographs visually reviewed on 29 October 2026. All 140 packages use local WebP files; each photograph has a distinct source page. Images retain their respective original licences. Resizing, WebP conversion and display cropping are disclosed beside the images. CC BY-SA derivatives are distributed under their corresponding share-alike licences.','', 'Photos illustrate destinations, without promising a particular accommodation or included service. Source identification is based on the linked Commons file metadata and visual review, not independent geolocation or a legal warranty of uploader provenance.','']
+lines=['# Destination image credits','', 'Source metadata retrieved and photographs visually reviewed on 29 October 2026. All 140 packages use local WebP files with per-package source and licence records; owner-approved source reuse is identified where applicable. Images retain their respective original licences. Resizing, WebP conversion and display cropping are disclosed beside the images. CC BY-SA derivatives are distributed under their corresponding share-alike licences.','', 'Photos illustrate destinations, without promising a particular accommodation or included service. Source identification is based on the linked Commons file metadata and visual review, not independent geolocation or a legal warranty of uploader provenance.','']
 for p in data:
     m=manifest[p['id']]
-    lines += [f'## {p["id"]} — {p["name"]}','',f'- Photograph: {m["alt"]}',f'- Author / credit: {m["author"] or "Author not recorded (public domain)"}',f'- Source and title: [{m["alt"]}]({m["source"]})',f'- Licence: [{m["license"]}]({m["licenseUrl"]})',f'- Local files: `{m["image"]}`, `{m["small"]}`',f'- Changes: {m["changes"]}',f'- Catalogue destination: {p["destination"]}; route: {", ".join(p["route"])}','']
+    lines += [
+        f'## {p["id"]} — {p["name"]}',
+        '',
+        f'- Photograph: {m["alt"]}',
+        f'- Author / credit: {m["author"] or "Author not recorded (public domain)"}',
+        f'- Source and title: [{m["alt"]}]({m["source"]})',
+        f'- Licence: [{m["license"]}]({m["licenseUrl"]})',
+        f'- Local files: {chr(96)}{m["image"]}{chr(96)}, {chr(96)}{m["small"]}{chr(96)}',
+        f'- Changes: {m["changes"]}',
+    ]
+    if m.get("sourceReuseApproval"):
+        approval=m["sourceReuseApproval"]
+        others=[package_id for package_id in approval["packageIds"] if package_id != p["id"]]
+        lines.append(f'- Approved source reuse: owner approval {chr(96)}{approval["approvalId"]}{chr(96)}; also used for {", ".join(others)}.')
+    lines += [f'- Catalogue destination: {p["destination"]}; route: {", ".join(p["route"])}', '']
 (ROOT/'IMAGE-CREDITS.md').write_text('\n'.join(lines),encoding='utf-8')
 base='d4c65b45b6b99a10bca2b438130d0c89178d2f70'
 modified=subprocess.check_output(['git','diff','--name-only',base],cwd=ROOT,text=True).splitlines()

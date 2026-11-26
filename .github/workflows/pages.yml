@@ -25,6 +25,7 @@ jobs:
         with:
           node-version: '24'
       - run: node scripts/prepare-seo.cjs
+      - run: python scripts/test_photo_sources.py
       - run: python scripts/validate.py
       - name: Build strict Cloudflare Pages artifact
         run: node scripts/build-cloudflare-pages.cjs dist
