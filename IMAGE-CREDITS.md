@@ -1,6 +1,6 @@
 # Destination image credits
 
-Source metadata retrieved and photographs visually reviewed on 29 October 2026. All 140 packages use local WebP files; each photograph has a distinct source page. Images retain their respective original licences. Resizing, WebP conversion and display cropping are disclosed beside the images. CC BY-SA derivatives are distributed under their corresponding share-alike licences.
+Source metadata retrieved and photographs visually reviewed on 29 October 2026. All 140 packages use local WebP files with per-package source and licence records; some packages may intentionally reuse the same cleared source image. Images retain their respective original licences. Resizing, WebP conversion and display cropping are disclosed beside the images. CC BY-SA derivatives are distributed under their corresponding share-alike licences.
 
 Photos illustrate destinations, without promising a particular accommodation or included service. Source identification is based on the linked Commons file metadata and visual review, not independent geolocation or a legal warranty of uploader provenance.
 
@@ -16,12 +16,12 @@ Photos illustrate destinations, without promising a particular accommodation or 
 
 ## MH-002 — Himachal Mountain Retreat
 
-- Photograph: Simsa Manali East Himachal Oct22 A7C 03328
-- Author / credit: Timothy A. Gonsalves
-- Source and title: [Simsa Manali East Himachal Oct22 A7C 03328](https://commons.wikimedia.org/wiki/File:Simsa_Manali_East_Himachal_Oct22_A7C_03328.jpg)
-- Licence: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- Photograph: Manali India 5 (also used for MH-025)
+- Author / credit: Philip Nalangan
+- Source and title: [Manali India 5](https://commons.wikimedia.org/wiki/File:Manali_India_5.jpg)
+- Licence: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)
 - Local files: `assets/photos/mh-002.webp`, `assets/photos/mh-002-640.webp`
-- Changes: Resized and converted to WebP; displayed with object-fit cropping.
+- Changes: Reused the already-reviewed MH-025 source, resized and converted to WebP; displayed with object-fit cropping. Attribution and licence link are presented with the photograph.
 - Catalogue destination: Himachal Pradesh; route: Shimla, Manali, Dharamshala, Dalhousie
 
 ## MH-003 — Kerala Scenic Escape

@@ -39,12 +39,12 @@ All photographs currently used by the homepage map to documented catalogue sourc
 
 ## assets/photos/mh-002.webp
 
-- Usage: Simsa Manali East Himachal Oct22 A7C 03328
-- SHA-256: `9bad281c802c07ee931b42c6a38a097c77bb35d81a1c2099e5b908402172a87b`
-- Original source: [Simsa Manali East Himachal Oct22 A7C 03328](https://commons.wikimedia.org/wiki/File:Simsa_Manali_East_Himachal_Oct22_A7C_03328.jpg)
-- Author: Timothy A. Gonsalves
-- Licence: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
-- Source licence declaration checked on Wikimedia Commons on 2 November 2026.
+- Usage: Manali India 5 (the cleared catalogue photograph also used for MH-025)
+- SHA-256: `5a837278e782cc1e9d1039523e1d43a4a3de1f2e22c80364b22f696402dcc545`
+- Original source: [Manali India 5](https://commons.wikimedia.org/wiki/File:Manali_India_5.jpg)
+- Author: Philip Nalangan
+- Licence: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)
+- Source and licence are recorded in the catalogue image manifest and IMAGE-CREDITS.md; the local WebP copy is reused from MH-025.
 - Changes: Resized and converted to WebP; displayed with object-fit cropping.
 - Keep author, source and licence links, and change notice. For CC BY-SA adaptations, retain the same or a compatible licence.
 

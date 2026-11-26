@@ -84,6 +84,8 @@ test('artifact excludes admin, private configuration, inactive policies and revi
   const files = filesBelow(dist).map(file => file.replaceAll('\\', '/'));
   assert.ok(!fs.existsSync(path.join(dist, 'admin.html')));
   assert.ok(!fs.existsSync(path.join(dist, 'admin-app')));
+  assert.ok(fs.existsSync(path.join(root, 'assets/editor.js')), 'source editor should remain available locally');
+  assert.ok(!files.includes('assets/editor.js'), 'browser-local JSON editor must not be deployed publicly');
   assert.ok(!fs.existsSync(path.join(dist, 'CNAME')));
   for (const file of files) {
     assert.doesNotMatch(file, /(^|\/)(?:admin-app|owner-review-legal|private|secrets?|\.git|node_modules)(\/|$)/i);
@@ -103,6 +105,9 @@ test('artifact excludes admin, private configuration, inactive policies and revi
   assert.match(searchScript, /itinerary\.href='\/tours\/'\+p\.slug/);
   assert.doesNotMatch(searchScript, /itinerary\.href=[^;]*\.html/);
   assert.match(packageRedirect, /location\.replace\('\/tours\/'\s*\+/);
+  for (const html of files.filter(name => name.endsWith('.html'))) {
+    assert.doesNotMatch(fs.readFileSync(path.join(dist, html), 'utf8'), /(?:src|href)=["'][^"']*assets\/editor\.js/i, `${html} must not request the private editor`);
+  }
   for (const file of files.filter(name => /\.(?:html|js|json|txt)$/i.test(name))) {
     const contents = fs.readFileSync(path.join(dist, file), 'utf8');
     assert.doesNotMatch(contents, /SUPABASE_SERVICE_ROLE_KEY|TURNSTILE_SECRET_KEY|INGRESS_SECRET|BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY/i, file);

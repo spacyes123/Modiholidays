@@ -167,17 +167,17 @@
   "MH-002": {
     "image": "assets/photos/mh-002.webp",
     "small": "assets/photos/mh-002-640.webp",
-    "alt": "Simsa Manali East Himachal Oct22 A7C 03328",
+    "alt": "Manali India 5",
     "destination": "Himachal Pradesh",
-    "query": "Manali Himachal Pradesh mountains",
-    "source": "https://commons.wikimedia.org/wiki/File:Simsa_Manali_East_Himachal_Oct22_A7C_03328.jpg",
-    "original": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Simsa_Manali_East_Himachal_Oct22_A7C_03328.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "author": "Timothy A. Gonsalves",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "query": "Manali India -map -portrait -logo -sign -plaque",
+    "source": "https://commons.wikimedia.org/wiki/File:Manali_India_5.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/97/Manali_India_5.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "author": "Philip Nalangan",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "changes": "Resized and converted to WebP; displayed with object-fit cropping.",
     "verifiedAt": "2026-10-29",
-    "review": "Source metadata and contact-sheet photograph visually reviewed; destination checked against itinerary route."
+    "review": "Commercially permitted CC BY 4.0 source metadata and contact-sheet photograph visually reviewed; this cleared Manali photograph is also used by MH-025. Destination checked against itinerary route."
   },
   "MH-003": {
     "image": "assets/photos/mh-003.webp",
