@@ -12,11 +12,13 @@ To regenerate only the faithful brand derivatives, use `scripts/prepare-brand.cj
 
 ## Build and preview
 
-Requires Python 3.10+. No dependencies are needed for building or static validation.
+The production validation workflow uses Python 3.12 and Node.js 24. No Python dependencies are needed for the static site build or validation.
 
 ```sh
 python build_site.py
+node scripts/prepare-seo.cjs
 python scripts/validate.py
+node scripts/build-cloudflare-pages.cjs dist
 python -m http.server 8000
 ```
 
@@ -43,7 +45,7 @@ Use GitHub's file editor or a local editor on a feature branch:
 
 Rebuild and validate after every edit. The validator deliberately locks the launch baseline of 140 records and the category totals. For an intentional addition, removal or category change, update these baseline assertions with the reviewed change. Unpublishing keeps the 140 source records; rendered counts adapt to publication status.
 
-`admin.html` remains a browser-local JSON editor, not a secure backend. Save/download its JSON, replace the source file, rebuild and commit. Its image field now accepts local paths. The legacy editor regenerates slugs from names; edit JSON directly to preserve established public slugs.
+`admin.html` and `assets/editor.js` are local-only authoring tools, not secure backend features. The strict Cloudflare artifact builder excludes them; do not publish them. For safe catalogue edits, edit source JSON directly, preserve existing IDs and slugs, then rebuild and validate.
 
 ## Photography and attribution
 
@@ -53,30 +55,20 @@ Rebuild and validate after every edit. The validator deliberately locks the laun
 
 Optional replacement sourcing: `scripts/source-images.cjs` requires Node and `sharp` (`npm install --no-save sharp`, or set `SHARP_PATH` to an existing installation). `assets/image-queries.json` documents destination and itinerary queries. The tool checks metadata and downloads/optimises candidates. **Manually check each new photo against its source and itinerary before publishing.** The current set was source-checked and visually reviewed; this does not warrant third-party upload provenance.
 
-## Contacts — intentionally pending
+## Current public enquiry configuration
 
-Per the owner's instruction, `whatsappNumber`, `businessEmail` and `businessPhoneDisplay` in `assets/config.js` remain blank. The interface identifies setup as pending. Before launch, add verified details; WhatsApp accepts 10–15 digits including country code, without punctuation.
+The approved public contacts in `assets/config.js` are WhatsApp `+91 76660 18401` and `modiholidays15@gmail.com`. The website enquiry form prepares a prefilled WhatsApp message. Visitors must press Send in WhatsApp themselves. The static website does not save enquiries to the CRM, send email, accept payment or confirm bookings. `publicEnquiryEndpoint` and `turnstileSiteKey` are blank; do not describe CRM intake as active.
 
-The form collects name, mobile, optional email, destination/package, dates, adults, children, departure city, budget and special requirements. It prepares a message and displays **Open WhatsApp with my enquiry**. The visitor must then press Send in WhatsApp; the website neither sends nor stores the enquiry. Missing configuration explicitly reports that nothing was sent. Package quote links preselect the itinerary.
+The form uses entered name, mobile, optional email, destination/package, dates, traveller counts, departure city, budget and special requests to create the message. On handoff, WhatsApp receives the prefilled message URL; no enquiry is persisted by this static site. Package enquiry links can preselect an itinerary. There is no customer portal, online booking, checkout or payment gateway in the approved public launch.
 
-For local message QA only, run `python scripts/enquiry-fixture.py` and open `/work/enquiry-configured.html`. This ignored fixture contains a test number: do not send messages through it or deploy `work/`.
+## Cloudflare Pages deployment and launch
 
-## GitHub Pages and launch
+Cloudflare Pages is the intended host. GitHub Actions is CI-only: it runs the Python 3.12 site build and validation, SEO preparation, strict public-artifact assembly and Node regression tests. It does not publish GitHub Pages. The Pages output directory is `dist`; assemble it with `node scripts/build-cloudflare-pages.cjs dist` after building the catalogue, preparing SEO and validating. The strict builder checks the 140 tours and 149 sitemap URLs and excludes admin tools, private files, inactive policy pages, seven uncleared reference photos, `assets/editor.js` and CNAME.
 
-`.github/workflows/pages.yml` builds and validates PRs. It stages public HTML, assets, tours, robots, sitemap and CNAME. Deployment uses GitHub Pages artifacts and OIDC only on `main` (or manual dispatch against main). A feature branch / PR does not deploy.
+Production has not been approved or deployed from this checkout. Before a release, obtain legal approval for policy publication and resolve the blockers in `LAUNCH-READINESS.md`. Then: (1) verify the release commit and CI, (2) confirm the Cloudflare Pages project, production branch and `dist` build configuration, (3) publish a preview and smoke-test it, (4) verify and preserve existing DNS and email records, (5) only after explicit owner approval attach `modiholidays.in` to the Pages project and verify HTTPS, (6) check live headers, canonicals, sitemap, WhatsApp handoff and all 140 tour pages, and (7) retain the prior successful Pages deployment for rollback. Do not use GitHub Pages deployment or connect/change DNS without approval.
 
-1. Push the feature branch and open a PR; review before merging.
-2. In the existing repository's **Settings → Pages**, select **GitHub Actions**.
-3. Retain `modiholidays.in` as the custom domain. Verify registrar DNS against GitHub's current instructions and enable HTTPS after validation.
-4. Configure contacts and verify actual WhatsApp receipt before public launch.
-5. Verify itinerary routing, nights, seasons, permits and arrangements with the business/suppliers. Existing itineraries remain suggested drafts; no new hotels, prices or guaranteed departures were invented.
-6. Review actual company, privacy, cancellation and legal details.
-7. Merge when ready, verify the actual Actions deployment and smoke-test the live domain.
-8. Verify Google Search Console ownership, submit `https://modiholidays.in/sitemap.xml` and inspect representative URLs. No verification token was invented.
-9. Test physical iOS/Android devices, Safari and Firefox; measure field Core Web Vitals after deployment.
-
-The implementation uses GitHub Pages-compatible static assets. Live deployment, DNS, HTTPS, Search Console, actual message receipt and field performance are not verified from this local checkout. See [QA-REPORT.md](QA-REPORT.md) and [MODIFIED-FILES.md](MODIFIED-FILES.md). Older audit/update documents remain historical; this README and the current manifest/report describe the final implementation.
+Live project settings, DNS, email records and deployed response headers were not verifiable from the current local network/account session. No DNS, production setting or deployment was changed.
 
 ## Private operations dashboard
 
-A protected Next.js/Supabase admin application is in [admin-app](admin-app/README.md). It needs a server-capable host and owner-provisioned employee accounts; GitHub Pages cannot run it. Setup, migrations, environment variables, validation, deployment preparation and known limits are documented there. Production deployment and merging remain separate owner decisions.
+A protected Next.js/Supabase admin application is in [admin-app](admin-app/README.md), separate from the public artifact and requiring a server-capable host and owner-provisioned employee accounts. It is not required to host the public website. Staff can create an internal enquiry manually without public-site CRM intake, then create and save an itinerary linked to that record and create a quotation from the saved itinerary. A truly no-enquiry itinerary is not supported by the current schema/UI. No admin code or database settings were changed for this website-preparation task.

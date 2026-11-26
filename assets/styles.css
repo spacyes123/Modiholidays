@@ -1,7 +1,7 @@
 :root {
   --plum: #55234B;
   --plum-hover: #421B3A;
-  --plum-tint: #F5EBF2;
+  --plum-tint: #FFF8F0;
   --saffron: #F39A24;
   --saffron-light: #FFD9A8;
   --ivory: #FFF8F0;
@@ -11,8 +11,8 @@
   --line: #E8DCE3;
   --shadow: 0 16px 42px rgba(85,35,75,.09);
   --radius: 18px;
-  --serif: Georgia, "Times New Roman", serif;
-  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans: Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -103,6 +103,9 @@ input,select,textarea { width:100%; border:1px solid #D6BED0; background:#FFFFFF
 input:focus,select:focus,textarea:focus { outline:3px solid rgba(243,154,36,.25); border-color:var(--saffron); }
 textarea { resize:vertical; min-height:120px; }
 .form-help { font-size:.83rem; color:var(--muted); }
+.form-consent { display:flex; align-items:flex-start; gap:.65rem; margin:.75rem 0; line-height:1.5; }
+.form-consent input { flex:0 0 auto; width:auto; margin:.2rem 0 0; }
+.form-consent span { flex:1; min-width:0; font-weight:500; }
 .contact-layout { display:grid; grid-template-columns:.85fr 1.15fr; gap:2rem; align-items:start; }
 .contact-panel { background:var(--plum); color:white; border-radius:var(--radius); padding:2rem; }
 .contact-panel h2 { color:white; font-size:2rem; }
@@ -177,6 +180,7 @@ details p { color:var(--muted); margin:.75rem 0 0; }
   .footer-brand { width:230px; }
   .footer-bottom { display:block; }
   .footer-bottom span { display:block; margin-top:.4rem; }
+  .footer-bottom span[data-year] { display:inline; margin:0; }
   .whatsapp-float { right:12px; bottom:12px; padding:.8rem; }
   .whatsapp-float .wa-label { display:none; }
 }

@@ -1,0 +1,5 @@
+https://modi-holidays-staging.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:deployment.modi-holidays-staging.pages.dev/*
+  X-Robots-Tag: noindex
